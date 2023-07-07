@@ -13,6 +13,31 @@ return new class extends Migration
     {
         Schema::create('lbkbs', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->string('ulp');
+            $table->integer('kd_unit');
+            $table->integer('id_pel');
+            $table->string('nama');
+            $table->text('alamat');
+            $table->string('tarif');
+            $table->integer('daya');
+            $table->integer('peta');
+            $table->string('tipe');
+            $table->string('kelainan');
+            $table->string('petugas');
+            $table->string('status');
+            $table->string('alasan_tunda');
+            $table->text('ket_tunda');
+            $table->date('tgl_tl')-> nullable();
+            $table->string('foto_app_sebelum')-> nullable();
+            $table->string('foto_app_sesudah')-> nullable();
+            $table->integer('no_hp_pelanggan')-> nullable();
+            $table->string('teken_pelanggan')-> nullable();
+            $table->string('nama_pelanggan')-> nullable();
+            $table->string('teken_petugas')-> nullable();
+            $table->string('nama_petugas')-> nullable();
+            $table->integer('no_berita_acara')-> nullable();
+            $table->text('ket')-> nullable();
             $table->timestamps();
         });
     }

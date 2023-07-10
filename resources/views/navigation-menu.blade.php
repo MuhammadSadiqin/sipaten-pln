@@ -26,6 +26,11 @@
                     <x-nav-link href="/dashboard/gantimeter" :active="request()->routeIs('dashboard/gantimeter')">
                         {{ __('Ganti Meter') }}
                     </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/dashboard/tigaphasa" :active="request()->routeIs('dashboard/tigaphasa')">
+                        {{ __('Tiga Phasa') }}
+                    </x-nav-link>
                 </div> 
 
                 

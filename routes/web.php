@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TigaPhasaController;
 use App\Http\Controllers\GantiMeterController;
 
 /*
@@ -26,4 +27,5 @@ Route::prefix('dashboard')
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('users', UserController::class);
         Route::resource('gantimeter', GantiMeterController::class);
+        Route::resource('tigaphasa', TigaPhasaController::class);
     });

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('ganti_meters', function (Blueprint $table) {
             $table->id();
 
-            $table->interger('user_id');
+            $table->integer('user_id');
             $table->string('ulp');
-            $table->interger('id_pel');
+            $table->integer('id_pel');
             $table->string('nama');
             $table->text('alamat');
             $table->string('tarif');
@@ -50,7 +50,7 @@ return new class extends Migration
 
 
 
-            
+
 
 
 

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('tiga_phasas', function (Blueprint $table) {
             $table->id();
 
-            $table->interger('user_id');
+            $table->integer('user_id');
             $table->string('ulp');
-            $table->interger('kd_unit');
-            $table->interger('id_pel');
+            $table->integer('kd_unit');
+            $table->integer('id_pel');
             $table->string('nama');
             $table->text('alamat');
             $table->string('tarif');
@@ -32,22 +32,22 @@ return new class extends Migration
             $table->date('tgl_tl')->nullable();
             $table->string('merk_type_kwh_meter_lama')->nullable();
             $table->string('arus_kwh_meter_lama')->nullable();
-            $table->interger('no_seri_kwh_meter_lama')->nullable();
+            $table->integer('no_seri_kwh_meter_lama')->nullable();
             $table->string('kelas_kwh_meter_lama')->nullable();
             $table->date('tahun_kwh_meter_lama')->nullable();
-            $table->interger('stan_lwbp_kwh_meter_lama')->nullable();
-            $table->interger('stan_wbp_kwh_meter_lama')->nullable();
-            $table->interger('stan_total_kwh_meter_lama')->nullable();
-            $table->interger('stan_kvarh_kwh_meter_lama')->nullable();
+            $table->integer('stan_lwbp_kwh_meter_lama')->nullable();
+            $table->integer('stan_wbp_kwh_meter_lama')->nullable();
+            $table->integer('stan_total_kwh_meter_lama')->nullable();
+            $table->integer('stan_kvarh_kwh_meter_lama')->nullable();
             $table->string('merk_type_kwh_meter_baru')->nullable();
             $table->string('arus_kwh_mwtwer_baru')->nullable();
-            $table->interger('no_seri_kwh_meter_baru')->nullable();
+            $table->integer('no_seri_kwh_meter_baru')->nullable();
             $table->string('kelas_kwh_meter_baru')->nullable();
             $table->date('tahun_kwh_meter_baru')->date_format('Y');
-            $table->interger('stan_lwbp_kwh_meter_baru')->nullable();
-            $table->interger('stan_wbp_kwh_meter_baru')->nullable();
-            $table->interger('stan_total_kwh_meter_baru')->nullable();
-            $table->interger('stan_kvarh_kwh_meter_baru')->nullable();
+            $table->integer('stan_lwbp_kwh_meter_baru')->nullable();
+            $table->integer('stan_wbp_kwh_meter_baru')->nullable();
+            $table->integer('stan_total_kwh_meter_baru')->nullable();
+            $table->integer('stan_kvarh_kwh_meter_baru')->nullable();
             $table->string('merk_type_ct_terpasang')->nullable();
             $table->string('ratio_ct_terpasang')->nullable();
             $table->string('ganti_ct')->nullable();

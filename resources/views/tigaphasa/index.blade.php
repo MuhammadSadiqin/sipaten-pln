@@ -21,7 +21,7 @@
                             <th class="border px-6 py-4">ULP</th>
                             <th class="border px-6 py-4">Kode Unit</th>
                             <th class="border px-6 py-4">Id Pelanggan</th>
-                            <th class="border px-6 py-4">Almaat</th>
+                            <th class="border px-6 py-4">Alamat</th>
                             <th class="border px-6 py-4">Tarif</th>
                             <th class="border px-6 py-4">Daya</th>
                             <th class="border px-6 py-4">Peta</th>

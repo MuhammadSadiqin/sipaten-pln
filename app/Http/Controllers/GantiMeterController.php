@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\GantiMeterExport;
 use App\Models\GantiMeter;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
+use App\Imports\GantiMeterImport;
+
 
 class GantiMeterController extends Controller
 {
@@ -19,10 +23,27 @@ class GantiMeterController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+
+    // /**
+    // * @return \Illuminate\Support\Collection
+    // */
+    // public function export() 
+    // {
+    //     return Excel::download(new UsersExport, 'users.xlsx');
+    // }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function import()
     {
-        return view('gantimeter.create');
+        Excel::import(new GantiMeterImport, request()->file('file'));
+        return back();
     }
+    // public function create()
+    // {
+    //     return view('gantimeter.create');
+    // }
 
     /**
      * Store a newly created resource in storage.

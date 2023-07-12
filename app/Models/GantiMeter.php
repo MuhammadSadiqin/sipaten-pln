@@ -12,6 +12,7 @@ class GantiMeter extends Model
     protected $fillable = [
         'user_id',
         'ulp',
+        'kd_unit',
         'id_pel',
         'nama',
         'alamat',
@@ -39,11 +40,11 @@ class GantiMeter extends Model
         'teken_petugas',
         'no_berita_acara',
         'ket',
-    
+
     ];
 
     public function user()
     {
-        return $this->hasOne(User::class,'id', 'user_id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 }

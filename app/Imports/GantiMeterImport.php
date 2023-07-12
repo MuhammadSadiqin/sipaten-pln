@@ -18,6 +18,7 @@ class GantiMeterImport implements ToModel, WithHeadingRow
         return new GantiMeter([
             'user_id' => $row['user_id'],
             'ulp' => $row['ulp'],
+            'kd_unit' => $row['kd_unit'],
             'id_pel' => $row['id_pel'],
             'nama' => $row['alamat'],
             'tarif' => $row['tarif'],

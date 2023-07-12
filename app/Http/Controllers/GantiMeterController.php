@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\GantiMeterExport;
 use App\Models\GantiMeter;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
+use App\Imports\GantiMeterExport;
 use App\Imports\GantiMeterImport;
+
 
 
 class GantiMeterController extends Controller
 {
     public function index()
     {
-        $gantimeter = GantiMeter::paginate(10);
+        $gantimeter = GantiMeter::paginate(1);
 
         return view('gantimeter.index', [
             'gantimeter' => $gantimeter
@@ -35,9 +36,13 @@ class GantiMeterController extends Controller
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function import()
+    public function import(Request $request)
     {
-        Excel::import(new GantiMeterImport, request()->file('file'));
+
+        $path1 = $request->file('file')->store('temp');
+        $path = storage_path('app') . '/' . $path1;
+        Excel::import(new GantiMeterImport, $path);
+
         return back();
     }
     // public function create()

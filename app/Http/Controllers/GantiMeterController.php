@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\GantiMeter;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Excel;
 use App\Imports\GantiMeterExport;
 use App\Imports\GantiMeterImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 

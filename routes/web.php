@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TigaPhasaController;
 use App\Http\Controllers\GantiMeterController;
+use App\Http\Controllers\LbkbController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,6 @@ Route::prefix('dashboard')
         Route::resource('users', UserController::class);
         Route::resource('gantimeter', GantiMeterController::class);
         Route::resource('tigaphasa', TigaPhasaController::class);
+        Route::resource('lbkb', LbkbController::class);
+        
     });

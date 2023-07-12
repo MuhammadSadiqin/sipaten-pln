@@ -21,10 +21,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('users-export', UserController::class)->name('users.export');
+
+
 Route::prefix('dashboard')
     ->middleware(['auth:sanctum', 'admin'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::post('users-import', [UserController::class, 'import'])->name('users.import');
         Route::resource('users', UserController::class);
         Route::resource('gantimeter', GantiMeterController::class);
         Route::resource('tigaphasa', TigaPhasaController::class);

@@ -2,11 +2,11 @@
 
 namespace App\Imports;
 
-use App\Models\Lbkb;
+use App\Models\Amr;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class LbkbImport implements ToModel, WithHeadingRow
+class AmrImport implements ToModel, WithHeadingRow
 {
     /**
      * @param array $row
@@ -15,7 +15,7 @@ class LbkbImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        return new Lbkb([
+        return new Amr([
             'user_id' => $row['user_id'],
             'ulp' => $row['ulp'],
             'kd_unit' => $row['kd_unit'],
@@ -31,7 +31,6 @@ class LbkbImport implements ToModel, WithHeadingRow
             'status' => $row['status'],
             'alasan_tunda' => $row['alasan_tunda'],
             'ket_tunda' => $row['ket_tunda'],
-
         ]);
     }
 }

@@ -1,12 +1,14 @@
 <?php
 
+use App\Models\Amr;
+use App\Models\GantiMeter;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AmrController;
+use App\Http\Controllers\LbkbController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TigaPhasaController;
 use App\Http\Controllers\GantiMeterController;
-use App\Http\Controllers\LbkbController;
-use App\Models\GantiMeter;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +35,10 @@ Route::prefix('dashboard')
         Route::post('users-import', [UserController::class, 'import'])->name('users.import');
         Route::post('GantiMeter-import', [GantiMeterController::class, 'import'])->name('GantiMeter.import');
         Route::post('lbkb-import', [LbkbController::class, 'import'])->name('Lbkb.import');
+        Route::post('amr-import', [AmrController::class, 'import'])->name('amr.import');
         Route::resource('users', UserController::class);
         Route::resource('gantimeter', GantiMeterController::class);
         Route::resource('tigaphasa', TigaPhasaController::class);
         Route::resource('lbkb', LbkbController::class);
-        
+        Route::resource('amr', AmrController::class);
     });

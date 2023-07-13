@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Lbkb;
 use Illuminate\Http\Request;
+use App\Imports\LbkbImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class LbkbController extends Controller
 {
@@ -12,7 +15,7 @@ class LbkbController extends Controller
      */
     public function index()
     {
-        $lbkb = Lbkb::paginate(10);
+        $lbkb = Lbkb::paginate(1);
 
         return view('lbkb.index', [
             'lbkb' => $lbkb
@@ -22,12 +25,25 @@ class LbkbController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return view('lbkb.create');
-    }
 
-    /**
+      /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function import(Request $request)
+    {
+
+        $path1 = $request->file('file')->store('temp');
+        $path = storage_path('app') . '/' . $path1;
+        Excel::import(new LbkbImport, $path);
+
+        return back();
+    }
+   // public function create()
+    //{
+      //  return view('lbkb.create');
+    //}
+
+    /*
      * Store a newly created resource in storage.
      */
     // public function store(UserRequest $request, User $user)

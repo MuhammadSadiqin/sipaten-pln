@@ -32,8 +32,10 @@ Route::prefix('dashboard')
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::post('users-import', [UserController::class, 'import'])->name('users.import');
         Route::post('GantiMeter-import', [GantiMeterController::class, 'import'])->name('GantiMeter.import');
+        Route::post('lbkb-import', [LbkbController::class, 'import'])->name('Lbkb.import');
         Route::resource('users', UserController::class);
         Route::resource('gantimeter', GantiMeterController::class);
         Route::resource('tigaphasa', TigaPhasaController::class);
         Route::resource('lbkb', LbkbController::class);
+        
     });

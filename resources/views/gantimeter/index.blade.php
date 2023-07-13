@@ -34,6 +34,7 @@
                             <th class="border px-6 py-4">Kelainan</th>
                             <th class="border px-6 py-4">Petugas</th>
                             <th class="border px-6 py-4">Status</th>
+                            <th class="border px-6 py-4">asda</th>
                             <th class="border px-6 py-4">Action</th>
 
                         </tr>
@@ -42,6 +43,7 @@
                         @forelse ($gantimeter as $item)
                         <tr>
                         <td class="border px-6 py-4">{{ $item->id }}</td>
+                        <td class="border px-6 py-4">{{ $item->user_id }}</td>
                         <td class="border px-6 py-4">{{ $item->ulp }}</td>
                         <td class="border px-6 py-4">{{ $item->kd_unit }}</td>
                         <td class="border px-6 py-4">{{ $item->id_pel }}</td>

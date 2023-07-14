@@ -34,10 +34,6 @@ Route::prefix('dashboard')
         Route::get('lbkb-export', [LbkbController::class, 'export'])->name('Lbkb.export');
         Route::post('users-import', [UserController::class, 'import'])->name('users.import');
         Route::post('GantiMeter-import', [GantiMeterController::class, 'import'])->name('GantiMeter.import');
-<<<<<<< HEAD
-
-
-=======
         Route::post('lbkb-import', [LbkbController::class, 'import'])->name('Lbkb.import');
         Route::post('Amr-import', [AmrController::class, 'import'])->name('Amr.import');
         Route::resource('users', UserController::class);

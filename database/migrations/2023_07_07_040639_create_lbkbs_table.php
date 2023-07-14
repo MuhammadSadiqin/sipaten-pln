@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('lbkbs', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('ulp');
             $table->integer('kd_unit');
             $table->integer('id_pel');
@@ -28,16 +28,16 @@ return new class extends Migration
             $table->string('status');
             $table->string('alasan_tunda');
             $table->text('ket_tunda');
-            $table->date('tgl_tl')-> nullable();
-            $table->string('foto_app_sebelum')-> nullable();
-            $table->string('foto_app_sesudah')-> nullable();
-            $table->integer('no_hp_pelanggan')-> nullable();
-            $table->string('teken_pelanggan')-> nullable();
-            $table->string('nama_pelanggan')-> nullable();
-            $table->string('teken_petugas')-> nullable();
-            $table->string('nama_petugas')-> nullable();
-            $table->integer('no_berita_acara')-> nullable();
-            $table->text('ket')-> nullable();
+            $table->date('tgl_tl')->nullable();
+            $table->string('foto_app_sebelum')->nullable();
+            $table->string('foto_app_sesudah')->nullable();
+            $table->integer('no_hp_pelanggan')->nullable();
+            $table->string('teken_pelanggan')->nullable();
+            $table->string('nama_pelanggan')->nullable();
+            $table->string('teken_petugas')->nullable();
+            $table->string('nama_petugas')->nullable();
+            $table->integer('no_berita_acara')->nullable();
+            $table->text('ket')->nullable();
             $table->timestamps();
         });
     }

@@ -37,6 +37,11 @@
                         {{ __('lbkb') }}
                     </x-nav-link>
                 </div> 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/dashboard/amr" :active="request()->routeIs('dashboard/amr')">
+                        {{ __('Amr') }}
+                    </x-nav-link>
+                </div> 
 
                 
             </div>

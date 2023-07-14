@@ -11,9 +11,24 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::paginate(10);
+        $search = $request->input('search');
+        $searchBy = $request->input('search_by');
+
+        $users = User::query();
+
+        if ($search && $searchBy === 'id') {
+            $users->where('id', $search);
+        } elseif ($search && $searchBy === 'name') {
+            $users->where('name', 'like', "%$search%");
+        } elseif ($search && $searchBy === 'email') {
+            $users->where('email', 'like', "%$search%");
+        } elseif ($search && $searchBy === 'level') {
+            $users->where('level', $search);
+        }
+
+        $user = User::paginate(1);
 
         return view('users.index', [
             'user' => $user
@@ -73,6 +88,7 @@ class UserController extends Controller
     {
         $data = $request->all();
         $user->update($data);
+
         return redirect()->route('users.index');
     }
 

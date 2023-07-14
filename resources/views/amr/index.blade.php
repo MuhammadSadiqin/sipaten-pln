@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-7 lg:px-8">
             <div class="mb-10">
-                <form action="{{ route('amr.import') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('Amr.import') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                     Upload Excel
@@ -18,15 +18,23 @@
                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Import TO Amr </button>
                 </form>
             </div>
+            <tr>
+                <th colspan="5">
+                    <a class="btn btn-warning float-end" href="{{ route('amr.export') }}"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4  rounded">Export TO Amr </button></a>
+                </th>
+            </tr>
+            <br>
             <div class="bg-white">
                 <table class="table-auto w-full">
                     <thead>
                         <tr>
                             <th class="border px-6 py-4">ID</th>
+                            {{-- <th class="border px-6 py-4">User Id</th> --}}
                             <th class="border px-6 py-4">ULP</th>
                             <th class="border px-6 py-4">Kode Unit</th>
                             <th class="border px-6 py-4">Id Pelanggan</th>
-                            <th class="border px-6 py-4">Almaat</th>
+                            <th class="border px-6 py-4">Nama</th>
+                            <th class="border px-6 py-4">Alamat</th>
                             <th class="border px-6 py-4">Tarif</th>
                             <th class="border px-6 py-4">Daya</th>
                             <th class="border px-6 py-4">Peta</th>
@@ -34,19 +42,19 @@
                             <th class="border px-6 py-4">Kelainan</th>
                             <th class="border px-6 py-4">Petugas</th>
                             <th class="border px-6 py-4">Status</th>
-                            <th class="border px-6 py-4">asda</th>
                             <th class="border px-6 py-4">Action</th>
-
                         </tr>
                     </thead>
                     <tbody>
+                        
                         @forelse ($amr as $item)
                         <tr>
                         <td class="border px-6 py-4">{{ $item->id }}</td>
-                        <td class="border px-6 py-4">{{ $item->user_id }}</td>
+                        {{-- <td class="border px-6 py-4">{{ $item->user_id }}</td> --}}
                         <td class="border px-6 py-4">{{ $item->ulp }}</td>
                         <td class="border px-6 py-4">{{ $item->kd_unit }}</td>
                         <td class="border px-6 py-4">{{ $item->id_pel }}</td>
+                        <td class="border px-6 py-4">{{ $item->nama }}</td>
                         <td class="border px-6 py-4">{{ $item->alamat }}</td>
                         <td class="border px-6 py-4">{{ $item->tarif }}</td>
                         <td class="border px-6 py-4">{{ $item->daya }}</td>

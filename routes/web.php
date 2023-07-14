@@ -32,10 +32,11 @@ Route::prefix('dashboard')
     ->middleware(['auth:sanctum', 'admin'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('amr-export', [AmrController::class, 'export'])->name('amr.export');
         Route::post('users-import', [UserController::class, 'import'])->name('users.import');
         Route::post('GantiMeter-import', [GantiMeterController::class, 'import'])->name('GantiMeter.import');
         Route::post('lbkb-import', [LbkbController::class, 'import'])->name('Lbkb.import');
-        Route::post('amr-import', [AmrController::class, 'import'])->name('amr.import');
+        Route::post('Amr-import', [AmrController::class, 'import'])->name('Amr.import');
         Route::resource('users', UserController::class);
         Route::resource('gantimeter', GantiMeterController::class);
         Route::resource('tigaphasa', TigaPhasaController::class);

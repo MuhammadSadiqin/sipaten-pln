@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Exports\UsersExport;
-use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
-use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -26,10 +23,11 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    // public function create()
-    // {
-    //     return view('users.create');
-    // }
+    public function create()
+    {
+        return view('users.create');
+    }
+
     // public function export()
     // {
     //     return Excel::download(new UsersExport, 'users.xlsx');
@@ -38,29 +36,17 @@ class UserController extends Controller
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function import(Request $request)
-    {
-
-        $path1 = $request->file('file')->store('temp');
-        $path = storage_path('app') . '/' . $path1;
-        Excel::import(new UsersImport, $path);
-
-        return back();
-    }
-
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(UserRequest $request, User $user)
-    // {
-    //     $data = $request->all();
+    public function store(UserRequest $request, User $user)
+    {
+        $data = $request->all();
 
-    //     $data['profile_photo_path'] = $request->file('profile_photo_path')->store('assets/user', 'public');
+        User::create($data);
 
-    //     User::create($data);
-
-    //     return redirect()->route('users.index');
-    // }
+        return redirect()->route('users.index');
+    }
 
     /**
      * Display the specified resource.
@@ -83,18 +69,12 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    // public function update(UserRequest $request, User $user)
-    // {
-    //     $data = $request->all();
-
-    //     if ($request->file('profile_picture_path')) {
-    //         $data['profile_photo_path'] = $request->file('profile_photo_path')->store('assets/user', 'public');
-    //     }
-
-    //     $user->update($data);
-
-    //     return redirect()->route('users.index');
-    // }
+    public function update(UserRequest $request, User $user)
+    {
+        $data = $request->all();
+        $user->update($data);
+        return redirect()->route('users.index');
+    }
 
     /**
      * Remove the specified resource from storage.

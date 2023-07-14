@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TigaPhasaExport;
+use App\Imports\TigaPhasaImport;
 use App\Models\TigaPhasa;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TigaPhasaController extends Controller
 {
@@ -20,11 +23,25 @@ class TigaPhasaController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @return \Illuminate\Support\Collection
      */
-    public function create()
+    public function export()
     {
-        return view('tigaphasa.create');
+        return Excel::download(new TigaPhasaExport, 'Tiga Phasa.xlsx');
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function import(Request $request)
+    {
+        Excel::import(new TigaPhasaImport, request()->file('file'));
+        return back();
+        // $path1 = $request->file('file')->store('temp');
+        // $path = storage_path('app') . '/' . $path1;
+        // Excel::import(new AmrImport, $path);
+
+        // return back();
     }
 
     /**

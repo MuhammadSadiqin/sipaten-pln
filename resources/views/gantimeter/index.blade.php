@@ -67,7 +67,7 @@
                         </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="border text-center p-5">
+                                <td colspan="13" class="border text-center p-5">
                                     Data tidak ditemukan
                                 </td>
                             </tr>

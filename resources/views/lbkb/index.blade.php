@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-10">
                 <form action="{{ route('Lbkb.import') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -15,9 +15,16 @@
                 </label>
                 <input name="file" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="file" placeholder="Excel">
                 <br>
-                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Import Lbkb </button>
+                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Import TO Lbkb </button>
                 </form>
+                <br>
+            <tr>
+                <th colspan="5">
+                    <a class="btn btn-warning float-end" href="{{ route('Lbkb.export') }}"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4  rounded">Export TO Lbkb </button></a>
+                </th>
+            </tr>
             </div>
+            
             <div class="bg-white">
                 <table class="table-auto w-full">
                     <thead>
@@ -69,7 +76,7 @@
                         </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="border text-center p-5">
+                                <td colspan="13" class="border text-center p-5">
                                     Data tidak ditemukan
                                 </td>
                             </tr>

@@ -17,12 +17,13 @@
                 <br>
                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Import TO Amr </button>
                 </form>
+                <br>
+                <tr>
+                    <th colspan="5">
+                        <a class="btn btn-warning float-end" href="{{ route('amr.export') }}"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4  rounded">Export TO Amr </button></a>
+                    </th>
+                </tr>
             </div>
-            <tr>
-                <th colspan="5">
-                    <a class="btn btn-warning float-end" href="{{ route('amr.export') }}"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4  rounded">Export TO Amr </button></a>
-                </th>
-            </tr>
             <br>
             <div class="bg-white">
                 <table class="table-auto w-full">
@@ -77,7 +78,7 @@
                         </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="border text-center p-5">
+                                <td colspan="13" class="border text-center p-5">
                                     Data tidak ditemukan
                                 </td>
                             </tr>

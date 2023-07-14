@@ -7,13 +7,24 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto sm:px-7 lg:px-8">
             <div class="mb-10">
-                <a href="{{ route('gantimeter.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-            + Create User
-                </a>
+                <form action="{{ route('tigaphasa.import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                    Upload Excel
+                </label>
+                <input name="file" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="file" placeholder="Excel">
+                <br>
+                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Import TO Tiga Phasa </button>
+                </form>
+                <br>
+                <tr>
+                    <th colspan="5">
+                        <a class="btn btn-warning float-end" href="{{ route('tigaphasa.export') }}"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4  rounded">Export TO Tiga Phasa </button></a>
+                    </th>
+                </tr>
             </div>
-            <div class="bg-white">
                 <table class="table-auto w-full">
                     <thead>
                         <tr>
@@ -30,21 +41,30 @@
                             <th class="border px-6 py-4">Petugas</th>
                             <th class="border px-6 py-4">Status</th>
                             <th class="border px-6 py-4">Action</th>
-
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @forelse ($user as $item)
+                        @forelse ($tigaphasa as $item)
                         <tr>
                         <td class="border px-6 py-4">{{ $item->id }}</td>
-                        <td class="border px-6 py-4">{{ $item->name }}</td>
-                        <td class="border px-6 py-4">{{ $item->email }}</td>
-                        <td class="border px-6 py-4">{{ $item->level }}</td>
+                        {{-- <td class="border px-6 py-4">{{ $item->user_id }}</td> --}}
+                        <td class="border px-6 py-4">{{ $item->ulp }}</td>
+                        <td class="border px-6 py-4">{{ $item->kd_unit }}</td>
+                        <td class="border px-6 py-4">{{ $item->id_pel }}</td>
+                        <td class="border px-6 py-4">{{ $item->nama }}</td>
+                        <td class="border px-6 py-4">{{ $item->alamat }}</td>
+                        <td class="border px-6 py-4">{{ $item->tarif }}</td>
+                        <td class="border px-6 py-4">{{ $item->daya }}</td>
+                        <td class="border px-6 py-4">{{ $item->peta }}</td>
+                        <td class="border px-6 py-4">{{ $item->tipe }}</td>
+                        <td class="border px-6 py-4">{{ $item->kelainan }}</td>
+                        <td class="border px-6 py-4">{{ $item->petugas }}</td>
+                        <td class="border px-6 py-4">{{ $item->status }}</td>
                         <td class="border px-6 py-4 text-center">
-                            <a href="{{ route('users.edit',$item->id) }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-2 rounded">
+                            <a href="{{ route('tigaphasa.edit',$item->id) }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-2 rounded">
                                 Edit
                             </a>
-                            <form action="{{ route('users.destroy',$item->id) }}" method="POST" class="inline-block">
+                            <form action="{{ route('tigaphasa.destroy',$item->id) }}" method="POST" class="inline-block">
                                 {!! method_field('delete'). csrf_field() !!}
                                 <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mx-2 rounded">
                                     Delete
@@ -54,7 +74,7 @@
                         </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="border text-center p-5">
+                                <td colspan="13" class="border text-center p-5">
                                     Data tidak ditemukan
                                 </td>
                             </tr>
@@ -63,8 +83,8 @@
                 </table>
             </div>
             <div class="text-center mt-5">
-                {{ $user->links() }}
+                {{ $tigaphasa->links() }}
             </div>
         </div>
-    </div> --}}
+    </div> 
 </x-app-layout>

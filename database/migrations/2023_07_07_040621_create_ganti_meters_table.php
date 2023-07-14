@@ -16,6 +16,7 @@ return new class extends Migration
 
             $table->foreignId('user_id')->constrained('users');
             $table->string('ulp');
+            $table->integer('kd_unit');
             $table->integer('id_pel');
             $table->string('nama');
             $table->text('alamat');

@@ -43,7 +43,7 @@ return new class extends Migration
             $table->string('arus_kwh_mwtwer_baru')->nullable();
             $table->integer('no_seri_kwh_meter_baru')->nullable();
             $table->string('kelas_kwh_meter_baru')->nullable();
-            $table->date('tahun_kwh_meter_baru')->date_format('Y');
+            $table->date('tahun_kwh_meter_baru')->date_format('Y')->nullable();
             $table->integer('stan_lwbp_kwh_meter_baru')->nullable();
             $table->integer('stan_wbp_kwh_meter_baru')->nullable();
             $table->integer('stan_total_kwh_meter_baru')->nullable();

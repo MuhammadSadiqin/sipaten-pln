@@ -2,18 +2,18 @@
 
 namespace App\Exports;
 
-use App\Models\Amr;
+use App\Models\TigaPhasa;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class AmrExport implements FromCollection, WithHeadings
+class TigaPhasaExport implements FromCollection, WithHeadings
 {
     /**
      * @return \Illuminate\Support\Collection
      */
     public function collection()
     {
-        return Amr::select("id", "ulp", "kd_unit", "id_pel", "nama", "alamat", "tarif", "daya", "peta", "tipe", "kelainan", "petugas", "status",)->get();
+        return TigaPhasa::select("id", "ulp", "kd_unit", "id_pel", "nama", "alamat", "tarif", "daya", "peta", "tipe", "kelainan", "petugas", "status",)->get();
     }
 
     public function headings(): array

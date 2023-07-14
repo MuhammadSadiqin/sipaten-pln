@@ -2,11 +2,11 @@
 
 namespace App\Imports;
 
-use App\Models\GantiMeter;
+use App\Models\TigaPhasa;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class GantiMeterImport implements ToModel, WithHeadingRow
+class TigaPhasaImport implements ToModel, WithHeadingRow
 {
     /**
      * @param array $row
@@ -15,7 +15,7 @@ class GantiMeterImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        return new GantiMeter([
+        return new TigaPhasa([
             'user_id' => $row['user_id'],
             'ulp' => $row['ulp'],
             'kd_unit' => $row['kd_unit'],
@@ -31,7 +31,6 @@ class GantiMeterImport implements ToModel, WithHeadingRow
             'status' => $row['status'],
             'alasan_tunda' => $row['alasan_tunda'],
             'ket_tunda' => $row['ket_tunda'],
-
         ]);
     }
 }

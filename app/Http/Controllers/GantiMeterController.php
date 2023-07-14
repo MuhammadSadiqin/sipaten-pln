@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\GantiMeter;
 use Illuminate\Http\Request;
-use App\Imports\GantiMeterExport;
 use App\Imports\GantiMeterImport;
 use Maatwebsite\Excel\Facades\Excel;
-
-
+use App\Http\Requests\GantiMeterRequest;
 
 class GantiMeterController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $gantimeter = GantiMeter::paginate(1);
+        $gantimeter = GantiMeter::paginate(10);
 
         return view('gantimeter.index', [
             'gantimeter' => $gantimeter
@@ -24,18 +25,11 @@ class GantiMeterController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    public function create()
+    {
+        //
+    }
 
-    // /**
-    // * @return \Illuminate\Support\Collection
-    // */
-    // public function export() 
-    // {
-    //     return Excel::download(new UsersExport, 'users.xlsx');
-    // }
-
-    /**
-     * @return \Illuminate\Support\Collection
-     */
     public function import(Request $request)
     {
 
@@ -45,24 +39,18 @@ class GantiMeterController extends Controller
 
         return back();
     }
-    // public function create()
-    // {
-    //     return view('gantimeter.create');
-    // }
 
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(UserRequest $request, User $user)
-    // {
-    //     $data = $request->all();
+    public function store(GantiMeterRequest $request, GantiMeter $gantimeter)
+    {
+        $data = $request->all();
 
-    //     $data['profile_photo_path'] = $request->file('profile_photo_path')->store('assets/user', 'public');
+        GantiMeter::create($data);
 
-    //     User::create($data);
-
-    //     return redirect()->route('users.index');
-    // }
+        return redirect()->route('gantimeter.index');
+    }
 
     /**
      * Display the specified resource.
@@ -75,35 +63,27 @@ class GantiMeterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(GantiMeter $gantiMeter)
+    public function edit(GantiMeter $gantimeter)
     {
         return view('gantimeter.edit', [
-            'item' => $gantiMeter
+            'item' => $gantimeter
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    // public function update(UserRequest $request, User $user)
-    // {
-    //     $data = $request->all();
-
-    //     if ($request->file('profile_picture_path')) {
-    //         $data['profile_photo_path'] = $request->file('profile_photo_path')->store('assets/user', 'public');
-    //     }
-
-    //     $user->update($data);
-
-    //     return redirect()->route('users.index');
-    // }
+    public function update(GantiMeterRequest $request, GantiMeter $gantiMeter)
+    {
+        //
+    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(GantiMeter $gantiMeter)
+    public function destroy(GantiMeter $gantimeter)
     {
-        $gantiMeter->delete();
+        $gantimeter->delete();
 
         return redirect()->route('gantimeter.index');
     }

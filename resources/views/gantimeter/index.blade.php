@@ -23,8 +23,8 @@
                     <thead>
                         <tr>
                             <th class="border px-6 py-4">ID</th>
+                            <th class="border px-6 py-4">user_id</th>
                             <th class="border px-6 py-4">ULP</th>
-                            <th class="border px-6 py-4">Kode Unit</th>
                             <th class="border px-6 py-4">Id Pelanggan</th>
                             <th class="border px-6 py-4">Almaat</th>
                             <th class="border px-6 py-4">Tarif</th>
@@ -34,7 +34,6 @@
                             <th class="border px-6 py-4">Kelainan</th>
                             <th class="border px-6 py-4">Petugas</th>
                             <th class="border px-6 py-4">Status</th>
-                            <th class="border px-6 py-4">asda</th>
                             <th class="border px-6 py-4">Action</th>
 
                         </tr>
@@ -45,7 +44,6 @@
                         <td class="border px-6 py-4">{{ $item->id }}</td>
                         <td class="border px-6 py-4">{{ $item->user_id }}</td>
                         <td class="border px-6 py-4">{{ $item->ulp }}</td>
-                        <td class="border px-6 py-4">{{ $item->kd_unit }}</td>
                         <td class="border px-6 py-4">{{ $item->id_pel }}</td>
                         <td class="border px-6 py-4">{{ $item->alamat }}</td>
                         <td class="border px-6 py-4">{{ $item->tarif }}</td>

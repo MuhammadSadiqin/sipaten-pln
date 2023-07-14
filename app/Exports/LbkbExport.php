@@ -9,11 +9,11 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 class LbkbExport implements FromCollection, WithHeadings
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
-        return Lbkb::select("id", "name", "email")->get();
+        return Lbkb::select("id", "ulp", "kd_unit", "id_pel", "nama", "alamat", "tarif", "daya", "peta", "tipe", "kelainan", "petugas", "status",)->get();
     }
     public function headings(): array
     {

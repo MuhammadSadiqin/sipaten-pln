@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\GantiMeterExport;
 use App\Models\GantiMeter;
 use Illuminate\Http\Request;
 use App\Imports\GantiMeterImport;
@@ -38,6 +39,14 @@ class GantiMeterController extends Controller
         Excel::import(new GantiMeterImport, $path);
 
         return back();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function export()
+    {
+        return Excel::download(new GantiMeterExport, 'Ganti Meter.xlsx');
     }
 
     /**

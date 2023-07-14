@@ -33,6 +33,7 @@ Route::prefix('dashboard')
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('amr-export', [AmrController::class, 'export'])->name('amr.export');
         Route::get('tigaphasa-export', [TigaPhasaController::class, 'export'])->name('tigaphasa.export');
+        Route::get('gantimeter-export', [GantiMeterController::class, 'export'])->name('gantimeter.export');
         Route::get('lbkb-export', [LbkbController::class, 'export'])->name('Lbkb.export');
         Route::post('users-import', [UserController::class, 'import'])->name('users.import');
         Route::post('GantiMeter-import', [GantiMeterController::class, 'import'])->name('GantiMeter.import');

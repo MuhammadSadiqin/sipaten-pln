@@ -12,6 +12,12 @@
             + Create User
                 </a>
             </div>
+            <div class="mb-4 flex justify-end">
+                <form action="{{ route('users.index') }}" method="GET">
+                    <input type="text" name="search" placeholder="Search..." class="border border-gray-300 rounded-md py-2 px-4">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">Search</button>
+                </form>
+            </div>
             <div class="bg-white">
                 <table class="table-auto w-full">
                     <thead>

@@ -24,7 +24,14 @@
                         <a class="btn btn-warning float-end" href="{{ route('tigaphasa.export') }}"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4  rounded">Export TO Tiga Phasa </button></a>
                     </th>
                 </tr>
+                <div class="mb-4 flex justify-end">
+                    <form action="{{ route('tigaphasa.index') }}" method="GET">
+                        <input type="text" name="search" placeholder="Search..." class="border border-gray-300 rounded-md py-2 px-4">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">Search</button>
+                    </form>
+                </div>
             </div>
+            <div class="bg-white">
                 <table class="table-auto w-full">
                     <thead>
                         <tr>

@@ -12,7 +12,7 @@ class AmrController extends Controller
 {
     public function index()
     {
-        $amr = Amr::paginate(20);
+        $amr = Amr::get();
 
         return view('amr.index', [
             'amr' => $amr
@@ -32,12 +32,12 @@ class AmrController extends Controller
      */
     public function import(Request $request)
     {
-        Excel::import(new AmrImport, request()->file('file'));
-        return back();
-        // $path1 = $request->file('file')->store('temp');
-        // $path = storage_path('app') . '/' . $path1;
-        // Excel::import(new AmrImport, $path);
-
+        // Excel::import(new AmrImport, request()->file('file'));
         // return back();
+        $path1 = $request->file('file')->store('temp');
+        $path = storage_path('app') . '/' . $path1;
+        Excel::import(new AmrImport, $path);
+
+        return back();
     }
 }

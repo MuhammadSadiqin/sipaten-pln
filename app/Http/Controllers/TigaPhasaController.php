@@ -15,7 +15,7 @@ class TigaPhasaController extends Controller
      */
     public function index()
     {
-        $tigaphasa = TigaPhasa::paginate(10);
+        $tigaphasa = TigaPhasa::get();
 
         return view('tigaphasa.index', [
             'tigaphasa' => $tigaphasa
@@ -35,13 +35,13 @@ class TigaPhasaController extends Controller
      */
     public function import(Request $request)
     {
-        Excel::import(new TigaPhasaImport, request()->file('file'));
-        return back();
-        // $path1 = $request->file('file')->store('temp');
-        // $path = storage_path('app') . '/' . $path1;
-        // Excel::import(new AmrImport, $path);
-
+        // Excel::import(new TigaPhasaImport, request()->file('file'));
         // return back();
+        $path1 = $request->file('file')->store('temp');
+        $path = storage_path('app') . '/' . $path1;
+        Excel::import(new TigaPhasaImport, $path);
+
+        return back();
     }
 
     /**

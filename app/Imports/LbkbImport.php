@@ -29,8 +29,8 @@ class LbkbImport implements ToModel, WithHeadingRow
             'kelainan' => $row['kelainan'],
             'petugas' => $row['petugas'],
             'status' => $row['status'],
-            'alasan_tunda' => $row['alasan_tunda'],
-            'ket_tunda' => $row['ket_tunda'],
+            // 'alasan_tunda' => $row['alasan_tunda'],
+            // 'ket_tunda' => $row['ket_tunda'],
 
         ]);
     }

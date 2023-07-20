@@ -23,6 +23,12 @@
                         <a class="btn btn-warning float-end" href="{{ route('gantimeter.export') }}"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4  rounded">Export TO Ganti Meter </button></a>
                     </th>
                 </tr>
+                <div class="mb-4 flex justify-end">
+                    <form action="{{ route('gantimeter.index') }}" method="GET">
+                        <input type="text" name="search" placeholder="Search..." class="border border-gray-300 rounded-md py-2 px-4">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">Search</button>
+                    </form>
+                </div>
             </div>
             <div class="bg-white">
                 <table class="table-auto w-full">
@@ -32,7 +38,7 @@
                             <th class="border px-6 py-4">ULP</th>
                             <th class="border px-6 py-4">Kode Unit</th>
                             <th class="border px-6 py-4">Id Pelanggan</th>
-                            <th class="border px-6 py-4">Almaat</th>
+                            <th class="border px-6 py-4">Alamat</th>
                             <th class="border px-6 py-4">Tarif</th>
                             <th class="border px-6 py-4">Daya</th>
                             <th class="border px-6 py-4">Peta</th>

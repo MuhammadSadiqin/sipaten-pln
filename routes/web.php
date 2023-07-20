@@ -38,7 +38,6 @@ Route::prefix('dashboard')
                 Route::post('users-import', [UserController::class, 'import'])->name('users.import');
 
                 Route::post('GantiMeter-import', [GantiMeterController::class, 'import'])->name('GantiMeter.import');
-                Route::post('tigaphasa-import', [TigaPhasaController::class, 'import'])->name('tigaphasa.import');
 
 
                 Route::post('lbkb-import', [LbkbController::class, 'import'])->name('Lbkb.import');

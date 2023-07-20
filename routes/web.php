@@ -36,7 +36,9 @@ Route::prefix('dashboard')
                 Route::get('gantimeter-export', [GantiMeterController::class, 'export'])->name('gantimeter.export');
                 Route::get('lbkb-export', [LbkbController::class, 'export'])->name('Lbkb.export');
                 Route::post('users-import', [UserController::class, 'import'])->name('users.import');
+
                 Route::post('GantiMeter-import', [GantiMeterController::class, 'import'])->name('GantiMeter.import');
+                Route::post('tigaphasa-import', [TigaPhasaController::class, 'import'])->name('tigaphasa.import');
 
 
                 Route::post('lbkb-import', [LbkbController::class, 'import'])->name('Lbkb.import');

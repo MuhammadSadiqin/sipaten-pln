@@ -16,7 +16,7 @@ class GantiMeterController extends Controller
      */
     public function index()
     {
-        $gantimeter = GantiMeter::paginate(10);
+        $gantimeter = GantiMeter::get();
 
         return view('gantimeter.index', [
             'gantimeter' => $gantimeter

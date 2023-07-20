@@ -54,7 +54,7 @@ Route::get('tes', function () {
 
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('gantimeter', [GantiMeterController::class, 'index'])->name('gantimeter.index');
+        // Route::get('gantimeter', [GantiMeterController::class, 'index'])->name('gantimeter.index');
         Route::get('amr-export', [AmrController::class, 'export'])->name('amr.export');
         Route::get('tigaphasa-export', [TigaPhasaController::class, 'export'])->name('tigaphasa.export');
         Route::get('gantimeter-export', [GantiMeterController::class, 'export'])->name('gantimeter.export');

@@ -18,6 +18,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@swimlane/ngx-datatable": "^20.1.0",
         "cross-env": "^7.0.3"
     }
 }

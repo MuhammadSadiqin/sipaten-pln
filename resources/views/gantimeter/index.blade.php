@@ -1,10 +1,9 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Ganti Meter') }}
         </h2>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-7 lg:px-8">
             <div class="mb-10">
@@ -54,7 +53,7 @@
                         @forelse ($gantimeter as $item)
                         <tr>
                         <td class="border px-6 py-4">{{ $item->id }}</td>
-                        {{-- <td class="border px-6 py-4">{{ $item->user_id }}</td> --}}
+                        <td class="border px-6 py-4">{{ $item->user_id }}</td>
                         <td class="border px-6 py-4">{{ $item->ulp }}</td>
                         <td class="border px-6 py-4">{{ $item->kd_unit }}</td>
                         <td class="border px-6 py-4">{{ $item->id_pel }}</td>
@@ -93,4 +92,120 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-app-layout> --}}
+
+@extends('layouts.master')
+@section('content')
+<div class="main-panel">
+    <!-- BEGIN : Main Content-->
+    <div class="main-content">
+        <div class="content-wrapper">
+            <!-- Zero configuration table -->
+            <section id="configuration">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                            </div>
+                            <div class="card-content">
+                                
+                                    {{-- <form action="{{ route('GantiMeter.import') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="col-lg-6 col-md-12">
+                                            <label for="file">With Browse button</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                                </div>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                                        aria-describedby="inputGroupFileAddon01">
+                                                    <label class="custom-file-label" for="inputGroupFile01">Choose
+                                                        file</label>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-raised btn-icon btn-outline-primary">Upload Excel  <i class="fa fa-cloud-download"></i></button>
+                                            <button type="button" class="btn btn-raised btn-icon btn-outline-success">Export Excel  <i class="fa fa-cloud-download"></i></button>
+                                               
+                                    </form> --}}
+                                        <form action="{{ route('GantiMeter.import') }}" method="POST" enctype="multipart/form-data" class="mt-4">
+                                            @csrf
+                                            <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="file">Upload Excel</label>
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="file" name="file">
+                                                        <label class="custom-file-label" for="file">Choose file</label>
+                                                    </div>
+                                                    <br>
+                                                       
+                                                </div>
+                                                <button type="submit" class="btn btn-raised btn-icon btn-outline-primary">Upload Excel  <i class="fa fa-cloud-download"></i></button>
+                                            </div>
+                                        </div>
+                                        </form>
+                                </div>
+                                <div class="card-body card-dashboard table-responsive">
+                                    <table id="myTable" class="table table-striped table-bordered zero-configuration">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>ULP</th>
+                                                <th>Kode Unit</th>
+                                                <th>Id Pelanggan</th>
+                                                <th>Nama</th>
+                                                <th>Alamat</th>
+                                                <th>Tarif</th>
+                                                <th>Daya</th>
+                                                <th>Peta</th>
+                                                <th>Tipe</th>
+                                                <th>Kelainan</th>
+                                                <th>Petugas</th>
+                                                <th>Status</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($gantimeter as $item)
+                                            <tr>
+                                              <td>{{ $item->id }}</td>
+                                              {{-- <td>{{ $item->user_id }}</td> --}}
+                                              <td>{{ $item->ulp }}</td>
+                                              <td>{{ $item->kd_unit }}</td>
+                                              <td>{{ $item->id_pel }}</td>
+                                              <td>{{ $item->nama }}</td>
+                                              <td>{{ $item->alamat }}</td>
+                                              <td>{{ $item->tarif }}</td>
+                                              <td>{{ $item->daya }}</td>
+                                              <td>{{ $item->peta }}</td>
+                                              <td>{{ $item->tipe }}</td>
+                                              <td>{{ $item->kelainan }}</td>
+                                              <td>{{ $item->petugas }}</td>
+                                              <td>{{ $item->status }}</td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="13">No data available</td>
+                                            </tr>
+                                            @endforelse
+                                    </table>
+                                    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> --}}
+                                    {{-- <script>
+                                        $(document).ready( function () {
+                                        $('#myTable').DataTable();
+                                    } );
+                                    </script> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--/ Zero configuration table -->
+        </div>
+    </div>
+    <!-- END : End Main Content-->
+</div>
+@endsection

@@ -15,29 +15,18 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/dashboard/users" :active="request()->routeIs('dashboard/users')">
                         {{ __('Users') }}
                     </x-nav-link>
-                </div> 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/dashboard/gantimeter" :active="request()->routeIs('dashboard/gantimeter')">
+                    <x-nav-link href="gantimeter" :active="request()->routeIs('gantimeter')">
                         {{ __('Ganti Meter') }}
                     </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/dashboard/tigaphasa" :active="request()->routeIs('dashboard/tigaphasa')">
                         {{ __('Tiga Phasa') }}
                     </x-nav-link>
-                </div> 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/dashboard/lbkb" :active="request()->routeIs('dashboard/lbkb')">
                         {{ __('lbkb') }}
                     </x-nav-link>
-                </div> 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/dashboard/amr" :active="request()->routeIs('dashboard/amr')">
                         {{ __('Amr') }}
                     </x-nav-link>
@@ -170,6 +159,8 @@
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+           
+           
         </div>
 
         <!-- Responsive Settings Options -->

@@ -119,23 +119,24 @@
                         <li class="nav-item"><a href="/" :active="request() - > routeIs('dashboard')"><i
                                     class="ft-home"></i><span data-i18n="" class="menu-title">Dashboard</span></a>
                         </li>
+                        <li class=" nav-item"><a  href="users" :active="request() - > routeIs('users')"><i class="icon-user"></i><span
+                            data-i18n="" class="menu-title">Data User </span></a>
+                </li>
                         <li class=" nav-item"><a href="gantimeter" :active="request() - > routeIs('gantimeter')"><i
-                                    class="ft-droplet"></i><span data-i18n="" class="menu-title">ganti
-                                    meter</span></a>
+                                    class="icon-speedometer"></i><span data-i18n="" class="menu-title">Ganti
+                                    Meter</span></a>
                         </li>
                         <li class=" nav-item"><a href="tigaphasa" :active="request() - > routeIs('tigaphasa')"><i
-                                    class="ft-mail"></i><span data-i18n="" class="menu-title">TigaPhasa</span></a>
+                                    class="icon-graph"></i><span data-i18n="" class="menu-title">TigaPhasa</span></a>
                         </li>
                         <li class=" nav-item"><a href="lbkb" :active="request() - > routeIs('lbkb')"><i
-                                    class="ft-message-square"></i><span data-i18n=""
+                                    class="icon-layers"></i><span data-i18n=""
                                     class="menu-title">LBKB</span></a>
                         </li>
                         <li class=" nav-item"><a href="amr" :active="request() - > routeIs('amr')"><i
                                     class="ft-file-text"></i><span data-i18n="" class="menu-title">AMR</span></a>
                         </li>
-                        <li class=" nav-item"><a href="calendar.html"><i class="ft-calendar"></i><span
-                                    data-i18n="" class="menu-title">Calendar</span></a>
-                        </li>
+                      
                     </ul>
                 </div>
             </div>

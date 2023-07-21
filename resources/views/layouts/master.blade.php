@@ -11,6 +11,7 @@
         content="admin template, Apex admin template, dashboard template, flat admin template, responsive admin template, web app" />
     <meta name="author" content="PIXINVENT" />
     <title>SIPATEN</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon1.ico') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="app-assets/img/ico/apple-icon-60.png" />
     <link rel="apple-touch-icon" sizes="76x76" href="app-assets/img/ico/apple-icon-76.png" />
     <link rel="apple-touch-icon" sizes="120x120" href="app-assets/img/ico/apple-icon-120.png" />
@@ -63,8 +64,10 @@
     <link rel="apple-touch-icon" sizes="76x76" href="app-assets/img/ico/apple-icon-76.png" />
     <link rel="apple-touch-icon" sizes="120x120" href="app-assets/img/ico/apple-icon-120.png" />
     <link rel="apple-touch-icon" sizes="152x152" href="app-assets/img/ico/apple-icon-152.png" />
-    <link rel="shortcut icon" type="image/x-icon" href="app-assets/img/ico/favicon.ico" />
-    <link rel="shortcut icon" type="image/png" href="app-assets/img/ico/favicon-32.png" />
+    {{-- MENGUBAH ICON PADA TITTLE --}}
+    <link rel="icon" type="image/x-icon" href="{{ asset('icon.ico') }}" />
+    {{--  --}}
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('icon.ico') }}" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-touch-fullscreen" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -99,7 +102,7 @@
             <!-- Sidebar Header starts-->
             <div class="sidebar-header">
                 <div class="logo clearfix"><a href="index.html" class="logo-text float-left">
-                        <div class="logo-img"><img src="app-assets/img/logo.png" /></div><span
+                        <div class="logo-img"><img src="app-assets/img/logo1.png" /></div><span
                             class="text align-middle">SIPATEN</span>
                     </a><a id="sidebarToggle" href="javascript:;"
                         class="nav-toggle d-none d-sm-none d-md-none d-lg-block"><i data-toggle="expanded"
@@ -234,9 +237,14 @@
                                             Profile</span></a><a href="../../../html/html/ltr/inbox.html"
                                         class="dropdown-item py-1"><i class="ft-mail mr-2"></i><span>My
                                             Inbox</span></a>
-                                    <div class="dropdown-divider"></div><a
-                                        href="../../../html/html/ltr/login-page.html" class="dropdown-item"><i
-                                            class="ft-power mr-2"></i><span>Logout</span></a>
+                                    <div class="dropdown-divider"></div>
+                                    <form method="POST" action="{{ route('logout') }}" x-data>
+                                        @csrf
+                                        <a href="{{ route('logout') }}" @click.prevent="$root.submit();" class="dropdown-item"><i
+                                            class="ft-power mr-2"></i><span>Logout</span></a></form>
+                                    </form>
+                                       
+                                        
                                 </div>
                             </li>
                             <li class="nav-item d-none d-lg-block"><a href="javascript:;"

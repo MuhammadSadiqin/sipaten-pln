@@ -68,9 +68,16 @@
 @extends('layouts.master')
 @section('content')
     <div class="main-panel">
+        
         <!-- BEGIN : Main Content-->
         <div class="main-content">
             <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="content-header">User</div>
+                        <p class="content-sub-header"></p>
+                    </div>
+                </div>
                 <!-- Zero configuration table -->
                 <section id="configuration">
                     <div class="row">

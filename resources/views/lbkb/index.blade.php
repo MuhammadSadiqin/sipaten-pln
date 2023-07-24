@@ -100,6 +100,12 @@
         <!-- BEGIN : Main Content-->
         <div class="main-content">
             <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="content-header">LBKB</div>
+                        <p class="content-sub-header"></p>
+                    </div>
+                </div>
                 <!-- Zero configuration table -->
                 <section id="configuration">
                     <div class="row">
@@ -128,11 +134,11 @@
                                             <button type="button" class="btn btn-raised btn-icon btn-outline-success">Export Excel  <i class="fa fa-cloud-download"></i></button>
                                                
                                     </form> --}}
-                                    <form action="{{ route('Lbkb.import') }}" method="POST" enctype="multipart/form-data"
-                                        class="mt-4">
-                                        @csrf
+                                   
                                         <div class="col-lg-6 col-md-12">
-                                            <div class="form-group">
+                                            <div class="form-group"> <form action="{{ route('Lbkb.import') }}" method="POST" enctype="multipart/form-data"
+                                                class="mt-4">
+                                                @csrf
                                                 <label class="font-weight-bold" for="file">Upload Excel</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
@@ -146,9 +152,14 @@
                                                 <button type="submit"
                                                     class="btn btn-raised btn-icon btn-outline-primary">Upload Excel <i
                                                         class="fa fa-cloud-download"></i></button>
+                                                </form>
+                                                <a href="{{ route('Lbkb.export') }}">
+                                                    <button type="submit" class="btn btn-raised btn-icon btn-outline-success">Export Excel <i
+                                                        class="fa fa-cloud-download"></i></button>
+                                                </a>
                                             </div>
                                         </div>
-                                    </form>
+                                    
                                 </div>
                                 <div class="card-body card-dashboard table-responsive">
                                     <table id="myTable" class="table table-striped table-bordered zero-configuration">

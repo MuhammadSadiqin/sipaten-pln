@@ -96,19 +96,19 @@
 
 @extends('layouts.master')
 @section('content')
-<div class="main-panel">
-    <!-- BEGIN : Main Content-->
-    <div class="main-content">
-        <div class="content-wrapper">
-            <!-- Zero configuration table -->
-            <section id="configuration">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                            </div>
-                            <div class="card-content">
-                                
+    <div class="main-panel">
+        <!-- BEGIN : Main Content-->
+        <div class="main-content">
+            <div class="content-wrapper">
+                <!-- Zero configuration table -->
+                <section id="configuration">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                </div>
+                                <div class="card-content">
+
                                     {{-- <form action="{{ route('GantiMeter.import') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="col-lg-6 col-md-12">
@@ -128,23 +128,27 @@
                                             <button type="button" class="btn btn-raised btn-icon btn-outline-success">Export Excel  <i class="fa fa-cloud-download"></i></button>
                                                
                                     </form> --}}
-                                        <form action="{{ route('GantiMeter.import') }}" method="POST" enctype="multipart/form-data" class="mt-4">
-                                            @csrf
-                                            <div class="col-lg-6 col-md-12">
+                                    <form action="{{ route('GantiMeter.import') }}" method="POST"
+                                        enctype="multipart/form-data" class="mt-4">
+                                        @csrf
+                                        <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <label class="font-weight-bold" for="file">Upload Excel</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="file" name="file">
+                                                        <input type="file" class="custom-file-input" id="file"
+                                                            name="file">
                                                         <label class="custom-file-label" for="file">Choose file</label>
                                                     </div>
                                                     <br>
-                                                       
+
                                                 </div>
-                                                <button type="submit" class="btn btn-raised btn-icon btn-outline-primary">Upload Excel  <i class="fa fa-cloud-download"></i></button>
+                                                <button type="submit"
+                                                    class="btn btn-raised btn-icon btn-outline-primary">Upload Excel <i
+                                                        class="fa fa-cloud-download"></i></button>
                                             </div>
                                         </div>
-                                        </form>
+                                    </form>
                                 </div>
                                 <div class="card-body card-dashboard table-responsive">
                                     <table id="myTable" class="table table-striped table-bordered zero-configuration">
@@ -163,31 +167,44 @@
                                                 <th>Kelainan</th>
                                                 <th>Petugas</th>
                                                 <th>Status</th>
-                                                
+                                                <th>Action</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @forelse ($gantimeter as $item)
-                                            <tr>
-                                              <td>{{ $item->id }}</td>
-                                              {{-- <td>{{ $item->user_id }}</td> --}}
-                                              <td>{{ $item->ulp }}</td>
-                                              <td>{{ $item->kd_unit }}</td>
-                                              <td>{{ $item->id_pel }}</td>
-                                              <td>{{ $item->nama }}</td>
-                                              <td>{{ $item->alamat }}</td>
-                                              <td>{{ $item->tarif }}</td>
-                                              <td>{{ $item->daya }}</td>
-                                              <td>{{ $item->peta }}</td>
-                                              <td>{{ $item->tipe }}</td>
-                                              <td>{{ $item->kelainan }}</td>
-                                              <td>{{ $item->petugas }}</td>
-                                              <td>{{ $item->status }}</td>
-                                            </tr>
+                                                <tr>
+                                                    <td>{{ $item->id }}</td>
+                                                    {{-- <td>{{ $item->user_id }}</td> --}}
+                                                    <td>{{ $item->ulp }}</td>
+                                                    <td>{{ $item->kd_unit }}</td>
+                                                    <td>{{ $item->id_pel }}</td>
+                                                    <td>{{ $item->nama }}</td>
+                                                    <td>{{ $item->alamat }}</td>
+                                                    <td>{{ $item->tarif }}</td>
+                                                    <td>{{ $item->daya }}</td>
+                                                    <td>{{ $item->peta }}</td>
+                                                    <td>{{ $item->tipe }}</td>
+                                                    <td>{{ $item->kelainan }}</td>
+                                                    <td>{{ $item->petugas }}</td>
+                                                    <td>{{ $item->status }}</td>
+                                                    <td class="border px-6 py-4 text-center">
+                                                        <form action="{{ route('gantimeter.destroy', $item->id) }}"
+                                                            method="POST" class="inline-block">
+                                                            {!! method_field('delete') . csrf_field() !!}
+                                                            <a href="{{ route('gantimeter.edit', $item->id) }}"
+                                                                class="btn btn-raised btn-icon btn-outline-primary ">
+                                                                <i class="fa fa-cloud-download"></i></button></a>
+                                                            <button type="submit"
+                                                                class="btn btn-raised btn-icon btn-outline-danger">
+                                                                <i class="fa fa-cloud-download"></i></button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
                                             @empty
-                                            <tr>
-                                                <td colspan="13">No data available</td>
-                                            </tr>
+                                                <tr>
+                                                    <td colspan="13">No data available</td>
+                                                </tr>
                                             @endforelse
                                     </table>
                                     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -201,11 +218,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+            </div>
             </section>
             <!--/ Zero configuration table -->
         </div>
     </div>
     <!-- END : End Main Content-->
-</div>
+    </div>
 @endsection

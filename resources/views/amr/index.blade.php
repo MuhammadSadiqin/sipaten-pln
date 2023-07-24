@@ -140,7 +140,6 @@
                                                             name="file">
                                                         <label class="custom-file-label" for="file">Choose file</label>
                                                     </div>
-                                                    <br>
 
                                                 </div>
                                                 <button type="submit"

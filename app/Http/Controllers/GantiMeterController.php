@@ -94,6 +94,6 @@ class GantiMeterController extends Controller
     {
         $gantimeter->delete();
 
-        return redirect()->route('gantimeter.index');
+        return back();
     }
 }

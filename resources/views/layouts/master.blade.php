@@ -174,20 +174,7 @@
                                         class="ft-maximize font-medium-3 blue-grey darken-4"></i>
                                     <p class="d-none">fullscreen</p>
                                 </a></li>
-                            <li class="dropdown nav-item"><a id="dropdownBasic3" href="#"
-                                    data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i
-                                        class="ft-flag font-medium-3 blue-grey darken-4"></i><span
-                                        class="selected-language d-none"></span></a>
-                                <div class="dropdown-menu dropdown-menu-right text-left"><a href="javascript:;"
-                                        class="dropdown-item py-1"><img src="app-assets/img/flags/us.png"
-                                            class="langimg" /><span> English</span></a><a href="javascript:;"
-                                        class="dropdown-item py-1"><img src="app-assets/img/flags/es.png"
-                                            class="langimg" /><span> Spanish</span></a><a href="javascript:;"
-                                        class="dropdown-item py-1"><img src="app-assets/img/flags/br.png"
-                                            class="langimg" /><span> Portuguese</span></a><a href="javascript:;"
-                                        class="dropdown-item"><img src="app-assets/img/flags/de.png"
-                                            class="langimg" /><span> French</span></a></div>
-                            </li>
+                           
                             <li class="dropdown nav-item"><a id="dropdownBasic2" href="#"
                                     data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i
                                         class="ft-bell font-medium-3 blue-grey darken-4"></i><span
@@ -230,29 +217,28 @@
                                     <p class="d-none">User Settings</p>
                                 </a>
                                 <div ngbdropdownmenu="" aria-labelledby="dropdownBasic3"
-                                    class="dropdown-menu text-left dropdown-menu-right"><a
-                                        href="../../../html/html/ltr/chat.html" class="dropdown-item py-1"><i
-                                            class="ft-message-square mr-2"></i><span>Chat</span></a><a
-                                        href="../../../html/html/ltr/user-profile-page.html"
-                                        class="dropdown-item py-1"><i class="ft-edit mr-2"></i><span>Edit
-                                            Profile</span></a><a href="../../../html/html/ltr/inbox.html"
-                                        class="dropdown-item py-1"><i class="ft-mail mr-2"></i><span>My
-                                            Inbox</span></a>
+                                    class="dropdown-menu text-left dropdown-menu-right"><a href="" class="dropdown-item py-1">
+                                        <i class="ft-message-square mr-2"></i><span>Chat</span></a>
+                                        <a href="" class="dropdown-item py-1"><i class="ft-edit mr-2"></i><span>Edit Profile</span></a>
+                                        <a href="" class="dropdown-item py-1"><i class="ft-mail mr-2"></i><span>My Inbox</span></a>
+                                          
                                     <div class="dropdown-divider"></div>
-                                    <form method="POST" action="{{ route('logout') }}" x-data>
+                                    <form class="form-inline" method="POST" action="{{ route('logout') }}" x-data>
                                         @csrf
-                                        <a href="{{ route('logout') }}" @click.prevent="$root.submit();" class="dropdown-item"><i
-                                            class="ft-power mr-2"></i><span>Logout</span></a></form>
+                                        <!-- Use Bootstrap button styles -->
+                                        <button type="submit" class="btn btn-link dropdown-item" @click.prevent="$root.submit();">
+                                            <!-- Use Bootstrap icons and alignment classes -->
+                                            <i class="ft-power mr-2"></i><span>Logout</span>
+                                        </button>
                                     </form>
-                                       
-                                        
+                                   
                                 </div>
                             </li>
-                            <li class="nav-item d-none d-lg-block"><a href="javascript:;"
+                            {{-- <li class="nav-item d-none d-lg-block"><a href="javascript:;"
                                     class="nav-link position-relative notification-sidebar-toggle"><i
                                         class="ft-align-left font-medium-3 blue-grey darken-4"></i>
                                     <p class="d-none">Notifications Sidebar</p>
-                                </a></li>
+                                </a></li> --}}
                         </ul>
                     </div>
                 </div>

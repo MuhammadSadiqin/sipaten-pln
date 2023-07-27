@@ -24,8 +24,8 @@ Route::get('/', function () {
         return view('welcome');
 });
 
-Route::get('tes', function () {
-        return view('tes');
+Route::get('show', function () {
+        return view('profile.show');
 });
 
 // Route::get('users-export', UserController::class)->name('users.export');

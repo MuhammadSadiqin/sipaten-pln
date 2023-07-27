@@ -28,7 +28,7 @@ class UserController extends Controller
             $users->where('level', $search);
         }
 
-        $user = User::paginate(1);
+        $user = User::paginate();
 
         return view('users.index', [
             'user' => $user

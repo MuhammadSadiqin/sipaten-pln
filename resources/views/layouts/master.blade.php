@@ -219,16 +219,20 @@
                                 <div ngbdropdownmenu="" aria-labelledby="dropdownBasic3"
                                     class="dropdown-menu text-left dropdown-menu-right"><a href="" class="dropdown-item py-1">
                                         <i class="ft-message-square mr-2"></i><span>Chat</span></a>
-                                        <a href="" class="dropdown-item py-1"><i class="ft-edit mr-2"></i><span>Edit Profile</span></a>
+                                        <a href="show" :active="request() - > routeIs('show')" class="dropdown-item py-1"><i class="ft-edit mr-2"></i><span>Edit Profile</span></a>
                                         <a href="" class="dropdown-item py-1"><i class="ft-mail mr-2"></i><span>My Inbox</span></a>
                                           
                                     <div class="dropdown-divider"></div>
                                     <form class="form-inline" method="POST" action="{{ route('logout') }}" x-data>
                                         @csrf
+                                        {{-- <a href="" type="submit" class="btn btn-link dropdown-item" @click.prevent="$root.submit();"></a>
+                                        <i class="ft-power mr-2"></i>
+                                        {{ __('Log Out') }} --}}
                                         <!-- Use Bootstrap button styles -->
                                         <button type="submit" class="btn btn-link dropdown-item" @click.prevent="$root.submit();">
                                             <!-- Use Bootstrap icons and alignment classes -->
-                                            <i class="ft-power mr-2"></i><span>Logout</span>
+                                            <i class="ft-power mr-2"></i>
+                                            {{ __('Log Out') }}
                                         </button>
                                     </form>
                                    

@@ -30,14 +30,18 @@ class AmrController extends Controller
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function import(Request $request)
+    public function import()
     {
-        // Excel::import(new AmrImport, request()->file('file'));
-        // return back();
-        $path1 = $request->file('file')->store('temp');
-        $path = storage_path('app') . '/' . $path1;
-        Excel::import(new AmrImport, $path);
+        Excel::import(new AmrImport, request()->file('file'), null, \Maatwebsite\Excel\Excel::XLSX, [
+            'useHeadingRow' => false, // Ignore the first row (header) when importing
+        ]);
 
         return back();
     }
 }
+
+// $path1 = $request->file('file')->store('temp');
+        // $path = storage_path('app') . '/' . $path1;
+        // Excel::import(new AmrImport, $path);
+
+        // return back();

@@ -106,25 +106,7 @@
                         <p class="content-sub-header"></p>
                     </div>
                 </div>
-                <div class="row" matchHeight="card">
-                    <div class="col-xl-3 col-lg-6 col-12">
-                      <div class="card">
-                        <div class="card-content">
-                          <div class="px-3 py-3">
-                            <div class="media">
-                              <div class="media-body text-left">
-                                {{-- <h3 class="mb-1 danger">{{ $gantimeter }}</h3> --}}
-                                <span>New Projects</span>
-                              </div>
-                              <div class="media-right align-self-center">
-                                <i class="icon-rocket danger font-large-2 float-right"></i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                <!-- Zero configuration table -->
+             <!-- Zero configuration table -->
                 <section id="configuration">
                     <div class="row">
                         <div class="col-12">

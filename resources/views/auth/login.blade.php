@@ -199,9 +199,9 @@
                     </div>
                   </div>
                   <div class="fg-actions d-flex justify-content-between">
-                    <button class="btn btn-outline-primary">
+        
                       <a href="{{ route('register') }}" class="text-decoration-none">{{ __('Register') }}</a>
-                    </button>
+                  
                     <div class="login-btn">
                      
                     </div>

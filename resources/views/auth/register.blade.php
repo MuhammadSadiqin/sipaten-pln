@@ -61,6 +61,7 @@
 
 <!DOCTYPE html>
 <html lang="en" class="loading">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -152,147 +153,120 @@
 </head>
 
 <!-- BEGIN : Body-->
+
 <body data-col="1-column" class="1-column blank-page">
     <!-- ////////////////////////////////////////////////////////////////////////////-->
     <div class="wrapper">
-      <div class="main-panel">
-        <!-- BEGIN : Main Content-->
-        <div class="main-content">
-          <div class="content-wrapper">
-            <!--Registration Page Starts-->
-            <section id="regestration">
-              <div class="container-fluid">
-                <div class="row full-height-vh m-0">
-                  <div
-                    class="col-12 d-flex align-items-center justify-content-center"
-                  >
-                    <div class="card">
-                      <div class="card-content">
-                        <div class="card-body register-img">
-                          <div class="row m-0">
-                            <div
-                              class="col-lg-6 d-none d-lg-block py-2 text-center"
-                            >
-                              <img
-                                src="app-assets/img/gallery/register.png"
-                                alt=""
-                                class="img-fluid mt-3 pl-3"
-                                width="400"
-                                height="230"
-                              />
-                            </div>
-                            <div class="col-lg-6 col-md-12 px-4 pt-3 bg-white">
-                              <h4 class="card-title mb-2">Create Account</h4>
-                              <p class="card-text mb-3">
-                                Fill the below form to create a new account.
-                              </p>
-                              <form method="POST" action="{{ route('register') }}">
-                                @csrf
-                                <input id="name" class="form-control mb-3" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" placeholder="{{ __('Enter your name') }}">
-                                <input id="email" class="form-control mb-3" type="email" name="email" value="{{ old('email') }}" required autocomplete="username" placeholder="{{ __('Enter your email') }}">
-                                <input id="password" class="form-control mb-3" type="password" name="password" required autocomplete="new-password" placeholder="{{ __('Enter your password') }}">
-                                <input id="password_confirmation" class="form-control mb-3" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Confirm your password') }}">
+        <div class="main-panel">
+            <!-- BEGIN : Main Content-->
+            <div class="main-content">
+                <div class="content-wrapper">
+                    <!--Registration Page Starts-->
+                    <section id="regestration">
+                        <div class="container-fluid">
+                            <div class="row full-height-vh m-0">
+                                <div class="col-12 d-flex align-items-center justify-content-center">
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-body register-img">
+                                                <div class="row m-0">
+                                                    <div class="col-lg-6 d-none d-lg-block py-2 text-center">
+                                                        <img src="app-assets/img/gallery/register.png" alt=""
+                                                            class="img-fluid mt-3 pl-3" width="400"
+                                                            height="230" />
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-12 px-4 pt-3 bg-white">
+                                                        <h4 class="card-title mb-2">Create Account</h4>
+                                                        <p class="card-text mb-3">
+                                                            Fill the below form to create a new account.
+                                                        </p>
+                                                        <form method="POST" action="{{ route('register') }}">
+                                                            @csrf
+                                                            <input id="name" class="form-control mb-3"
+                                                                type="text" name="name"
+                                                                value="{{ old('name') }}" required autofocus
+                                                                autocomplete="name"
+                                                                placeholder="{{ __('Enter your name') }}">
+                                                            <input id="email" class="form-control mb-3"
+                                                                type="email" name="email"
+                                                                value="{{ old('email') }}" required
+                                                                autocomplete="username"
+                                                                placeholder="{{ __('Enter your email') }}">
+                                                            <input id="password" class="form-control mb-3"
+                                                                type="password" name="password" required
+                                                                autocomplete="new-password"
+                                                                placeholder="{{ __('Enter your password') }}">
+                                                            <input id="password_confirmation"
+                                                                class="form-control mb-3" type="password"
+                                                                name="password_confirmation" required
+                                                                autocomplete="new-password"
+                                                                placeholder="{{ __('Confirm your password') }}">
 
-                              <div class="custom-control custom-checkbox custom-control-inline mb-3">
-                                {{-- @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature()) --}}
-                                <input
-                                  type="checkbox"
-                                  id="customCheckboxInline1"
-                                  name="customCheckboxInline1"
-                                  class="custom-control-input"
-                                  unchecked
-                                />
-                                <label
-                                  class="custom-control-label"
-                                  for="customCheckboxInline1"
-                                >
-                                  I accept the terms & conditions.
-                                </label>
-                                {{-- @endif --}}
-                              </div>
-                              <div
-                                class="fg-actions d-flex justify-content-between"
-                              >
-                                <div class="login-btn">
-                                  <button class="btn btn-outline-primary">
-                                    <a
-                                      href="{{ route('login') }}"
-                                      class="text-decoration-none"
-                                    >
-                                      Back To Login
-                                    </a>
-                                  </button>
+                                                            <div
+                                                                class="custom-control custom-checkbox custom-control-inline mb-3">
+                                                                {{-- @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature()) --}}
+                                                                <input type="checkbox" id="customCheckboxInline1"
+                                                                    name="customCheckboxInline1"
+                                                                    class="custom-control-input" unchecked />
+                                                                <label class="custom-control-label"
+                                                                    for="customCheckboxInline1">
+                                                                    I accept the terms & conditions.
+                                                                </label>
+                                                                {{-- @endif --}}
+                                                            </div>
+                                                            <div class="fg-actions d-flex justify-content-between">
+                                                                <div class="login-btn">
+                                                                    <button class="btn btn-outline-primary">
+                                                                        <a href="{{ route('login') }}"
+                                                                            class="text-decoration-none">
+                                                                            Back To Login
+                                                                        </a>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="recover-pass">
+                                                                    <button type="submit" class="btn btn-primary">
+                                                                        {{ __('Register') }}
+                                                                    </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="recover-pass">
-                                  <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                  </button>
-                                  </form>
-                                </div>
-                              </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
+            </div>
             </section>
             <!--Registration Page Ends-->
-          </div>
         </div>
-        <!-- END : End Main Content-->
-      </div>
+    </div>
+    <!-- END : End Main Content-->
+    </div>
     </div>
     <!-- ////////////////////////////////////////////////////////////////////////////-->
 
     <!-- BEGIN VENDOR JS-->
-    <script
-      src="app-assets/vendors/js/core/jquery-3.2.1.min.js"
-      type="text/javascript"
-    ></script>
-    <script
-      src="app-assets/vendors/js/core/popper.min.js"
-      type="text/javascript"
-    ></script>
-    <script
-      src="app-assets/vendors/js/core/bootstrap.min.js"
-      type="text/javascript"
-    ></script>
-    <script
-      src="app-assets/vendors/js/perfect-scrollbar.jquery.min.js"
-      type="text/javascript"
-    ></script>
-    <script
-      src="app-assets/vendors/js/prism.min.js"
-      type="text/javascript"
-    ></script>
-    <script
-      src="app-assets/vendors/js/jquery.matchHeight-min.js"
-      type="text/javascript"
-    ></script>
-    <script
-      src="app-assets/vendors/js/screenfull.min.js"
-      type="text/javascript"
-    ></script>
-    <script
-      src="app-assets/vendors/js/pace/pace.min.js"
-      type="text/javascript"
-    ></script>
+    <script src="app-assets/vendors/js/core/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/core/popper.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/core/bootstrap.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/prism.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/jquery.matchHeight-min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/screenfull.min.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/pace/pace.min.js" type="text/javascript"></script>
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN APEX JS-->
     <script src="app-assets/js/app-sidebar.js" type="text/javascript"></script>
-    <script
-      src="app-assets/js/notification-sidebar.js"
-      type="text/javascript"
-    ></script>
+    <script src="app-assets/js/notification-sidebar.js" type="text/javascript"></script>
     <script src="app-assets/js/customizer.js" type="text/javascript"></script>
     <!-- END APEX JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <!-- END PAGE LEVEL JS-->
-  </body>
-  <!-- END : Body-->
+</body>
+<!-- END : Body-->
+
 </html>

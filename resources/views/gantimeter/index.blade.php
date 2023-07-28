@@ -169,6 +169,7 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
+                                                <th>user</th>
                                                 <th>ULP</th>
                                                 <th>Kode Unit</th>
                                                 <th>Id Pelanggan</th>
@@ -183,14 +184,14 @@
                                                 <th>Status</th>
                                                 <th>Waktu Di Upload</th>
                                                 <th>Waktu Di Ubah</th>
-                                                <th>Action</th>
+                                                {{-- <th>Action</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @forelse ($gantimeter as $item)
                                                 <tr>
                                                     <td>{{ $item->id }}</td>
-                                                    {{-- <td>{{ $item->user_id }}</td> --}}
+                                                    <td>{{ $item->user_id }}</td>
                                                     <td>{{ $item->ulp }}</td>
                                                     <td>{{ $item->kd_unit }}</td>
                                                     <td>{{ $item->id_pel }}</td>
@@ -205,7 +206,7 @@
                                                     <td>{{ $item->status }}</td>
                                                     <td>{{ $item->created_at }}</td>
                                                     <td>{{ $item->updated_at }}</td>
-                                                    <td class="border px-6 py-4 text-center">
+                                                    {{-- <td class="border px-6 py-4 text-center">
                                                         <form action="{{ route('gantimeter.destroy', $item->id) }}"
                                                             method="POST" class="inline-block">
                                                             {!! method_field('delete') . csrf_field() !!}
@@ -216,7 +217,7 @@
                                                                 class="btn btn-raised btn-icon btn-outline-danger">
                                                                 <i class="fa fa-cloud-download"></i></button>
                                                         </form>
-                                                    </td>
+                                                    </td> --}}
                                                 </tr>
                                             @empty
                                                 <tr>

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\GantiMeterExport;
 use App\Models\GantiMeter;
 use Illuminate\Http\Request;
+use App\Exports\GantiMeterExport;
 use App\Imports\GantiMeterImport;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\GantiMeterRequest;
 
@@ -33,12 +34,19 @@ class GantiMeterController extends Controller
 
     public function import(Request $request)
     {
-
-        $path1 = $request->file('file')->store('temp');
-        $path = storage_path('app') . '/' . $path1;
-        Excel::import(new GantiMeterImport, $path);
+        $user = Auth::user(); // Ambil user yang sedang login
+        $userId = $user->id; // Ambil user ID dari user yang sedang login
+        Excel::import(new GantiMeterImport($userId), request()->file('file'), null, \Maatwebsite\Excel\Excel::XLSX, [
+            'useHeadingRow' => false, // Ignore the first row (header) when importing
+        ]);
 
         return back();
+
+        // $path1 = $request->file('file')->store('temp');
+        // $path = storage_path('app') . '/' . $path1;
+        // Excel::import(new GantiMeterImport, $path);
+
+        // return back();
     }
 
     /**

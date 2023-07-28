@@ -3,35 +3,60 @@
 namespace App\Imports;
 
 use App\Models\GantiMeter;
-use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithStartRow;
+use Illuminate\Support\Collection;
 
-class GantiMeterImport implements ToModel, WithHeadingRow
+class GantiMeterImport implements ToCollection, WithStartRow
 {
-    /**
-     * @param array $row
-     *
-     * @return \Illuminate\Database\Eloquent\Model|null
-     */
-    public function model(array $row)
-    {
-        return new GantiMeter([
-            'user_id' => $row['user_id'],
-            'ulp' => $row['ulp'],
-            'kd_unit' => $row['kd_unit'],
-            'id_pel' => $row['id_pel'],
-            'nama' => $row['nama'],
-            'alamat' => $row['alamat'],
-            'tarif' => $row['tarif'],
-            'daya' => $row['daya'],
-            'peta' => $row['peta'],
-            'tipe' => $row['tipe'],
-            'kelainan' => $row['kelainan'],
-            'petugas' => $row['petugas'],
-            'status' => $row['status'],
-            // 'alasan_tunda' => $row['alasan_tunda'],
-            // 'ket_tunda' => $row['ket_tunda'],
+    private $userId;
 
-        ]);
+    public function __construct($userId)
+    {
+        $this->userId = $userId;
+    }
+
+    /**
+     * @param \Illuminate\Support\Collection $rows
+     */
+    public function collection(Collection $rows)
+    {
+        // Loop melalui baris-baris data
+        foreach ($rows as $key => $row) {
+            // Skip baris pertama (header) karena sudah diabaikan dengan WithStartRow
+            if ($key === 0) {
+                continue;
+            }
+
+            // Pastikan data tidak kosong atau hanya berisi spasi
+            if (empty(array_filter($row->toArray()))) {
+                continue;
+            }
+
+            // Simpan data ke dalam database
+            GantiMeter::create([
+                'user_id' => $this->userId, // Mengisi 'user_id' dengan ID pengguna yang sedang login
+                'ulp' => $row[0],
+                'kd_unit' => $row[1],
+                'id_pel' => $row[2],
+                'nama' => $row[3],
+                'alamat' => $row[4],
+                'tarif' => $row[5],
+                'daya' => $row[6],
+                'peta' => $row[7],
+                'tipe' => $row[8],
+                'kelainan' => $row[9],
+                'petugas' => $row[10],
+                'status' => $row[11],
+            ]);
+        }
+    }
+
+    /**
+     * @return int
+     */
+    public function startRow(): int
+    {
+        return 2; // Skip the first row (header) when importing
     }
 }

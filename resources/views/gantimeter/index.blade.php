@@ -100,6 +100,30 @@
         <!-- BEGIN : Main Content-->
         <div class="main-content">
             <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="content-header">Ganti Meter </div>
+                        <p class="content-sub-header"></p>
+                    </div>
+                </div>
+                <div class="row" matchHeight="card">
+                    <div class="col-xl-3 col-lg-6 col-12">
+                      <div class="card">
+                        <div class="card-content">
+                          <div class="px-3 py-3">
+                            <div class="media">
+                              <div class="media-body text-left">
+                                {{-- <h3 class="mb-1 danger">{{ $gantimeter }}</h3> --}}
+                                <span>New Projects</span>
+                              </div>
+                              <div class="media-right align-self-center">
+                                <i class="icon-rocket danger font-large-2 float-right"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                 <!-- Zero configuration table -->
                 <section id="configuration">
                     <div class="row">
@@ -128,9 +152,7 @@
                                             <button type="button" class="btn btn-raised btn-icon btn-outline-success">Export Excel  <i class="fa fa-cloud-download"></i></button>
                                                
                                     </form> --}}
-                                    <form action="{{ route('GantiMeter.import') }}" method="POST"
-                                        enctype="multipart/form-data" class="mt-4">
-                                        @csrf
+                                   
                                         <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
                                                 <form action="{{ route('GantiMeter.import') }}" method="POST"
@@ -150,9 +172,15 @@
                                                     <button type="submit"
                                                         class="btn btn-raised btn-icon btn-outline-primary">Upload Excel <i
                                                             class="fa fa-cloud-download"></i></button>
+                                                        </form>
+                                                        <a href="{{ route('gantimeter.export') }}">
+                                                            <button type="submit"
+                                                                class="btn btn-raised btn-icon btn-outline-success">Export Excel <i
+                                                                    class="fa fa-cloud-download"></i></button>
+                                                        </a>
                                             </div>
                                         </div>
-                                    </form>
+                                    
                                 </div>
                                 <div class="card-body card-dashboard table-responsive">
                                     <table id="myTable" class="table table-striped table-bordered zero-configuration">
@@ -171,8 +199,9 @@
                                                 <th>Kelainan</th>
                                                 <th>Petugas</th>
                                                 <th>Status</th>
+                                                <th>Waktu Di Upload</th>
+                                                <th>Waktu Di Ubah</th>
                                                 <th>Action</th>
-
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -192,6 +221,8 @@
                                                     <td>{{ $item->kelainan }}</td>
                                                     <td>{{ $item->petugas }}</td>
                                                     <td>{{ $item->status }}</td>
+                                                    <td>{{ $item->created_at }}</td>
+                                                    <td>{{ $item->updated_at }}</td>
                                                     <td class="border px-6 py-4 text-center">
                                                         <form action="{{ route('gantimeter.destroy', $item->id) }}"
                                                             method="POST" class="inline-block">

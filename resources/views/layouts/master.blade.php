@@ -101,7 +101,7 @@
             <!-- main menu header-->
             <!-- Sidebar Header starts-->
             <div class="sidebar-header">
-                <div class="logo clearfix"><a href="index.html" class="logo-text float-left">
+                <div class="logo clearfix"><a href="/" :active="request() - > routeIs('dashboard')" class="logo-text float-left">
                         <div class="logo-img"><img src="app-assets/img/logo1.png" /></div><span
                             class="text align-middle">SIPATEN</span>
                     </a><a id="sidebarToggle" href="javascript:;"

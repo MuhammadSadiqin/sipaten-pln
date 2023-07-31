@@ -191,7 +191,7 @@
                                             @forelse ($gantimeter as $item)
                                                 <tr>
                                                     <td>{{ $item->id }}</td>
-                                                    <td>{{ $item->user_id }}</td>
+                                                    <td>{{ $item->user->name }}</td>
                                                     <td>{{ $item->ulp }}</td>
                                                     <td>{{ $item->kd_unit }}</td>
                                                     <td>{{ $item->id_pel }}</td>

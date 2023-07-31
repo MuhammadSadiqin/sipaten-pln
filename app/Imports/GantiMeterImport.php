@@ -9,11 +9,11 @@ use Illuminate\Support\Collection;
 
 class GantiMeterImport implements ToCollection, WithStartRow
 {
-    private $userId;
+    private $user_id;
 
-    public function __construct($userId)
+    public function __construct($user_id)
     {
-        $this->userId = $userId;
+        $this->user_id = $user_id;
     }
 
     /**
@@ -35,7 +35,7 @@ class GantiMeterImport implements ToCollection, WithStartRow
 
             // Simpan data ke dalam database
             GantiMeter::create([
-                'user_id' => $this->userId, // Mengisi 'user_id' dengan ID pengguna yang sedang login
+                'user_id' => $this->user_id, // Mengisi 'user_id' dengan ID pengguna yang sedang login
                 'ulp' => $row[0],
                 'kd_unit' => $row[1],
                 'id_pel' => $row[2],

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\GantiMeter;
-use Illuminate\Http\Request;
 use App\Exports\GantiMeterExport;
 use App\Imports\GantiMeterImport;
 use Illuminate\Support\Facades\Auth;
@@ -32,21 +32,22 @@ class GantiMeterController extends Controller
         //
     }
 
-    public function import(Request $request)
+    public function import()
     {
         $user = Auth::user(); // Ambil user yang sedang login
-        $userId = $user->id; // Ambil user ID dari user yang sedang login
-        Excel::import(new GantiMeterImport($userId), request()->file('file'), null, \Maatwebsite\Excel\Excel::XLSX, [
+        $user_name = $user->name; // Ambil 'name' dari user yang sedang login
+        $user_id = User::where('name', $user_name)->value('id'); // Cari 'id' berdasarkan 'name' dari user
+
+        if (!is_int($user_id)) {
+            // Tampilkan pesan atau lakukan tindakan yang sesuai jika 'user_id' tidak valid
+            // Contoh: kembalikan pesan error atau alihkan pengguna ke halaman yang sesuai
+            return redirect()->route('home')->with('error', 'Invalid user_id.');
+        }
+        Excel::import(new GantiMeterImport($user_id), request()->file('file'), null, \Maatwebsite\Excel\Excel::XLSX, [
             'useHeadingRow' => false, // Ignore the first row (header) when importing
         ]);
 
         return back();
-
-        // $path1 = $request->file('file')->store('temp');
-        // $path = storage_path('app') . '/' . $path1;
-        // Excel::import(new GantiMeterImport, $path);
-
-        // return back();
     }
 
     /**

@@ -36,18 +36,18 @@ class GantiMeterImport implements ToCollection, WithStartRow
             // Simpan data ke dalam database
             GantiMeter::create([
                 'user_id' => $this->user_id, // Mengisi 'user_id' dengan ID pengguna yang sedang login
-                'ulp' => $row[0],
-                'kd_unit' => $row[1],
-                'id_pel' => $row[2],
-                'nama' => $row[3],
-                'alamat' => $row[4],
-                'tarif' => $row[5],
-                'daya' => $row[6],
-                'peta' => $row[7],
-                'tipe' => $row[8],
-                'kelainan' => $row[9],
-                'petugas' => $row[10],
-                'status' => $row[11],
+                'ulp' => $row[1],
+                'kd_unit' => $row[2],
+                'id_pel' => $row[3],
+                'nama' => $row[4],
+                'alamat' => $row[5],
+                'tarif' => $row[6],
+                'daya' => $row[7],
+                'peta' => $row[8],
+                'tipe' => $row[9],
+                'kelainan' => $row[10],
+                'petugas' => $row[11],
+                'status' => $row[12],
             ]);
         }
     }

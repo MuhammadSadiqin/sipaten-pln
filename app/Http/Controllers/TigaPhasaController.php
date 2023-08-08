@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\TigaPhasaExport;
-use App\Imports\TigaPhasaImport;
+use App\Models\User;
 use App\Models\TigaPhasa;
 use Illuminate\Http\Request;
+use App\Exports\TigaPhasaExport;
+use App\Imports\TigaPhasaImport;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TigaPhasaController extends Controller
@@ -35,11 +37,18 @@ class TigaPhasaController extends Controller
      */
     public function import(Request $request)
     {
-        // Excel::import(new TigaPhasaImport, request()->file('file'));
-        // return back();
-        $path1 = $request->file('file')->store('temp');
-        $path = storage_path('app') . '/' . $path1;
-        Excel::import(new TigaPhasaImport, $path);
+        $user = Auth::user(); // Ambil user yang sedang login
+        $user_name = $user->name; // Ambil 'name' dari user yang sedang login
+        $user_id = User::where('name', $user_name)->value('id'); // Cari 'id' berdasarkan 'name' dari user
+
+        if (!is_int($user_id)) {
+            // Tampilkan pesan atau lakukan tindakan yang sesuai jika 'user_id' tidak valid
+            // Contoh: kembalikan pesan error atau alihkan pengguna ke halaman yang sesuai
+            return redirect()->route('home')->with('error', 'Invalid user_id.');
+        }
+        Excel::import(new TigaPhasaImport($user_id), request()->file('file'), null, \Maatwebsite\Excel\Excel::XLSX, [
+            'useHeadingRow' => false, // Ignore the first row (header) when importing
+        ]);
 
         return back();
     }

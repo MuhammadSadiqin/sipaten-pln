@@ -4,16 +4,20 @@ namespace App\Imports;
 
 use App\Models\Amr;
 use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 
 class AmrImport implements ToCollection, WithStartRow
 {
-    /**
-     * @param \Illuminate\Support\Collection $rows
-     */
+
+
+    private $user_id;
+
+    public function __construct($user_id)
+    {
+        $this->user_id = $user_id;
+    }
+
     public function collection(Collection $rows)
     {
         // Loop melalui baris-baris data
@@ -30,6 +34,7 @@ class AmrImport implements ToCollection, WithStartRow
 
             // Simpan data ke dalam database
             Amr::create([
+                'user_id' => $this->user_id, // Mengisi 'user_id' dengan ID pengguna yang sedang login
                 'ulp' => $row[0],
                 'kd_unit' => $row[1],
                 'id_pel' => $row[2],
@@ -46,12 +51,9 @@ class AmrImport implements ToCollection, WithStartRow
         }
     }
 
-    /**
-     * @return int
-     */
     public function startRow(): int
     {
-        return 1; // Skip the first row (header) when importing
+        return 2; // Skip the first row (header) when importing
     }
 }
 //  /**

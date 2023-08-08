@@ -11,7 +11,7 @@ class GantiMeterController extends Controller
 {
     public function all(Request $request)
     {
-        $limit = $request->input('limit', 10);
+        $limit = $request->input('limit', 100000000);
 
         $gantiMeters = GantiMeter::paginate($limit);
 
@@ -37,5 +37,12 @@ class GantiMeterController extends Controller
                 404
             );
         }
+    }
+
+    public function logout(Request $request)
+    {
+        $token = $request->user()->currentAccessToken()->delete();
+
+        return ResponseFormatter::success($token, 'Token Revoked');
     }
 }

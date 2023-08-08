@@ -262,13 +262,11 @@
         <!-- End : Footer-->
         <!-- Theme customizer Starts-->
         <div class="customizer border-left-blue-grey border-left-lighten-4 d-none d-sm-none d-md-block"><a
-                class="customizer-close"><i class="ft-x font-medium-3"></i></a><a id="rtl-icon"
-                href="https://pixinvent.com/apex-angular-4-bootstrap-admin-template/html-demo-6/" target="_blank"
-                class="bg-dark customizer-toggle"><span class="font-medium-1 white align-middle">RTL</span></a><a
-                id="customizer-toggle-icon" class="customizer-toggle bg-danger"><i
-                    class="ft-settings font-medium-4 fa fa-spin white align-middle"></i></a>
-            <div data-ps-id="df6a5ce4-a175-9172-4402-dabd98fc9c0a"
-                class="customizer-content p-3 ps-container ps-theme-dark">
+                class="customizer-close"><i class="ft-x font-medium-3"></i></a>
+                {{-- <a id="rtl-icon"href="" class="bg-dark customizer-toggle"><span class="font-medium-1 white align-middle">RTL</span></a> --}}
+                <a id="customizer-toggle-icon" class="customizer-toggle bg-danger">
+                    <i class="ft-settings font-medium-4 fa fa-spin white align-middle"></i></a>
+            <div data-ps-id="df6a5ce4-a175-9172-4402-dabd98fc9c0a" class="customizer-content p-3 ps-container ps-theme-dark">
                 <h4 class="text-uppercase mb-0 text-bold-400">Theme Customizer</h4>
                 <p>Customize & Preview in Real Time</p>
                 <hr>
@@ -429,23 +427,6 @@
                 </div>
                 <!-- ////////////////////////////////////////////////////////////////////////////-->
 
-</body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- BEGIN VENDOR JS-->
 <script src="app-assets/vendors/js/core/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script src="app-assets/vendors/js/core/popper.min.js" type="text/javascript"></script>
@@ -473,6 +454,11 @@
 <!-- BEGIN PAGE LEVEL JS-->
 <script src="app-assets/js/data-tables/datatable-basic.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS-->
+<script
+src="app-assets/vendors/js/chart.min.js"
+type="text/javascript"
+></script>
+<script src="app-assets/js/chartjs.js" type="text/javascript"></script>
 </body>
 
 </html>

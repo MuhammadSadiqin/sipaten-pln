@@ -51,13 +51,13 @@ $(window).on("load", function () {
         },
         title: {
             display: true,
-            text: 'Chart.js Line Chart - Legend'
+            text: 'Chart Ganti Meter - Legend'
         }
     };
 
     // Chart Data
     var chartData = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Desember"],
         datasets: [{
             label: "My First dataset",
             data: [65, 59, 80, 81, 56, 55, 40],

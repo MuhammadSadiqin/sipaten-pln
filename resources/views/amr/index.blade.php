@@ -166,6 +166,7 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
+                                                <th>user</th>
                                                 <th>ULP</th>
                                                 <th>Kode Unit</th>
                                                 <th>Id Pelanggan</th>
@@ -178,6 +179,8 @@
                                                 <th>Kelainan</th>
                                                 <th>Petugas</th>
                                                 <th>Status</th>
+                                                <th>Waktu Di Upload</th>
+                                                <th>Waktu Di Ubah</th>
 
                                             </tr>
                                         </thead>
@@ -185,7 +188,7 @@
                                             @forelse ($amr as $item)
                                                 <tr>
                                                     <td>{{ $item->id }}</td>
-                                                    {{-- <td>{{ $item->user_id }}</td> --}}
+                                                    <td>{{ $item->user->name }}</td>
                                                     <td>{{ $item->ulp }}</td>
                                                     <td>{{ $item->kd_unit }}</td>
                                                     <td>{{ $item->id_pel }}</td>
@@ -198,6 +201,8 @@
                                                     <td>{{ $item->kelainan }}</td>
                                                     <td>{{ $item->petugas }}</td>
                                                     <td>{{ $item->status }}</td>
+                                                    <td>{{ $item->created_at }}</td>
+                                                    <td>{{ $item->updated_at }}</td>
                                                 </tr>
                                             @empty
                                                 <tr>

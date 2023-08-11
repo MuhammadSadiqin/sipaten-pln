@@ -60,7 +60,7 @@ $(window).on("load", function () {
         labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Desember"],
         datasets: [{
             label: "My First dataset",
-            data: [65, 59, 80, 81, 56, 55, 40],
+            data: [65, 59, 80, 81, 56, 55, 40, 20, 30, 67, 86, 57],
             fill: false,
             borderDash: [5, 5],
             borderColor: "#9C27B0",
@@ -71,7 +71,7 @@ $(window).on("load", function () {
             pointRadius: 4,
         }, {
             label: "My Second dataset",
-            data: [28, 48, 40, 19, 86, 27, 90],
+            data: [28, 48, 40, 19, 86, 27, 90, 20, 69, 26, 64, 84 ],
             fill: false,
             borderDash: [5, 5],
             borderColor: "#00A5A8",
@@ -82,7 +82,7 @@ $(window).on("load", function () {
             pointRadius: 4,
         }, {
             label: "My Third dataset - No bezier",
-            data: [45, 25, 16, 36, 67, 18, 76],
+            data: [45, 25, 16, 36, 67, 18, 76, 40, 56, 32, 16, 37],
             lineTension: 0,
             fill: false,
             borderColor: "#FF7D4D",

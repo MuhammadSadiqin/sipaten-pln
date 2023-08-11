@@ -110,12 +110,16 @@
                     <div class="col-sm-12">
                       <div class="card">
                         <div class="card-header">
-                          <h4 class="card-title">Chart AMR</h4>
+                            <div class="card-header">
+                                <h4 class="card-title">Data AMR</h4>
+                                <a href="{{ route('generate-pdf') }}" class="btn btn-primary btn-sm ml-auto">Generate PDF</a>
+                            </div>
+                          {{-- <h4 class="card-title">Chart AMR</h4>
                         </div>
                         <div class="card-content">
                           <div class="card-body chartjs">
                             <canvas id="line-chart" height="250"></canvas>
-                          </div>
+                          </div> --}}
                         </div>
                       </div>
                     </div>
@@ -128,26 +132,6 @@
                                 <div class="card-header">
                                 </div>
                                 <div class="card-content">
-
-                                    {{-- <form action="{{ route('GantiMeter.import') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="col-lg-6 col-md-12">
-                                            <label for="file">With Browse button</label>
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                                </div>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                                        aria-describedby="inputGroupFileAddon01">
-                                                    <label class="custom-file-label" for="inputGroupFile01">Choose
-                                                        file</label>
-                                                </div>
-                                            </div>
-                                            <button type="button" class="btn btn-raised btn-icon btn-outline-primary">Upload Excel  <i class="fa fa-cloud-download"></i></button>
-                                            <button type="button" class="btn btn-raised btn-icon btn-outline-success">Export Excel  <i class="fa fa-cloud-download"></i></button>
-                                               
-                                    </form> --}}
 
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
@@ -224,13 +208,6 @@
                                                 </tr>
                                             @endforelse
                                     </table>
-                                    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> --}}
-                                    {{-- <script>
-                                        $(document).ready( function () {
-                                        $('#myTable').DataTable();
-                                    } );
-                                    </script> --}}
                                 </div>
                             </div>
                         </div>

@@ -48,6 +48,27 @@ class AmrController extends Controller
 
         return back();
     }
+
+    public function generatePdf($id)
+    {
+        $amr = Amr::find($id);
+
+        if (!$amr) {
+            return redirect()->back()->with('error', 'Data not found.');
+        } else {
+            // Proses penghasilan PDF dengan data $amr
+            // Buat instansi dari kelas PDF
+
+            $pdf = app('dompdf.wrapper');
+
+            // Muat tampilan ke dalam PDF
+            $pdf->loadView('pdf\amr_template', ['amr' => $amr]);
+
+            // Unduh PDF
+            // return $pdf->download('laporan_amr.pdf');
+            return $pdf->stream('amr_' . $amr->id . '.pdf');
+        }
+    }
 }
 
 // $path1 = $request->file('file')->store('temp');

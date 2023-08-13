@@ -11,6 +11,7 @@
         content="admin template, Apex admin template, dashboard template, flat admin template, responsive admin template, web app" />
     <meta name="author" content="PIXINVENT" />
     <title>SIPATEN</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon1.ico') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="app-assets/img/ico/apple-icon-60.png" />
     <link rel="apple-touch-icon" sizes="76x76" href="app-assets/img/ico/apple-icon-76.png" />

@@ -111,15 +111,15 @@
                       <div class="card">
                         <div class="card-header">
                             <div class="card-header">
-                                <h4 class="card-title">Data AMR</h4>
-                                <a href="{{ route('generate-pdf') }}" class="btn btn-primary btn-sm ml-auto">Generate PDF</a>
+                                {{-- <h4 class="card-title">Data AMR</h4>
+                                <a href="{{ route('generate-pdf') }}" class="btn btn-primary btn-sm ml-auto">Generate PDF</a> --}}
                             </div>
-                          {{-- <h4 class="card-title">Chart AMR</h4>
+                          <h4 class="card-title">Chart AMR</h4>
                         </div>
                         <div class="card-content">
                           <div class="card-body chartjs">
                             <canvas id="line-chart" height="250"></canvas>
-                          </div> --}}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -141,23 +141,27 @@
                                                 <label class="font-weight-bold" for="file">Upload Excel</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="file"
-                                                            name="file">
+                                                        <input type="file" class="custom-file-input" id="file" name="file" onchange="updateFileName()">
                                                         <label class="custom-file-label" for="file">Choose file</label>
                                                     </div>
                                                 </div>
                                                 <button type="submit"
                                                     class="btn btn-raised btn-icon btn-outline-primary">Upload Excel <i
                                                         class="fa fa-cloud"></i></button>
+                                                        <script>
+                                                            function updateFileName() {
+                                                                var input = document.getElementById('file');
+                                                                var label = input.nextElementSibling;
+                                                                var fileName = input.files[0].name;
+                                                                label.innerHTML = fileName;
+                                                            }
+                                                        </script>
                                             </form>
-                                            <a href="{{ route('amr.export') }}">
-                                                <button type="submit"
-                                                    class="btn btn-raised btn-icon btn-outline-success">Export Excel <i
-                                                        class="fa fa-cloud-download"></i></button>
+                                            <a href="{{ route('amr.export') }}"> <button type="submit" class="btn btn-raised btn-icon btn-outline-success">Export Excel 
+                                                <i class="fa fa-cloud-download"></i></button>
                                             </a>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="card-body card-dashboard table-responsive">
                                     <table id="myTable" class="table table-striped table-bordered zero-configuration">
@@ -175,11 +179,11 @@
                                                 <th>Peta</th>
                                                 <th>Tipe</th>
                                                 <th>Kelainan</th>
-                                                <th>Petugas</th>
+                                                {{-- <th>Petugas</th> --}}
                                                 <th>Status</th>
-                                                <th>Waktu Di Upload</th>
-                                                <th>Waktu Di Ubah</th>
-
+                                                {{-- <th>Waktu Di Upload</th>
+                                                <th>Waktu Di Ubah</th> --}}
+                                                <th>PDF</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -197,10 +201,13 @@
                                                     <td>{{ $item->peta }}</td>
                                                     <td>{{ $item->tipe }}</td>
                                                     <td>{{ $item->kelainan }}</td>
-                                                    <td>{{ $item->petugas }}</td>
+                                                    {{-- <td>{{ $item->petugas }}</td> --}}
                                                     <td>{{ $item->status }}</td>
-                                                    <td>{{ $item->created_at }}</td>
-                                                    <td>{{ $item->updated_at }}</td>
+                                                    {{-- <td>{{ $item->created_at }}</td>
+                                                    <td>{{ $item->updated_at }}</td> --}}
+                                                    <td>
+                                                        <a href="{{ route('generate-pdf', ['id' => $item->id]) }}" class="btn btn-primary btn-sm">Generate PDF</a>
+                                                    </td>
                                                 </tr>
                                             @empty
                                                 <tr>

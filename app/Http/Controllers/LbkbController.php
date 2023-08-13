@@ -52,9 +52,25 @@ class LbkbController extends Controller
 
         return back();
     }
-    public function show(string $id)
+
+    public function generatePdf($id)
     {
-        //
+        $lbkb = Lbkb::find($id);
+
+        if (!$lbkb) {
+            return redirect()->back()->with('error', 'Data not found.');
+        } else {
+            // Proses penghasilan PDF dengan data $lbkb
+            // Buat instansi dari kelas PDF
+            $pdf = app('dompdf.wrapper');
+
+            // Muat tampilan ke dalam PDF
+            $pdf->loadView('pdf\lbkb_template', ['lbkb' => $lbkb]);
+
+            // Unduh PDF
+            // return $pdf->download('laporan_lbkb.pdf');
+            return $pdf->stream('lbkb_' . $lbkb->id . '.pdf');
+        }
     }
 
     /**

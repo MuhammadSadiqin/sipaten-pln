@@ -53,6 +53,27 @@ class TigaPhasaController extends Controller
         return back();
     }
 
+    public function generatePdf($id)
+    {
+        $tigaphasa = Tigaphasa::find($id);
+
+        if (!$tigaphasa) {
+            return redirect()->back()->with('error', 'Data not found.');
+        } else {
+            // Proses penghasilan PDF dengan data $tigaphasa
+            // Buat instansi dari kelas PDF
+            $pdf = app('dompdf.wrapper');
+
+            // Muat tampilan ke dalam PDF
+            $pdf->loadView('pdf\tigaphasa_template', ['tigaphasa' => $tigaphasa]);
+
+            // Unduh PDF
+            // return $pdf->download('laporan_tigaphasa.pdf');
+            return $pdf->stream('tigaphasa_' . $tigaphasa->id . '.pdf');
+        }
+    }
+
+
     /**
      * Store a newly created resource in storage.
      */

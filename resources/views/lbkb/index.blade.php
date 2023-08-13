@@ -102,8 +102,22 @@
             <div class="content-wrapper">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="content-header">LBKB</div>
+                        <div class="content-header">LBKB-Laporan Bulanan Kelaianan Baca Meter</div>
                         <p class="content-sub-header"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Chart LBKB-Laporan Bulanan Kelaianan Baca Meter </h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body chartjs">
+                                    <canvas id="line-chart" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- Zero configuration table -->

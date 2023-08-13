@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TigaPhasaController;
 use App\Http\Controllers\GantiMeterController;
+use App\Http\Controllers\PdfController;
 use App\Models\TigaPhasa;
 
 /*
@@ -33,6 +34,10 @@ Route::get('show', function () {
 
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('generate-pdf/{id}', [AmrController::class, 'generatePdf'])->name('generate-pdf');
+        Route::get('generate-pdf/{id}', [GantiMeterController::class, 'generatePdf'])->name('generate-pdf');
+        Route::get('generate-pdf/{id}', [LbkbController::class, 'generatePdf'])->name('generate-pdf');
+        Route::get('generate-pdf/{id}', [TigaPhasaController::class, 'generatePdf'])->name('generate-pdf');
         Route::get('amr-export', [AmrController::class, 'export'])->name('amr.export');
         Route::get('tigaphasa-export', [TigaPhasaController::class, 'export'])->name('tigaphasa.export');
         Route::get('gantimeter-export', [GantiMeterController::class, 'export'])->name('gantimeter.export');

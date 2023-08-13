@@ -106,20 +106,6 @@
                         <p class="content-sub-header"></p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Chart AMR-Automatic Meter Reading </h4>
-                            </div>
-                            <div class="card-content">
-                                <div class="card-body chartjs">
-                                    <canvas id="line-chart" height="250"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- Zero configuration table -->
                 <section id="configuration">
                     <div class="row">
@@ -128,26 +114,6 @@
                                 <div class="card-header">
                                 </div>
                                 <div class="card-content">
-
-                                    {{-- <form action="{{ route('GantiMeter.import') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="col-lg-6 col-md-12">
-                                            <label for="file">With Browse button</label>
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                                </div>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                                        aria-describedby="inputGroupFileAddon01">
-                                                    <label class="custom-file-label" for="inputGroupFile01">Choose
-                                                        file</label>
-                                                </div>
-                                            </div>
-                                            <button type="button" class="btn btn-raised btn-icon btn-outline-primary">Upload Excel  <i class="fa fa-cloud-download"></i></button>
-                                            <button type="button" class="btn btn-raised btn-icon btn-outline-success">Export Excel  <i class="fa fa-cloud-download"></i></button>
-                                               
-                                    </form> --}}
 
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
@@ -158,22 +124,28 @@
                                                 <div class="input-group">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="file"
-                                                            name="file">
+                                                            name="file" onchange="updateFileName()">
                                                         <label class="custom-file-label" for="file">Choose file</label>
                                                     </div>
                                                 </div>
                                                 <button type="submit"
                                                     class="btn btn-raised btn-icon btn-outline-primary">Upload Excel <i
                                                         class="fa fa-cloud"></i></button>
+                                                <script>
+                                                    function updateFileName() {
+                                                        var input = document.getElementById('file');
+                                                        var label = input.nextElementSibling;
+                                                        var fileName = input.files[0].name;
+                                                        label.innerHTML = fileName;
+                                                    }
+                                                </script>
                                             </form>
-                                            <a href="{{ route('amr.export') }}">
-                                                <button type="submit"
-                                                    class="btn btn-raised btn-icon btn-outline-success">Export Excel <i
-                                                        class="fa fa-cloud-download"></i></button>
+                                            <a href="{{ route('amr.export') }}"> <button type="submit"
+                                                    class="btn btn-raised btn-icon btn-outline-success">Export Excel
+                                                    <i class="fa fa-cloud-download"></i></button>
                                             </a>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="card-body card-dashboard table-responsive">
                                     <table id="myTable" class="table table-striped table-bordered zero-configuration">
@@ -191,11 +163,11 @@
                                                 <th>Peta</th>
                                                 <th>Tipe</th>
                                                 <th>Kelainan</th>
-                                                <th>Petugas</th>
+                                                {{-- <th>Petugas</th> --}}
                                                 <th>Status</th>
-                                                <th>Waktu Di Upload</th>
-                                                <th>Waktu Di Ubah</th>
-
+                                                {{-- <th>Waktu Di Upload</th>
+                                                <th>Waktu Di Ubah</th> --}}
+                                                <th>PDF</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -213,10 +185,14 @@
                                                     <td>{{ $item->peta }}</td>
                                                     <td>{{ $item->tipe }}</td>
                                                     <td>{{ $item->kelainan }}</td>
-                                                    <td>{{ $item->petugas }}</td>
+                                                    {{-- <td>{{ $item->petugas }}</td> --}}
                                                     <td>{{ $item->status }}</td>
-                                                    <td>{{ $item->created_at }}</td>
-                                                    <td>{{ $item->updated_at }}</td>
+                                                    {{-- <td>{{ $item->created_at }}</td>
+                                                    <td>{{ $item->updated_at }}</td> --}}
+                                                    <td>
+                                                        <a href="{{ route('generate-pdf', ['id' => $item->id]) }}"
+                                                            class="btn btn-primary btn-sm">Generate PDF</a>
+                                                    </td>
                                                 </tr>
                                             @empty
                                                 <tr>
@@ -224,13 +200,6 @@
                                                 </tr>
                                             @endforelse
                                     </table>
-                                    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> --}}
-                                    {{-- <script>
-                                        $(document).ready( function () {
-                                        $('#myTable').DataTable();
-                                    } );
-                                    </script> --}}
                                 </div>
                             </div>
                         </div>

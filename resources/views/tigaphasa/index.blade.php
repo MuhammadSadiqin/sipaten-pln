@@ -106,20 +106,6 @@
                         <p class="content-sub-header"></p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Chart Tiga Phasa</h4>
-                            </div>
-                            <div class="card-content">
-                                <div class="card-body chartjs">
-                                    <canvas id="line-chart" height="250"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- Zero configuration table -->
                 <section id="configuration">
                     <div class="row">
@@ -158,7 +144,7 @@
                                                 <div class="input-group">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="file"
-                                                            name="file">
+                                                            name="file" onchange="updateFileName()">
                                                         <label class="custom-file-label" for="file">Choose file</label>
                                                     </div>
                                                     <br>
@@ -167,6 +153,14 @@
                                                 <button type="submit"
                                                     class="btn btn-raised btn-icon btn-outline-primary">Upload Excel <i
                                                         class="fa fa-cloud-download"></i></button>
+                                                <script>
+                                                    function updateFileName() {
+                                                        var input = document.getElementById('file');
+                                                        var label = input.nextElementSibling;
+                                                        var fileName = input.files[0].name;
+                                                        label.innerHTML = fileName;
+                                                    }
+                                                </script>
                                             </form>
                                             <a href="{{ route('tigaphasa.export') }}">
                                                 <button type="submit"
@@ -197,6 +191,7 @@
                                                 <th>Status</th>
                                                 <th>Waktu Di Upload</th>
                                                 <th>Waktu Di Ubah</th>
+                                                <th>PDF</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -218,6 +213,10 @@
                                                     <td>{{ $item->status }}</td>
                                                     <td>{{ $item->created_at }}</td>
                                                     <td>{{ $item->updated_at }}</td>
+                                                    <td>
+                                                        <a href="{{ route('generate-pdf', ['id' => $item->id]) }}"
+                                                            class="btn btn-primary btn-sm">Generate PDF</a>
+                                                    </td>
                                                 </tr>
                                             @empty
                                                 <tr>

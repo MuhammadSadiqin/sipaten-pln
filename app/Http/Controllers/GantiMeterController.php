@@ -58,6 +58,27 @@ class GantiMeterController extends Controller
         return Excel::download(new GantiMeterExport, 'Ganti Meter.xlsx');
     }
 
+    public function generatePdf($id)
+    {
+        $gantimeter = GantiMeter::find($id);
+
+        if (!$gantimeter) {
+            return redirect()->back()->with('error', 'Data not found.');
+        } else {
+            // Proses penghasilan PDF dengan data $amr
+            // Buat instansi dari kelas PDF
+
+            $pdf = app('dompdf.wrapper');
+
+            // Muat tampilan ke dalam PDF
+            $pdf->loadView('pdf\gantimeter_template', ['gantimeter' => $gantimeter]);
+
+            // Unduh PDF
+            // return $pdf->download('laporan_amr.pdf');
+            return $pdf->stream('gantimeter_' . $gantimeter->id . '.pdf');
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      */

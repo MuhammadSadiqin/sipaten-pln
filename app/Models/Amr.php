@@ -35,9 +35,8 @@ class Amr extends Model
         'no_berita_acara',
         'ket',
     ];
-
-    public function user()
-    {
-        return $this->hasOne(User::class, 'id', 'user_id');
-    }
+    // public function user()
+    // {
+    //     return $this->hasOne(User::class, 'id', 'user_id');
+    // }
 }

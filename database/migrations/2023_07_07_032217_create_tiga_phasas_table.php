@@ -24,8 +24,8 @@ return new class extends Migration
             $table->integer('daya');
             $table->text('peta')->nullable();
             $table->string('tipe');
-            $table->string('kelainan');
-            $table->string('petugas');
+            $table->string('kelainan')->nullable();
+            $table->string('petugas')->nullable();
             $table->string('status');
             $table->text('alasan_tunda')->nullable();
             $table->text('ket_tunda')->nullable();

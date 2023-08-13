@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\API\AmrController;
 use App\Http\Controllers\API\GantiMeterController;
+use App\Http\Controllers\API\LbkbController;
+use App\Http\Controllers\API\TigaPhasaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
@@ -21,7 +24,9 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::post('login', [UserController::class, 'login']);
-Route::post('register', [UserController::class, 'register']);
 
 
 Route::get('gantimeter', [GantiMeterController::class, 'all']);
+Route::get('tigaphasa', [TigaPhasaController::class, 'all']);
+Route::get('amr', [AmrController::class, 'all']);
+Route::get('lbkb', [LbkbController::class, 'all']);

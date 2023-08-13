@@ -68,7 +68,7 @@
     <page class="container">
         <div class="header">
             {{-- <img src="path_to_your_logo" alt="Company Logo"> --}}
-            <div class="title">Berita Acara</div>
+            <div class="title">{{ Berita Acara }}</div>
             <div class="title">Target Operasi AMR</div>
         </div>
         

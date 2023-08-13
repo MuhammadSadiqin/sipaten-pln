@@ -45,16 +45,6 @@ return new class extends Migration
             $table->string('nama_petugas')->nullable();
             $table->integer('no_berita_acara')->nullable();
             $table->text('ket')->nullable();
-
-
-
-
-
-
-
-
-
-
             $table->timestamps();
         });
     }

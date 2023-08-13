@@ -13,21 +13,21 @@ class TigaPhasaController extends Controller
     {
         $limit = $request->input('limit', 100000000);
 
-        $gantiMeters = TigaPhasa::paginate($limit);
+        $tigaphasa = TigaPhasa::paginate($limit);
 
         return ResponseFormatter::success(
-            $gantiMeters,
+            $tigaphasa,
             'Data GantiMeter berhasil diambil'
         );
     }
 
     public function getById($id)
     {
-        $gantiMeter = TigaPhasa::find($id);
+        $tigaphasa = TigaPhasa::find($id);
 
-        if ($gantiMeter) {
+        if ($tigaphasa) {
             return ResponseFormatter::success(
-                $gantiMeter,
+                $tigaphasa,
                 'Data GantiMeter berhasil ditemukan'
             );
         } else {

@@ -13,21 +13,21 @@ class AmrController extends Controller
     {
         $limit = $request->input('limit', 100000000);
 
-        $gantiMeters = Amr::paginate($limit);
+        $amr = Amr::paginate($limit);
 
         return ResponseFormatter::success(
-            $gantiMeters,
+            $amr,
             'Data GantiMeter berhasil diambil'
         );
     }
 
     public function getById($id)
     {
-        $gantiMeter = Amr::find($id);
+        $amr = Amr::find($id);
 
-        if ($gantiMeter) {
+        if ($amr) {
             return ResponseFormatter::success(
-                $gantiMeter,
+                $amr,
                 'Data GantiMeter berhasil ditemukan'
             );
         } else {

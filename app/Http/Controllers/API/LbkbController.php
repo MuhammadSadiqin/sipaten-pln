@@ -13,21 +13,21 @@ class LbkbController extends Controller
     {
         $limit = $request->input('limit', 100000000);
 
-        $gantiMeters = Lbkb::paginate($limit);
+        $lbkb = Lbkb::paginate($limit);
 
         return ResponseFormatter::success(
-            $gantiMeters,
+            $lbkb,
             'Data GantiMeter berhasil diambil'
         );
     }
 
     public function getById($id)
     {
-        $gantiMeter = Lbkb::find($id);
+        $lbkb = Lbkb::find($id);
 
-        if ($gantiMeter) {
+        if ($lbkb) {
             return ResponseFormatter::success(
-                $gantiMeter,
+                $lbkb,
                 'Data GantiMeter berhasil ditemukan'
             );
         } else {

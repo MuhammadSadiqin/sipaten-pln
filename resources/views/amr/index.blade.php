@@ -102,28 +102,10 @@
             <div class="content-wrapper">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="content-header">AMR</div>
+                        <div class="content-header">AMR-Automatic Meter Reading</div>
                         <p class="content-sub-header"></p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                      <div class="card">
-                        <div class="card-header">
-                            <div class="card-header">
-                                {{-- <h4 class="card-title">Data AMR</h4>
-                                <a href="{{ route('generate-pdf') }}" class="btn btn-primary btn-sm ml-auto">Generate PDF</a> --}}
-                            </div>
-                          <h4 class="card-title">Chart AMR</h4>
-                        </div>
-                        <div class="card-content">
-                          <div class="card-body chartjs">
-                            <canvas id="line-chart" height="250"></canvas>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 <!-- Zero configuration table -->
                 <section id="configuration">
                     <div class="row">
@@ -141,24 +123,26 @@
                                                 <label class="font-weight-bold" for="file">Upload Excel</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="file" name="file" onchange="updateFileName()">
+                                                        <input type="file" class="custom-file-input" id="file"
+                                                            name="file" onchange="updateFileName()">
                                                         <label class="custom-file-label" for="file">Choose file</label>
                                                     </div>
                                                 </div>
                                                 <button type="submit"
                                                     class="btn btn-raised btn-icon btn-outline-primary">Upload Excel <i
                                                         class="fa fa-cloud"></i></button>
-                                                        <script>
-                                                            function updateFileName() {
-                                                                var input = document.getElementById('file');
-                                                                var label = input.nextElementSibling;
-                                                                var fileName = input.files[0].name;
-                                                                label.innerHTML = fileName;
-                                                            }
-                                                        </script>
+                                                <script>
+                                                    function updateFileName() {
+                                                        var input = document.getElementById('file');
+                                                        var label = input.nextElementSibling;
+                                                        var fileName = input.files[0].name;
+                                                        label.innerHTML = fileName;
+                                                    }
+                                                </script>
                                             </form>
-                                            <a href="{{ route('amr.export') }}"> <button type="submit" class="btn btn-raised btn-icon btn-outline-success">Export Excel 
-                                                <i class="fa fa-cloud-download"></i></button>
+                                            <a href="{{ route('amr.export') }}"> <button type="submit"
+                                                    class="btn btn-raised btn-icon btn-outline-success">Export Excel
+                                                    <i class="fa fa-cloud-download"></i></button>
                                             </a>
                                         </div>
                                     </div>
@@ -206,7 +190,8 @@
                                                     {{-- <td>{{ $item->created_at }}</td>
                                                     <td>{{ $item->updated_at }}</td> --}}
                                                     <td>
-                                                        <a href="{{ route('generate-pdf', ['id' => $item->id]) }}" class="btn btn-primary btn-sm">Generate PDF</a>
+                                                        <a href="{{ route('generate-pdf', ['id' => $item->id]) }}"
+                                                            class="btn btn-primary btn-sm">Generate PDF</a>
                                                     </td>
                                                 </tr>
                                             @empty

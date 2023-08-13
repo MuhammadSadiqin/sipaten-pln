@@ -34,10 +34,11 @@ Route::get('show', function () {
 
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('generate-pdf/{id}', [AmrController::class, 'generatePdf'])->name('generate-pdf');
-        Route::get('generate-pdf/{id}', [GantiMeterController::class, 'generatePdf'])->name('generate-pdf');
-        Route::get('generate-pdf/{id}', [LbkbController::class, 'generatePdf'])->name('generate-pdf');
-        Route::get('generate-pdf/{id}', [TigaPhasaController::class, 'generatePdf'])->name('generate-pdf');
+        // Route::get('generate-pdf/{id}', [AmrController::class, 'generatePdf'])->name('generate-pdf');
+        Route::get('generatepdf-amr{id}', [AmrController::class, 'generatePdf'])->name('generatepdf.amr');
+        Route::get('generatepdf-gantimeter/{id}', [GantiMeterController::class, 'generatePdf'])->name('generatepdf.gantimeter');
+        Route::get('generatepdf-lbkb/{id}', [LbkbController::class, 'generatePdf'])->name('generatepdf.lbkb');
+        Route::get('generatepdf-tigaphasa/{id}', [TigaPhasaController::class, 'generatePdf'])->name('generatepdf.tigaphasa');
         Route::get('amr-export', [AmrController::class, 'export'])->name('amr.export');
         Route::get('tigaphasa-export', [TigaPhasaController::class, 'export'])->name('tigaphasa.export');
         Route::get('gantimeter-export', [GantiMeterController::class, 'export'])->name('gantimeter.export');

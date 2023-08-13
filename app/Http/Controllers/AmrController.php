@@ -62,11 +62,13 @@ class AmrController extends Controller
             $pdf = app('dompdf.wrapper');
 
             // Muat tampilan ke dalam PDF
-            $pdf->loadView('pdf\amr_template', ['amr' => $amr]);
+            $pdf->loadView('pdf.amr_template', ['amr' => $amr]);
 
-            // Unduh PDF
-            // return $pdf->download('laporan_amr.pdf');
-            return $pdf->stream('amr_' . $amr->id . '.pdf');
+            // Atur nama file PDF yang akan dihasilkan
+            $filename = 'amr_' . $amr->id . '.pdf';
+
+            // Stream (tampilkan) PDF di browser
+            return $pdf->stream($filename);
         }
     }
 }

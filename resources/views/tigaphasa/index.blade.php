@@ -214,7 +214,7 @@
                                                     <td>{{ $item->created_at }}</td>
                                                     <td>{{ $item->updated_at }}</td>
                                                     <td>
-                                                        <a href="{{ route('generate-pdf', ['id' => $item->id]) }}"
+                                                        <a href="{{ route('generatepdf.tigaphasa', ['id' => $item->id]) }}"
                                                             class="btn btn-primary btn-sm">Generate PDF</a>
                                                     </td>
                                                 </tr>

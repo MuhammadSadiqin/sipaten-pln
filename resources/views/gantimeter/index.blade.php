@@ -208,7 +208,7 @@
                                                     <td>{{ $item->created_at }}</td>
                                                     <td>{{ $item->updated_at }}</td>
                                                     <td>
-                                                        <a href="{{ route('generate-pdf', ['id' => $item->id]) }}" class="btn btn-primary btn-sm">Generate PDF</a>
+                                                        <a href="{{ route('generatepdf.gantimeter', ['id' => $item->id]) }}" class="btn btn-primary btn-sm">Generate PDF</a>
                                                     </td>
                                                     {{-- <td class="border px-6 py-4 text-center">
                                                         <form action="{{ route('gantimeter.destroy', $item->id) }}"

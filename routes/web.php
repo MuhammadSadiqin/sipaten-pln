@@ -34,7 +34,7 @@ Route::get('show', function () {
 
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-        // Route::get('generate-pdf/{id}', [AmrController::class, 'generatePdf'])->name('generate-pdf');
+        Route::patch('/amr/{id}/update-status', [AmrController::class, 'updateStatus'])->name('update-status.amr');
         Route::get('generatepdf-amr{id}', [AmrController::class, 'generatePdf'])->name('generatepdf.amr');
         Route::get('generatepdf-gantimeter/{id}', [GantiMeterController::class, 'generatePdf'])->name('generatepdf.gantimeter');
         Route::get('generatepdf-lbkb/{id}', [LbkbController::class, 'generatePdf'])->name('generatepdf.lbkb');

@@ -6,6 +6,7 @@ use App\Models\Amr;
 use App\Models\User;
 use App\Exports\AmrExport;
 use App\Imports\AmrImport;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -70,6 +71,19 @@ class AmrController extends Controller
             // Stream (tampilkan) PDF di browser
             return $pdf->stream($filename);
         }
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'new_status' => 'required|in:Selesai,Tunda,Belum',
+        ]);
+
+        $amr = Amr::findOrFail($id);
+        $amr->status = $request->input('new_status');
+        $amr->save();
+
+        return redirect()->back()->with('success', 'Status berhasil diperbarui.');
     }
 }
 

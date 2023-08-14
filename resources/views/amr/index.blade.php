@@ -186,12 +186,27 @@
                                                     <td>{{ $item->tipe }}</td>
                                                     <td>{{ $item->kelainan }}</td>
                                                     {{-- <td>{{ $item->petugas }}</td> --}}
-                                                    <td>{{ $item->status }}</td>
+                                                    {{-- <td>{{ $item->status }}</td> --}}
+                                                    <td>
+                                                        <form action="{{ route('update-status.amr', ['id' => $item->id]) }}" method="POST">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <select name="new_status" class="form-control" onchange="this.form.submit()">
+                                                                <option value="Belum" @if ($item->status == 'Belum') selected @endif>Belum</option>
+                                                                <option value="Selesai" @if ($item->status == 'Selesai') selected @endif>Selesai</option>
+                                                                <option value="Tunda" @if ($item->status == 'Tunda') selected @endif>Tunda</option>
+                                                            </select>
+                                                        </form>
+                                                    </td>
+                                                    
                                                     {{-- <td>{{ $item->created_at }}</td>
                                                     <td>{{ $item->updated_at }}</td> --}}
                                                     <td>
-                                                        <a href="{{ route('generatepdf.amr', ['id' => $item->id]) }}"
-                                                            class="btn btn-primary btn-sm">Generate PDF</a>
+                                                        @if ($item->status == 'Selesai')
+                                                            <a href="{{ route('generatepdf.amr', ['id' => $item->id]) }}" class="btn btn-primary btn-sm">Generate PDF</a>
+                                                        @elseif ($item->status == 'Tunda' || $item->status == 'Belum')
+                                                            <button class="btn btn-secondary btn-sm" disabled>Generate PDF</button>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @empty

@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('tipe');
             $table->string('kelainan')->nullable();
             $table->string('petugas')->nullable();
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->text('alasan_tunda')->nullable();
             $table->text('ket_tunda')->nullable();
             $table->date('tgl_tl')->nullable();

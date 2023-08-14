@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\GantiMeter;
+use Illuminate\Http\Request;
 use App\Exports\GantiMeterExport;
 use App\Imports\GantiMeterImport;
 use Illuminate\Support\Facades\Auth;
@@ -71,11 +72,13 @@ class GantiMeterController extends Controller
             $pdf = app('dompdf.wrapper');
 
             // Muat tampilan ke dalam PDF
-            $pdf->loadView('pdf\gantimeter_template', ['gantimeter' => $gantimeter]);
+            $pdf->loadView('pdf.gantimeter_template', ['gantimeter' => $gantimeter]);
 
-            // Unduh PDF
-            // return $pdf->download('laporan_amr.pdf');
-            return $pdf->stream('gantimeter_' . $gantimeter->id . '.pdf');
+            // Atur nama file PDF yang akan dihasilkan
+            $filename = 'gantimeter_' . $gantimeter->id . '.pdf';
+
+            // Stream (tampilkan) PDF di browser
+            return $pdf->stream($filename);
         }
     }
 
@@ -125,5 +128,18 @@ class GantiMeterController extends Controller
         $gantimeter->delete();
 
         return back();
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'new_status' => 'required|in:Selesai,Tunda,Belum',
+        ]);
+
+        $gantimeter = GantiMeter::findOrFail($id);
+        $gantimeter->status = $request->input('new_status');
+        $gantimeter->save();
+
+        return redirect()->back()->with('success', 'Status berhasil diperbarui.');
     }
 }

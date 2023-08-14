@@ -35,6 +35,9 @@ Route::get('show', function () {
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::patch('/amr/{id}/update-status', [AmrController::class, 'updateStatus'])->name('update-status.amr');
+        Route::patch('/gantimeter/{id}/update-status', [GantiMeterController::class, 'updateStatus'])->name('update-status.gantimeter');
+        Route::patch('/tigaphasa/{id}/update-status', [TigaPhasaController::class, 'updateStatus'])->name('update-status.tigaphasa');
+        Route::patch('/lbkb/{id}/update-status', [LbkbController::class, 'updateStatus'])->name('update-status.lbkb');
         Route::get('generatepdf-amr{id}', [AmrController::class, 'generatePdf'])->name('generatepdf.amr');
         Route::get('generatepdf-gantimeter/{id}', [GantiMeterController::class, 'generatePdf'])->name('generatepdf.gantimeter');
         Route::get('generatepdf-lbkb/{id}', [LbkbController::class, 'generatePdf'])->name('generatepdf.lbkb');

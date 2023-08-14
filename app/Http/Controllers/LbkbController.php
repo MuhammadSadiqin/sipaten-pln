@@ -60,19 +60,21 @@ class LbkbController extends Controller
         if (!$lbkb) {
             return redirect()->back()->with('error', 'Data not found.');
         } else {
-            // Proses penghasilan PDF dengan data $lbkb
+            // Proses penghasilan PDF dengan data $amr
             // Buat instansi dari kelas PDF
+
             $pdf = app('dompdf.wrapper');
 
             // Muat tampilan ke dalam PDF
-            $pdf->loadView('pdf\lbkb_template', ['lbkb' => $lbkb]);
+            $pdf->loadView('pdf.lbkb_template', ['lbkb' => $lbkb]);
 
-            // Unduh PDF
-            // return $pdf->download('laporan_lbkb.pdf');
-            return $pdf->stream('lbkb_' . $lbkb->id . '.pdf');
+            // Atur nama file PDF yang akan dihasilkan
+            $filename = 'lbkb_' . $lbkb->id . '.pdf';
+
+            // Stream (tampilkan) PDF di browser
+            return $pdf->stream($filename);
         }
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -81,6 +83,19 @@ class LbkbController extends Controller
         return view('lbkb.edit', [
             'item' => $lbkb
         ]);
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'new_status' => 'required|in:Selesai,Tunda,Belum',
+        ]);
+
+        $lbkb = Lbkb::findOrFail($id);
+        $lbkb->status = $request->input('new_status');
+        $lbkb->save();
+
+        return redirect()->back()->with('success', 'Status berhasil diperbarui.');
     }
 }
 /**

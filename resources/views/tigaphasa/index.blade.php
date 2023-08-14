@@ -187,10 +187,10 @@
                                                 <th>Peta</th>
                                                 <th>Tipe</th>
                                                 <th>Kelainan</th>
-                                                <th>Petugas</th>
+                                                {{-- <th>Petugas</th> --}}
                                                 <th>Status</th>
-                                                <th>Waktu Di Upload</th>
-                                                <th>Waktu Di Ubah</th>
+                                                {{-- <th>Waktu Di Upload</th>
+                                                <th>Waktu Di Ubah</th> --}}
                                                 <th>PDF</th>
                                             </tr>
                                         </thead>
@@ -209,13 +209,26 @@
                                                     <td>{{ $item->peta }}</td>
                                                     <td>{{ $item->tipe }}</td>
                                                     <td>{{ $item->kelainan }}</td>
-                                                    <td>{{ $item->petugas }}</td>
-                                                    <td>{{ $item->status }}</td>
-                                                    <td>{{ $item->created_at }}</td>
-                                                    <td>{{ $item->updated_at }}</td>
+                                                    {{-- <td>{{ $item->petugas }}</td> --}}
                                                     <td>
-                                                        <a href="{{ route('generatepdf.tigaphasa', ['id' => $item->id]) }}"
-                                                            class="btn btn-primary btn-sm">Generate PDF</a>
+                                                        <form action="{{ route('update-status.tigaphasa', ['id' => $item->id]) }}" method="POST">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <select name="new_status" class="form-control" onchange="this.form.submit()">
+                                                                <option value="Belum" @if ($item->status == 'Belum') selected @endif>Belum</option>
+                                                                <option value="Selesai" @if ($item->status == 'Selesai') selected @endif>Selesai</option>
+                                                                <option value="Tunda" @if ($item->status == 'Tunda') selected @endif>Tunda</option>
+                                                            </select>
+                                                        </form>
+                                                    </td>
+                                                    {{-- <td>{{ $item->created_at }}</td>
+                                                    <td>{{ $item->updated_at }}</td> --}}
+                                                    <td>
+                                                        @if ($item->status == 'Selesai')
+                                                            <a href="{{ route('generatepdf.tigaphasa', ['id' => $item->id]) }}" class="btn btn-primary btn-sm">Generate PDF</a>
+                                                        @elseif ($item->status == 'Tunda' || $item->status == 'Belum')
+                                                            <button class="btn btn-secondary btn-sm" disabled>Generate PDF</button>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @empty

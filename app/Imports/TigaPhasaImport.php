@@ -53,6 +53,6 @@ class TigaPhasaImport implements ToCollection, WithStartRow
 
     public function startRow(): int
     {
-        return 2; // Skip the first row (header) when importing
+        return 1; // Skip the first row (header) when importing
     }
 }

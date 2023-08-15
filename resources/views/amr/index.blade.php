@@ -114,9 +114,18 @@
                                 <div class="card-header">
                                 </div>
                                 <div class="card-content">
-
+                                          <div class="form-group">
+                                            <div class="col-lg-6 col-md-12">
+                                                <div class="form-group">
+                                                    <a href="{{ route('amr.history') }}"> <!-- Tentukan rute 'amr.history' -->
+                                                        <button class="btn btn-raised btn-icon btn-outline-info">
+                                                            Lihat Histori <i class="fa fa-history"></i>
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            
                                     <div class="col-lg-6 col-md-12">
-                                        <div class="form-group">
                                             <form action="{{ route('Amr.import') }}" method="POST"
                                                 enctype="multipart/form-data" class="mt-4">
                                                 @csrf
@@ -140,10 +149,21 @@
                                                     }
                                                 </script>
                                             </form>
-                                            <a href="{{ route('amr.export') }}"> <button type="submit"
-                                                    class="btn btn-raised btn-icon btn-outline-success">Export Excel
-                                                    <i class="fa fa-cloud-download"></i></button>
+                                            <a href="{{ route('amr.export') }}" id="exportLink">
+                                                <button type="button" class="btn btn-raised btn-icon btn-outline-success">Export Excel
+                                                    <i class="fa fa-cloud-download"></i>
+                                                </button>
                                             </a>
+                                            
+                                            <script>
+                                                document.getElementById('exportLink').addEventListener('click', function(event) {
+                                                    event.preventDefault(); // Mencegah tindakan default link
+                                            
+                                                    if (confirm('Apakah Anda yakin ingin mengekspor data?')) {
+                                                        window.location.href = this.getAttribute('href');
+                                                    }
+                                                });
+                                            </script>
                                         </div>
                                     </div>
                                 </div>
@@ -168,6 +188,7 @@
                                                 {{-- <th>Waktu Di Upload</th>
                                                 <th>Waktu Di Ubah</th> --}}
                                                 <th>PDF</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -204,8 +225,17 @@
                                                     <td>
                                                         @if ($item->status == 'Selesai')
                                                             <a href="{{ route('generatepdf.amr', ['id' => $item->id]) }}" class="btn btn-primary btn-sm">Generate PDF</a>
+                                                            
                                                         @elseif ($item->status == 'Tunda' || $item->status == 'Belum')
                                                             <button class="btn btn-secondary btn-sm" disabled>Generate PDF</button>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($item->status == 'Selesai')
+                                                            <form action="{{ route('submit.amr', ['id' => $item->id]) }}" method="POST">
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                                                            </form>
                                                         @endif
                                                     </td>
                                                 </tr>

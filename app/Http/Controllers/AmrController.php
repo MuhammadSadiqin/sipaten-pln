@@ -21,6 +21,16 @@ class AmrController extends Controller
         ]);
     }
 
+
+    public function showHistory()
+    {
+        $historyAmr = Amr::where('status', 'Selesai')->get();
+
+        return view('history.history_amr', compact('historyAmr'));
+    }
+
+
+
     /**
      * @return \Illuminate\Support\Collection
      */

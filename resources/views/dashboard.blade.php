@@ -5,6 +5,12 @@
         <div class="main-content">
             <div class="content-wrapper">
                 <!--Statistics cards Starts-->
+                <?php
+                $amrCount = App\Models\Amr::count();
+                $gantimeterCount = App\Models\GantiMeter::count();
+                $lbkbCount = App\Models\Lbkb::count();
+                $tigaphasaCount = App\Models\Tigaphasa::count();
+                ?>
                 <div class="row">
                     <div class="col-xl-3 col-lg-6 col-md-6 col-12">
                         <div class="card gradient-blackberry">
@@ -12,8 +18,8 @@
                                 <div class="card-body pt-2 pb-0">
                                     <div class="media">
                                         <div class="media-body white text-left">
-                                            <span>Total TO Ganti Meter</span>
-                                            <h3 class="font-large-1 mb-0">7000</h3>
+                                            <span>Total TO AMR</span>
+                                            <h3 class="font-large-1 mb-0">{{ $amrCount }}</h3>
                                         </div>
                                         <div class="media-right white text-right">
                                             <i class="icon-pie-chart font-large-1"></i>
@@ -31,8 +37,8 @@
                                 <div class="card-body pt-2 pb-0">
                                     <div class="media">
                                         <div class="media-body white text-left">
-                                            <h3 class="font-large-1 mb-0">$1567</h3>
-                                            <span>Total Cost</span>
+                                            <span>Total TO Ganti Meter</span>
+                                            <h3 class="font-large-1 mb-0">{{ $gantimeterCount }}</h3>
                                         </div>
                                         <div class="media-right white text-right">
                                             <i class="icon-bulb font-large-1"></i>
@@ -51,8 +57,8 @@
                                 <div class="card-body pt-2 pb-0">
                                     <div class="media">
                                         <div class="media-body white text-left">
-                                            <h3 class="font-large-1 mb-0">$4566</h3>
-                                            <span>Total Sales</span>
+                                            <span>Total To LBKB</span>
+                                            <h3 class="font-large-1 mb-0">{{ $lbkbCount }}</h3>
                                         </div>
                                         <div class="media-right white text-right">
                                             <i class="icon-graph font-large-1"></i>
@@ -70,8 +76,8 @@
                                 <div class="card-body pt-2 pb-0">
                                     <div class="media">
                                         <div class="media-body white text-left">
-                                            <h3 class="font-large-1 mb-0">$8695</h3>
-                                            <span>Total Earning</span>
+                                            <span>Total TO Tigaphasa </span>
+                                            <h3 class="font-large-1 mb-0">{{ $tigaphasaCount }}</h3>                                           
                                         </div>
                                         <div class="media-right white text-right">
                                             <i class="icon-wallet font-large-1"></i>

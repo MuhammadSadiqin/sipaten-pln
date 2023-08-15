@@ -142,11 +142,21 @@
                                                                 }
                                                             </script>
                                                         </form>
-                                                        <a href="{{ route('gantimeter.export') }}">
-                                                            <button type="submit"
-                                                                class="btn btn-raised btn-icon btn-outline-success">Export Excel <i
-                                                                    class="fa fa-cloud-download"></i></button>
+                                                        <a href="{{ route('gantimeter.export') }}" id="exportLink">
+                                                            <button type="button" class="btn btn-raised btn-icon btn-outline-success">Export Excel
+                                                                <i class="fa fa-cloud-download"></i>
+                                                            </button>
                                                         </a>
+                                                        
+                                                        <script>
+                                                            document.getElementById('exportLink').addEventListener('click', function(event) {
+                                                                event.preventDefault(); // Mencegah tindakan default link
+                                                        
+                                                                if (confirm('Apakah Anda yakin ingin mengekspor data?')) {
+                                                                    window.location.href = this.getAttribute('href');
+                                                                }
+                                                            });
+                                                        </script>
                                             </div>
                                         </div>
                                     

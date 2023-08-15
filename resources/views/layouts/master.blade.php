@@ -160,12 +160,12 @@
                         class="d-lg-none navbar-right navbar-collapse-toggle"><a
                             aria-controls="navbarSupportedContent" href="javascript:;"
                             class="open-navbar-container black"><i class="ft-more-vertical"></i></a></span>
-                    <form role="search" class="navbar-form navbar-right mt-1">
+                    {{-- <form role="search" class="navbar-form navbar-right mt-1">
                         <div class="position-relative has-icon-right">
                             <input type="text" placeholder="Search" class="form-control round" />
                             <div class="form-control-position"><i class="ft-search"></i></div>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
                 <div class="navbar-container">
                     <div id="navbarSupportedContent" class="collapse navbar-collapse">

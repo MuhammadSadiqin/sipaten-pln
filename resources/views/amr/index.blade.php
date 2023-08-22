@@ -96,6 +96,7 @@
 
 @extends('layouts.master')
 @section('content')
+
     <div class="main-panel">
         <!-- BEGIN : Main Content-->
         <div class="main-content">
@@ -106,6 +107,7 @@
                         <p class="content-sub-header"></p>
                     </div>
                 </div>
+                
                 <!-- Zero configuration table -->
                 <section id="configuration">
                     <div class="row">
@@ -115,6 +117,7 @@
                                 </div>
                                 <div class="card-content">
                                           <div class="form-group">
+                                            
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group">
                                                     <a href="{{ route('amr.history') }}"> <!-- Tentukan rute 'amr.history' -->
@@ -127,7 +130,7 @@
                                             
                                     <div class="col-lg-6 col-md-12">
                                             <form action="{{ route('Amr.import') }}" method="POST"
-                                                enctype="multipart/form-data" class="mt-4">
+                                                enctype="multipart/form-data" class="mt-4" onsubmit="showUploadSuccessAlert()">
                                                 @csrf
                                                 <label class="font-weight-bold" for="file">Upload Excel</label>
                                                 <div class="input-group">
@@ -140,15 +143,29 @@
                                                 <button type="submit"
                                                     class="btn btn-raised btn-icon btn-outline-primary">Upload Excel <i
                                                         class="fa fa-cloud"></i></button>
-                                                <script>
-                                                    function updateFileName() {
-                                                        var input = document.getElementById('file');
-                                                        var label = input.nextElementSibling;
-                                                        var fileName = input.files[0].name;
-                                                        label.innerHTML = fileName;
-                                                    }
-                                                </script>
+                                                    
                                             </form>
+                                            
+
+                                            <script>
+                                                function updateFileName() {
+                                                    var input = document.getElementById('file');
+                                                    var label = input.nextElementSibling;
+                                                    var fileName = input.files[0].name;
+                                                    label.innerHTML = fileName;
+                                                }
+                                        
+                                                function showUploadSuccessAlert() {
+                                                    var successAlert = document.getElementById('successAlert');
+                                                    successAlert.style.display = 'block';
+                                                    
+                                                    setTimeout(function() {
+                                                        successAlert.style.display = 'none';
+                                                    }, 3000); // Hide the alert after 3 seconds
+                                                }
+                                            </script>
+
+                                            
                                             <a href="{{ route('amr.export') }}" id="exportLink">
                                                 <button type="button" class="btn btn-raised btn-icon btn-outline-success">Export Excel
                                                     <i class="fa fa-cloud-download"></i>
@@ -250,6 +267,7 @@
                         </div>
                     </div>
             </div>
+            
             </section>
             <!--/ Zero configuration table -->
         </div>

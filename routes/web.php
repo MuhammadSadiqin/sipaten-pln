@@ -7,8 +7,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TigaPhasaController;
 use App\Http\Controllers\GantiMeterController;
-use App\Http\Controllers\PdfController;
-use App\Models\TigaPhasa;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +32,7 @@ Route::get('show', function () {
 
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
         // History
         Route::get('amr-history', [AmrController::class, 'showhistory'])->name('amr.history');
         // Route::get('amr-histori', [AmrController::class, 'tampilkanRiwayat'])->name('amr.riwayat');
@@ -60,7 +59,6 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
         Route::get('lbkb-export', [LbkbController::class, 'export'])->name('lbkb.export');
 
         // Import
-        Route::post('users-import', [UserController::class, 'import'])->name('users.import');
         Route::post('GantiMeter-import', [GantiMeterController::class, 'import'])->name('GantiMeter.import');
         Route::post('tigaphasa-import', [TigaPhasaController::class, 'import'])->name('tigaphasa.import');
         Route::post('lbkb-import', [LbkbController::class, 'import'])->name('Lbkb.import');
@@ -73,3 +71,13 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
         Route::resource('lbkb', LbkbController::class);
         Route::resource('amr', AmrController::class);
 });
+
+// Route::middleware(['auth:sanctum', 'petugas'])->group(function () {
+
+//         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+//         // Rute-rute resource yang hanya bisa diakses oleh petugas
+//         Route::resource('gantimeter', GantiMeterController::class);
+//         Route::resource('tigaphasa', TigaPhasaController::class);
+//         Route::resource('lbkb', LbkbController::class);
+//         Route::resource('amr', AmrController::class);
+// });

@@ -182,7 +182,7 @@
                                                 {{-- <th>Waktu Di Upload</th>
                                                 <th>Waktu Di Ubah</th> --}}
                                                 <th>PDF</th>
-                                                {{-- <th>Action</th> --}}
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -221,6 +221,9 @@
                                                         @elseif ($item->status == 'Tunda' || $item->status == 'Belum')
                                                             <button class="btn btn-secondary btn-sm" disabled>Generate PDF</button>
                                                         @endif
+                                                    </td>
+                                                    <td>
+                                                        <button type="submit" class="btn btn-primary btn-sm mt-2">Submit</button>
                                                     </td>
                                                     {{-- <td class="border px-6 py-4 text-center">
                                                         <form action="{{ route('gantimeter.destroy', $item->id) }}"

@@ -105,7 +105,7 @@
 </head>
 <body>
  
-        <div class="logo"> <img src="https://portal.pln.co.id/css/assets/images/icopln.png" alt="Company Logo" width="60" height="80"> </div>
+        <div class="logo"> <img src="app-assets/img/icopln.png" alt="Company Logo" width="60" height="80"> </div>
            <!-- Tambahkan garis di atas page container -->
     {{-- <div class="line-above-container"></div> --}}
 

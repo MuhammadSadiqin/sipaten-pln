@@ -201,7 +201,8 @@
                                                 <th>Status</th>
                                                 {{-- <th>Waktu Di Upload</th>
                                                 <th>Waktu Di Ubah</th> --}}
-                                                <th>PDF</th>
+                                                {{-- <th>PDF</th> --}}
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -221,7 +222,7 @@
                                                     <td>{{ $item->kelainan }}</td>
                                                     {{-- <td>{{ $item->petugas }}</td> --}}
                                                     <td>
-                                                        <form action="{{ route('update-status.tigaphasa', ['id' => $item->id]) }}" method="POST">
+                                                        {{-- <form action="{{ route('update-status.tigaphasa', ['id' => $item->id]) }}" method="POST">
                                                             @csrf
                                                             @method('PATCH')
                                                             <select name="new_status" class="form-control" onchange="this.form.submit()">
@@ -229,16 +230,20 @@
                                                                 <option value="Selesai" @if ($item->status == 'Selesai') selected @endif>Selesai</option>
                                                                 <option value="Tunda" @if ($item->status == 'Tunda') selected @endif>Tunda</option>
                                                             </select>
-                                                        </form>
+                                                        </form> --}}
+                                                        <font color="@if ($item->status === 'Selesai') green @elseif ($item->status === 'belum') red @elseif ($item->status === 'Tunda') blue @endif">
+                                                            {{ $item->status }}
+                                                        </font>
                                                     </td>
                                                     {{-- <td>{{ $item->created_at }}</td>
                                                     <td>{{ $item->updated_at }}</td> --}}
                                                     <td>
-                                                        @if ($item->status == 'Selesai')
+                                                        {{-- @if ($item->status == 'Selesai')
                                                             <a href="{{ route('generatepdf.tigaphasa', ['id' => $item->id]) }}" class="btn btn-primary btn-sm">Generate PDF</a>
                                                         @elseif ($item->status == 'Tunda' || $item->status == 'Belum')
                                                             <button class="btn btn-secondary btn-sm" disabled>Generate PDF</button>
-                                                        @endif
+                                                        @endif --}}
+                                                        <a href="{{ route('tigaphasa.detail', ['id' => $item->id]) }}" >View</a>
                                                     </td>
                                                 </tr>
                                             @empty

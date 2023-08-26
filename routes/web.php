@@ -19,9 +19,9 @@ use App\Http\Controllers\GantiMeterController;
 |
 */
 
-Route::get('/', function () {
-        return view('welcome');
-});
+// Route::get('/', function () {
+//         return view('welcome');
+// });
 
 Route::get('show', function () {
         return view('profile.show');
@@ -30,46 +30,61 @@ Route::get('show', function () {
 // Route::get('users-export', UserController::class)->name('users.export');
 
 
-Route::middleware(['auth:sanctum', 'admin'])->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+// Route::middleware(['auth:sanctum', 'admin', 'petugas'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
+        Route::middleware(['admin'])->group(function () {
+                // Dashboard
+                Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-        // History
-        Route::get('amr-history', [AmrController::class, 'showhistory'])->name('amr.history');
-        // Route::get('amr-histori', [AmrController::class, 'tampilkanRiwayat'])->name('amr.riwayat');
+                // FORM DETAIL
+                Route::get('lbkb-detail-{id}', [LbkbController::class, 'showDetail'])->name('lbkb.detail');
+                Route::get('amr-detail-{id}', [AmrController::class, 'showDetail'])->name('amr.detail');
+                Route::get('gantimeter-detail-{id}', [GantiMeterController::class, 'showDetail'])->name('gantimeter.detail');
+                Route::get('tigaphasa-detail-{id}', [TigaPhasaController::class, 'showDetail'])->name('tigaphasa.detail');
 
-        // Submit
-        Route::post('/submit-amr/{id}', [AmrController::class, 'submitAmr'])->name('submit.amr');
+                // Update
+                Route::patch('lbkb-update-{id}', [LbkbController::class, 'update'])->name('lbkb.update');
+                Route::patch('amr-update-{id}', [AmrController::class, 'update'])->name('amr.update');
+                Route::patch('gantimeter-update-{id}', [GantiMeterController::class, 'update'])->name('gantimeter.update');
+                Route::patch('tigaphasa-update-{id}', [TigaPhasaController::class, 'update'])->name('tigaphasa.update');
 
-        // Update Status
-        Route::patch('/amr/{id}/update-status', [AmrController::class, 'updateStatus'])->name('update-status.amr');
-        Route::patch('/gantimeter/{id}/update-status', [GantiMeterController::class, 'updateStatus'])->name('update-status.gantimeter');
-        Route::patch('/tigaphasa/{id}/update-status', [TigaPhasaController::class, 'updateStatus'])->name('update-status.tigaphasa');
-        Route::patch('/lbkb/{id}/update-status', [LbkbController::class, 'updateStatus'])->name('update-status.lbkb');
+                // History
+                Route::get('amr-history', [AmrController::class, 'showhistory'])->name('amr.history');
 
-        // Generate PDF
-        Route::get('generatepdf-amr{id}', [AmrController::class, 'generatePdf'])->name('generatepdf.amr');
-        Route::get('generatepdf-gantimeter/{id}', [GantiMeterController::class, 'generatePdf'])->name('generatepdf.gantimeter');
-        Route::get('generatepdf-lbkb/{id}', [LbkbController::class, 'generatePdf'])->name('generatepdf.lbkb');
-        Route::get('generatepdf-tigaphasa/{id}', [TigaPhasaController::class, 'generatePdf'])->name('generatepdf.tigaphasa');
+                // Update Status
+                Route::patch('/amr/{id}/update-status', [AmrController::class, 'updateStatus'])->name('update-status.amr');
+                Route::patch('/gantimeter/{id}/update-status', [GantiMeterController::class, 'updateStatus'])->name('update-status.gantimeter');
+                Route::patch('/tigaphasa/{id}/update-status', [TigaPhasaController::class, 'updateStatus'])->name('update-status.tigaphasa');
+                Route::patch('/lbkb/{id}/update-status', [LbkbController::class, 'updateStatus'])->name('update-status.lbkb');
 
-        // Export
-        Route::get('amr-export', [AmrController::class, 'export'])->name('amr.export');
-        Route::get('tigaphasa-export', [TigaPhasaController::class, 'export'])->name('tigaphasa.export');
-        Route::get('gantimeter-export', [GantiMeterController::class, 'export'])->name('gantimeter.export');
-        Route::get('lbkb-export', [LbkbController::class, 'export'])->name('lbkb.export');
+                // Generate PDF
+                Route::get('generatepdf-amr/{id}', [AmrController::class, 'generatePdf'])->name('generatepdf.amr');
+                Route::get('generatepdf-gantimeter/{id}', [GantiMeterController::class, 'generatePdf'])->name('generatepdf.gantimeter');
+                Route::get('generatepdf-lbkb/{id}', [LbkbController::class, 'generatePdf'])->name('generatepdf.lbkb');
+                Route::get('generatepdf-tigaphasa/{id}', [TigaPhasaController::class, 'generatePdf'])->name('generatepdf.tigaphasa');
 
-        // Import
-        Route::post('GantiMeter-import', [GantiMeterController::class, 'import'])->name('GantiMeter.import');
-        Route::post('tigaphasa-import', [TigaPhasaController::class, 'import'])->name('tigaphasa.import');
-        Route::post('lbkb-import', [LbkbController::class, 'import'])->name('Lbkb.import');
-        Route::post('Amr-import', [AmrController::class, 'import'])->name('Amr.import');
+                // Export
+                Route::get('amr-export', [AmrController::class, 'export'])->name('amr.export');
+                Route::get('tigaphasa-export', [TigaPhasaController::class, 'export'])->name('tigaphasa.export');
+                Route::get('gantimeter-export', [GantiMeterController::class, 'export'])->name('gantimeter.export');
+                Route::get('lbkb-export', [LbkbController::class, 'export'])->name('lbkb.export');
 
-        // Resource
-        Route::resource('users', UserController::class);
-        Route::resource('gantimeter', GantiMeterController::class);
-        Route::resource('tigaphasa', TigaPhasaController::class);
-        Route::resource('lbkb', LbkbController::class);
-        Route::resource('amr', AmrController::class);
+                // Import
+                Route::post('GantiMeter-import', [GantiMeterController::class, 'import'])->name('GantiMeter.import');
+                Route::post('tigaphasa-import', [TigaPhasaController::class, 'import'])->name('tigaphasa.import');
+                Route::post('lbkb-import', [LbkbController::class, 'import'])->name('Lbkb.import');
+                Route::post('Amr-import', [AmrController::class, 'import'])->name('Amr.import');
+
+                // Resource
+                Route::resource('users', UserController::class);
+                Route::resource('gantimeter', GantiMeterController::class);
+                Route::resource('tigaphasa', TigaPhasaController::class);
+                Route::resource('lbkb', LbkbController::class);
+                Route::resource('amr', AmrController::class);
+
+                // User
+                Route::get('user-create', [UserController::class, 'create'])->name('users.create');
+        });
 });
 
 // Route::middleware(['auth:sanctum', 'petugas'])->group(function () {

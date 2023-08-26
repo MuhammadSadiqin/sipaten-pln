@@ -42,13 +42,15 @@
     <meta name="description" content="Apex admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Apex admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
      
     <title>SIPATEN</title>
     {{-- script chart --}}
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     {{-- end script chart --}}
-  <link rel="stylesheet" type="text/css" href="app-assets/css/app.css" />
+    <link rel="stylesheet" type="text/css" href="app-assets/css/app.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon1.ico') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="app-assets/img/ico/apple-icon-60.png" />
@@ -255,13 +257,14 @@
                                         All Notifications</a>
                                 </div> --}}
                             </li>
-                            <li class="dropdown nav-item"><a id="dropdownBasic3" href="#"
-                                    data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i
-                                        class="ft-user font-medium-3 blue-grey darken-4"></i>
-                                    <p class="d-none">User Settings</p>
+                            
+                            <li class="dropdown nav-item"><a id="dropdownBasic3" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i class="ft-user font-medium-3 blue-grey darken-4"> </i>
+                                    <p class="d-none">User Setting </p>
+                                    
+                        {{ Auth::user()->name }}
                                 </a>
                                 <div ngbdropdownmenu="" aria-labelledby="dropdownBasic3" class="dropdown-menu text-left dropdown-menu-right">
-                                    <a href="" class="dropdown-item py-1">
+                                    
                                     <a href="show" :active="request() - > routeIs('show')" class="dropdown-item py-1"><i class="ft-edit mr-2"></i><span>Edit Profile</span></a>
                                     <div class="dropdown-divider"></div>
                                     <form class="form-inline" method="POST" action="{{ route('logout') }}" x-data>
@@ -475,7 +478,7 @@
 <script src="app-assets/vendors/js/pace/pace.min.js" type="text/javascript"></script>
 <!-- BEGIN VENDOR JS-->
 <!-- BEGIN PAGE VENDOR JS-->
-<script src="app-assets/vendors/js/chartist.min.js" type="text/javascript"></script>
+{{-- <script src="app-assets/vendors/js/chartist.min.js" type="text/javascript"></script> --}}
 <!-- END PAGE VENDOR JS-->
 <!-- BEGIN APEX JS-->
 <script src="app-assets/js/app-sidebar.js" type="text/javascript"></script>
@@ -498,7 +501,10 @@
     ></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN PAGE LEVEL JS-->
-    <script src="app-assets/js/chartjs.js" type="text/javascript"></script>
+    {{-- <script src="app-assets/js/chartjs.js" type="text/javascript"></script> --}}
+    <script src="app-assets/js/sweet-alerts.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/sweetalert2.min.js" type="text/javascript"></script> 
+
 </body>
 
 </html>

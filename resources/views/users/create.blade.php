@@ -1,4 +1,4 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {!! __('User &raquo; Create') !!}
@@ -100,4 +100,81 @@
         </div>
     </div>
     </div>
-</x-app-layout>
+</x-app-layout> --}}
+
+@extends('layouts.master')
+@section('content')
+<div class="main-panel">
+    <!-- BEGIN : Main Content-->
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title" id="striped-row-layout-basic">Create User</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="px-3">
+                                <form class="form form-horizontal striped-rows form-bordered" action="{{ route('users.store') }}" method="POST">
+                                    @csrf
+                                    <div class="form-body">
+                                        <h4 class="form-section"><i class="ft-user"></i> Personal Info</h4>
+                                        <div class="mb-3 row">
+                                            <label class="col-md-3 col-form-label" for="name">Name</label>
+                                            <div class="col-md-9">
+                                                <input value="{{ old('name') }}" name="name" type="text" class="form-control" id="name" placeholder="User Name">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label class="col-md-3 col-form-label" for="email">Email</label>
+                                            <div class="col-md-9">
+                                                <input value="{{ old('email') }}" name="email" type="email" class="form-control" id="email" placeholder="User Email">
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label class="col-md-3 col-form-label" for="password">Password</label>
+                                            <div class="col-md-9">
+                                                <input value="{{ old('password') }}" name="password" type="password" class="form-control" id="password" placeholder="User Password">
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label class="col-md-3 col-form-label" for="password_confirmation">Password Confirmation</label>
+                                            <div class="col-md-9">
+                                                <input value="{{ old('password_confirmation') }}" name="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="User Password Confirmation">
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label class="col-md-3 col-form-label" for="level">Level</label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" id="level" name="level">
+                                                    <option value="ADMIN">Admin</option>
+                                                    <option value="PETUGAS">Petugas</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-end">
+                                            <a href="{{ route('users.index') }}" class="btn btn-raised btn-warning">
+                                                <i class="ft-x"></i> Cancel
+                                            </a>
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa fa-check-square-o"></i> Create
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@endsection

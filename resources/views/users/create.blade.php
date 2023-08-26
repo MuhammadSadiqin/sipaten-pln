@@ -116,34 +116,34 @@
                         </div>
                         <div class="card-body">
                             <div class="px-3">
-                                <form class="form form-horizontal striped-rows form-bordered" action="{{ route('users.store') }}" method="POST">
+                                <form class="form form-horizontal striped-rows form-bordered" action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-body">
                                         <h4 class="form-section"><i class="ft-user"></i> Personal Info</h4>
                                         <div class="mb-3 row">
                                             <label class="col-md-3 col-form-label" for="name">Name</label>
                                             <div class="col-md-9">
-                                                <input value="{{ old('name') }}" name="name" type="text" class="form-control" id="name" placeholder="User Name">
+                                                <input value="{{ old('name') }}" name="name" type="text" class="form-control" id="name">
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label class="col-md-3 col-form-label" for="email">Email</label>
                                             <div class="col-md-9">
-                                                <input value="{{ old('email') }}" name="email" type="email" class="form-control" id="email" placeholder="User Email">
+                                                <input value="{{ old('email') }}" name="email" type="email" class="form-control" id="email">
                                             </div>
                                         </div>
 
                                         <div class="mb-3 row">
                                             <label class="col-md-3 col-form-label" for="password">Password</label>
                                             <div class="col-md-9">
-                                                <input value="{{ old('password') }}" name="password" type="password" class="form-control" id="password" placeholder="User Password">
+                                                <input value="{{ old('password') }}" name="password" type="password" class="form-control" id="password" required autocomplete="new-password">
                                             </div>
                                         </div>
 
                                         <div class="mb-3 row">
                                             <label class="col-md-3 col-form-label" for="password_confirmation">Password Confirmation</label>
                                             <div class="col-md-9">
-                                                <input value="{{ old('password_confirmation') }}" name="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="User Password Confirmation">
+                                                <input value="{{ old('password_confirmation') }}" name="password_confirmation" type="password" class="form-control" id="password_confirmation" required autocomplete="new-password">
                                             </div>
                                         </div>
 

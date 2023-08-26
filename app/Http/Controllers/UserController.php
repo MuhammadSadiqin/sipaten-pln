@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -56,7 +57,15 @@ class UserController extends Controller
      */
     public function store(UserRequest $request, User $user)
     {
+        // $data = $request->all();
+
+        // User::create($data);
+
+        // return redirect()->route('users.index');
         $data = $request->all();
+
+        // Hashing kata sandi sebelum menyimpan
+        $data['password'] = Hash::make($data['password']);
 
         User::create($data);
 

@@ -20,6 +20,18 @@
                 $gantimeterComplete = GantiMeter::where('status', 'selesai')->count();
                 $lbkbComplete = Lbkb::where('status', 'selesai')->count();
                 $tigaphasaComplete = Tigaphasa::where('status', 'selesai')->count();
+
+                $tigaphasaBelum = Tigaphasa::where('status', 'belum')->count();
+                $gantimeterBelum = GantiMeter::where('status', 'belum')->count();
+                $lbkbBelum = Lbkb::where('status', 'belum')->count();
+                $amrBelum = Amr::where('status', 'belum')->count();
+
+                $tigaphasaTunda = Tigaphasa::where('status', 'tunda')->count();
+                $gantimeterTunda = GantiMeter::where('status', 'tunda')->count();
+                $lbkbTunda = Lbkb::where('status', 'tunda')->count();
+                $amrTunda = Amr::where('status', 'tunda')->count();
+
+
                 ?>
                <div class="row" matchHeight="card">
                 <div class="col-xl-3 col-lg-6 col-12">
@@ -32,6 +44,10 @@
                                   <span>Total TO AMR</span>
                                   <h3 class="countdown-number" data-target="{{ $amrComplete }}">0</h3>
                                   <span>Total TO Selesai</span>
+                                  {{-- <h3 class="countdown-number" data-target="{{ $amrBelum }}">0</h3>
+                                  <span>Total TO Belum</span>
+                                  <h3 class="countdown-number" data-target="{{ $amrTunda }}">0</h3>
+                                  <span>Total TO Tunda</span> --}}
                           </div>
                           <div class="media-right align-self-center">
                             <i class="ft-file-text danger font-large-2 float-right"></i>
@@ -51,6 +67,8 @@
                               <span>Total TO Ganti Meter</span>
                               <h3 class="countdown-number" data-target="{{ $gantimeterComplete }}">0</h3>
                               <span>Total TO Selesai</span>
+                              {{-- <h3 class="countdown-number" data-target="{{ $gantimeterBelum }}">0</h3>
+                              <span>Total TO belum selesai</span> --}}
                             </div>
                             <div class="media-right align-self-center">
                               <i class="icon-speedometer success font-large-2 float-right"></i>
@@ -152,7 +170,7 @@
           </div>
       </div>
   </div>
-  <div class="col-md-4">
+  {{-- <div class="col-md-4" >
     <div class="card">
         <div class="card-header">
             Data Distribution Pie Chart
@@ -163,7 +181,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 </div>
 {{-- End Tampilan Chart --}}
 
@@ -172,18 +190,18 @@
 <script>
   // Data for the line chart
   const lineChartData = [
-      { label: "Total TO AMR", count: {{ $amrCount }}, complete: {{ $amrComplete }} },
-      { label: "Total TO Ganti Meter", count: {{ $gantimeterCount }}, complete: {{ $gantimeterComplete }} },
-      { label: "Total TO LBKB", count: {{ $lbkbCount }}, complete: {{ $lbkbComplete }} },
-      { label: "Total TO Tigaphasa", count: {{ $tigaphasaCount }}, complete: {{ $tigaphasaComplete }} }
+      { label: "Total TO AMR", count: {{ $amrCount }}, complete: {{ $amrComplete }}, tunda: {{ $amrTunda }} },
+      { label: "Total TO Ganti Meter", count: {{ $gantimeterCount }}, complete: {{ $gantimeterComplete }}, tunda: {{ $gantimeterTunda }} },
+      { label: "Total TO LBKB", count: {{ $lbkbCount }}, complete: {{ $lbkbComplete }}, tunda: {{ $lbkbTunda }} },
+      { label: "Total TO Tigaphasa", count: {{ $tigaphasaCount }}, complete: {{ $tigaphasaComplete }}, tunda: {{ $tigaphasaTunda }} }
   ];
 
   // Data for the bar chart
   const barChartData = [
-      { label: "Total TO AMR", count: {{ $amrCount }}, complete: {{ $amrComplete }} },
-      { label: "Total TO Ganti Meter", count: {{ $gantimeterCount }}, complete: {{ $gantimeterComplete }} },
-      { label: "Total TO LBKB", count: {{ $lbkbCount }}, complete: {{ $lbkbComplete }} },
-      { label: "Total TO Tigaphasa", count: {{ $tigaphasaCount }}, complete: {{ $tigaphasaComplete }} }
+      { label: "Total TO AMR", count: {{ $amrCount }}, complete: {{ $amrComplete }}, tunda: {{ $amrTunda }}},
+      { label: "Total TO Ganti Meter", count: {{ $gantimeterCount }}, complete: {{ $gantimeterComplete }}, tunda: {{ $gantimeterTunda }} },
+      { label: "Total TO LBKB", count: {{ $lbkbCount }}, complete: {{ $lbkbComplete }}, tunda: {{ $lbkbTunda }} },
+      { label: "Total TO Tigaphasa", count: {{ $tigaphasaCount }}, complete: {{ $tigaphasaComplete }}, tunda: {{ $tigaphasaTunda }} }
   ];
 
    // Data for the pie chart
@@ -218,6 +236,13 @@
                   borderColor: "#36A2EB",
                   fill: false,
                   // hidden: true
+              },
+              {
+                  label: "Total Tunda",
+                  data: lineChartData.map(item => item.tunda),
+                  borderColor: "#22C688",
+                  fill: false,
+                  // hidden: true
               }
           ]
       },
@@ -249,6 +274,12 @@
                   label: "Total Completed",
                   data: barChartData.map(item => item.complete),
                   backgroundColor: "#36A2EB",
+                  // hidden: true
+              },
+              {
+                  label: "Total Tunda",
+                  data: barChartData.map(item => item.tunda),
+                  backgroundColor: "#22C688",
                   // hidden: true
               }
           ]

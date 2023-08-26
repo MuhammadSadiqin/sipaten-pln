@@ -106,6 +106,7 @@
                         <p class="content-sub-header"></p>
                     </div>
                 </div>
+                
                 <!-- Zero configuration table -->
                 <section id="configuration">
                     <div class="row">
@@ -201,7 +202,9 @@
                                                 <th>Status</th>
                                                 {{-- <th>Waktu Di Upload</th>
                                                 <th>Waktu Di Ubah</th> --}}
-                                                <th>PDF</th>
+                                                {{-- <th>Action</th> --}}
+                                                {{-- <th>PDF</th> --}}
+                                                <th>View</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -221,7 +224,7 @@
                                                     <td>{{ $item->kelainan }}</td>
                                                     {{-- <td>{{ $item->petugas }}</td> --}}
                                                     <td>
-                                                        <form action="{{ route('update-status.lbkb', ['id' => $item->id]) }}" method="POST">
+                                                        {{-- <form action="{{ route('update-status.lbkb', ['id' => $item->id]) }}" method="POST">
                                                             @csrf
                                                             @method('PATCH')
                                                             <select name="new_status" class="form-control" onchange="this.form.submit()">
@@ -229,16 +232,24 @@
                                                                 <option value="Selesai" @if ($item->status == 'Selesai') selected @endif>Selesai</option>
                                                                 <option value="Tunda" @if ($item->status == 'Tunda') selected @endif>Tunda</option>
                                                             </select>
-                                                        </form>
+                                                        </form> --}}
+                                                        <font color="@if ($item->status === 'Selesai') green @elseif ($item->status === 'belum') red @elseif ($item->status === 'Tunda') blue @endif">
+                                                            {{ $item->status }}
+                                                        </font>
                                                     </td>
                                                     {{-- <td>{{ $item->created_at }}</td>
                                                     <td>{{ $item->updated_at }}</td> --}}
-                                                    <td>
+                                                    {{-- <td>
                                                         @if ($item->status == 'Selesai')
                                                             <a href="{{ route('generatepdf.lbkb', ['id' => $item->id]) }}" class="btn btn-primary btn-sm">Generate PDF</a>
                                                         @elseif ($item->status == 'Tunda' || $item->status == 'Belum')
                                                             <button class="btn btn-secondary btn-sm" disabled>Generate PDF</button>
                                                         @endif
+                                                    </td> --}}
+                                                    <td>
+                                                        {{-- @if ($item->status == 'Selesai' || $item->status == 'Tunda') --}}
+                                                            <a href="{{ route('lbkb.detail', ['id' => $item->id]) }}">View</a>
+                                                        {{-- @endif --}}
                                                     </td>
                                                 </tr>
                                             @empty
@@ -246,7 +257,9 @@
                                                     <td colspan="13">No data available</td>
                                                 </tr>
                                             @endforelse
+                                        </tbody>
                                     </table>
+                                    
                                     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                                     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> --}}
                                     {{-- <script>
@@ -258,9 +271,11 @@
                             </div>
                         </div>
                     </div>
+                    
             </div>
             </section>
             <!--/ Zero configuration table -->
+            
         </div>
     </div>
     <!-- END : End Main Content-->

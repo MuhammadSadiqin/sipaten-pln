@@ -115,10 +115,10 @@ class GantiMeterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(GantiMeterRequest $request, GantiMeter $gantiMeter)
-    {
-        //
-    }
+    // public function update(GantiMeterRequest $request, GantiMeter $gantiMeter)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -140,6 +140,44 @@ class GantiMeterController extends Controller
         $gantimeter->status = $request->input('new_status');
         $gantimeter->save();
 
+        return redirect()->back()->with('success', 'Status berhasil diperbarui.');
+    }
+
+    // SHOW DETAIL
+    public function showDetail($id)
+    {
+        $gantimeter = GantiMeter::find($id); // Ganti dengan model dan logika Anda
+        return view('detail.gantimeter_detail', compact('gantimeter'));
+    }
+
+    // UPDATE
+    public function update(Request $request, $id)
+    {
+        $gantimeter = GantiMeter::findOrFail($id);
+
+        // Update the LBKB data with the new values from the form
+        $gantimeter->status = $request->input('status');
+        $gantimeter->petugas = $request->input('petugas');
+        $gantimeter->alasan_tunda = $request->input('alasan_tunda');
+        $gantimeter->ket_tunda = $request->input('ket_tunda');
+        $gantimeter->tgl_tl = $request->input('tgl_tl');
+        $gantimeter->merk_meter_lama = $request->input('merk_meter_lama');
+        $gantimeter->no_meter_lama = $request->input('no_meter_lama');
+        $gantimeter->sisa_token_lama = $request->input('sisa_token_lama');
+        $gantimeter->foto_app_lama = $request->input('foto_app_lama');
+        $gantimeter->merk_meter_baru = $request->input('merk_meter_baru');
+        $gantimeter->no_meter_baru = $request->input('no_meter_baru');
+        $gantimeter->sisa_token_baru = $request->input('sisa_token_baru');
+        $gantimeter->foto_app_baru = $request->input('foto_app_baru');
+        $gantimeter->no_hp_pelanggan = $request->input('no_hp_pelanggan');
+        $gantimeter->teken_pelanggan = $request->input('teken_pelanggan');
+        $gantimeter->nama_pelanggan = $request->input('nama_pelanggan');
+        $gantimeter->teken_petugas = $request->input('teken_petugas');
+        $gantimeter->no_berita_acara = $request->input('no_berita_acara');
+        $gantimeter->ket = $request->input('ket');
+        $gantimeter->save();
+
+        // return redirect()->route('detail.lbkb_detail')->with('success', 'LBKB updated successfully');
         return redirect()->back()->with('success', 'Status berhasil diperbarui.');
     }
 }

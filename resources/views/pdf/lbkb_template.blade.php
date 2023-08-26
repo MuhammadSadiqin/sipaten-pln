@@ -107,19 +107,28 @@
  
         <div class="logo"> <img src="app-assets/img/icopln.png" alt="Company Logo" width="60" height="80"> </div>
            <!-- Tambahkan garis di atas page container -->
-    {{-- <div class="line-above-container"></div> --}}
+    <div class="line-above-container"></div>
 
     <page class="container">
         <div class="header">
-            <div class="title">BERITA ACARA PENGOPERASIAN GANTIMTER PLN</div>
+            <div class="title">BERITA ACARA PENGOPERASIAN LBKB PLN</div>
             <div class="title">No:......../........./........./........./.........</div>
         </div>
         
         <div class="section">
-            <div class="section-title">Pada hari ini ......... tanggal.......... bulan............. tahun........... pihak PT PLN (Persero) UP3 Lhokseumawe telah melaksanakan pengoperasian 
-                pemeliharaan
-                APP (Alat Pengukur dan Pembatas) pada pelanggan sebagai berikut : 
+            <div>
+                Pada hari ini <span id="current-day"></span>, tanggal <span id="current-date"></span> bulan <span id="current-month"></span> tahun <span id="current-year"></span>,
+                pihak PT PLN (Persero) UP3 Lhokseumawe telah melaksanakan pengoperasian pemeliharaan APP (Alat Pengukur dan Pembatas) pada pelanggan sebagai berikut:
             </div>
+            
+            <script>
+                const currentDate = new Date();
+            
+                document.getElementById("current-day").textContent = new Intl.DateTimeFormat("id-ID", { weekday: "long" }).format(currentDate);
+                document.getElementById("current-date").textContent = currentDate.getDate();
+                document.getElementById("current-month").textContent = new Intl.DateTimeFormat("id-ID", { month: "long" }).format(currentDate);
+                document.getElementById("current-year").textContent = currentDate.getFullYear();
+            </script>
             <div class="content">
                 <div class="row">
                     <div class="col-md-1">
@@ -201,35 +210,21 @@
             <table class="table table-bordered">
                 <tbody>
                     <tr>
-                        <th>Tanggal TL</th>
-                        <td>{{ $lbkb->tgl_tl }}</td>
-                        <th>Merk Meter</th>
-                        <td>{{ $lbkb->merk_meter }}</td>
+                        <th>No Hp Pelanggan</th>
+                        <td>{{ $lbkb->no_hp_pelanggan }}</td>
+                        <th>Nama Pelanggan</th>
+                        <td>{{ $lbkb->nama_pelanggan }}</td>
                     </tr>
                     <tr>
-                        <th>No Meter</th>
-                        <td>{{ $lbkb->no_meter }}</td>
-                        <th>Merk Modem</th>
-                        <td>{{ $lbkb->merk_modem }}</td>
-                    </tr>
-                    <tr>
-                        <th>No Modem</th>
-                        <td>{{ $lbkb->no_modem }}</td>
-                        <th>Merk Kartu</th>
-                        <td>{{ $lbkb->merk_kartu }}</td>
-                    </tr>
-                    <tr>
-                        <th>IP Kartu</th>
-                        <td>{{ $lbkb->ip_kartu }}</td>
-                        <th>Foto</th>
-                        <td>{{ $lbkb->foto }}</td>
-                    </tr>
-                    <tr>
+                        <th>Nama Petugas</th>
+                        <td>{{ $lbkb->nama_petugas }}</td>
                         <th>No Berita Acara</th>
                         <td>{{ $lbkb->no_berita_acara }}</td>
-                        <th>Keterangan</th>
-                        <td>{{ $lbkb->ket }}</td>
+                        
                     </tr>
+                    {{-- <tr>
+                      
+                    </tr> --}}
                 </tbody>
             </table>
         </div>
@@ -240,7 +235,7 @@
             </div>
             <div class="signature-item">
                 <div class="content-item" style="margin-bottom: 100px;" >Mengetahui,Manager</div>
-                <div class="content-item" style="border-bottom: 1px solid black; width: 150px; margin-left: auto; " ></div>
+                <div class="content-item" style="border-bottom: 1px solid black; width: 150px; margin-left: auto; "></div>
             </div>
         </div>
         

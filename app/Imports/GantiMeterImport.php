@@ -46,8 +46,8 @@ class GantiMeterImport implements ToCollection, WithStartRow
                 'peta' => $row[7],
                 'tipe' => $row[8],
                 'kelainan' => $row[9],
-                'petugas' => $row[10],
-                'status' => $row[11],
+                // 'petugas' => $row[10],
+                // 'status' => $row[11],
             ]);
         }
     }

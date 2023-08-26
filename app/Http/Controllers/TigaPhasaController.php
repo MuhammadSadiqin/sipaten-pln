@@ -146,4 +146,31 @@ class TigaPhasaController extends Controller
 
         return redirect()->back()->with('success', 'Status berhasil diperbarui.');
     }
+
+    // show detail
+    public function showDetail($id)
+    {
+        $tigaphasa = TigaPhasa::find($id); // Ganti dengan model dan logika Anda
+        return view('detail.tigaphasa_detail', compact('tigaphasa'));
+    }
+
+    // update 
+    public function update(Request $request, $id)
+    {
+        $tigaphasa = tigaphasa::findOrFail($id);
+
+        // Update the LBKB data with the new values from the form
+        $tigaphasa->status = $request->input('status');
+        $tigaphasa->petugas = $request->input('petugas');
+        $tigaphasa->alasan_tunda = $request->input('alasan_tunda');
+        $tigaphasa->ket_tunda = $request->input('ket_tunda');
+        $tigaphasa->tgl_tl = $request->input('tgl_tl');
+
+        // Add more fields to update as needed
+
+        $tigaphasa->save();
+
+        // return redirect()->route('detail.lbkb_detail')->with('success', 'LBKB updated successfully');
+        return redirect()->back()->with('success', 'Status berhasil diperbarui.');
+    }
 }

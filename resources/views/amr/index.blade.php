@@ -118,7 +118,7 @@
                                 <div class="card-content">
                                           <div class="form-group">
                                             
-                                            <div class="col-lg-6 col-md-12">
+                                            {{-- <div class="col-lg-6 col-md-12">
                                                 <div class="form-group">
                                                     <a href="{{ route('amr.history') }}"> <!-- Tentukan rute 'amr.history' -->
                                                         <button class="btn btn-raised btn-icon btn-outline-info">
@@ -126,7 +126,7 @@
                                                         </button>
                                                     </a>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             
                                     <div class="col-lg-6 col-md-12">
                                             <form action="{{ route('Amr.import') }}" method="POST"
@@ -204,7 +204,7 @@
                                                 <th>Status</th>
                                                 {{-- <th>Waktu Di Upload</th>
                                                 <th>Waktu Di Ubah</th> --}}
-                                                <th>PDF</th>
+                                                {{-- <th>PDF</th> --}}
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -226,7 +226,7 @@
                                                     {{-- <td>{{ $item->petugas }}</td> --}}
                                                     {{-- <td>{{ $item->status }}</td> --}}
                                                     <td>
-                                                        <form action="{{ route('update-status.amr', ['id' => $item->id]) }}" method="POST">
+                                                        {{-- <form action="{{ route('update-status.amr', ['id' => $item->id]) }}" method="POST">
                                                             @csrf
                                                             @method('PATCH')
                                                             <select name="new_status" class="form-control" onchange="this.form.submit()">
@@ -234,26 +234,26 @@
                                                                 <option value="Selesai" @if ($item->status == 'Selesai') selected @endif>Selesai</option>
                                                                 <option value="Tunda" @if ($item->status == 'Tunda') selected @endif>Tunda</option>
                                                             </select>
-                                                        </form>
+                                                        </form> --}}
+                                                        <font color="@if ($item->status === 'Selesai') green @elseif ($item->status === 'belum') red @elseif ($item->status === 'Tunda') blue @endif">
+                                                            {{ $item->status }}
+                                                        </font>
                                                     </td>
                                                     
                                                     {{-- <td>{{ $item->created_at }}</td>
                                                     <td>{{ $item->updated_at }}</td> --}}
-                                                    <td>
+                                                    {{-- <td>
                                                         @if ($item->status == 'Selesai')
                                                             <a href="{{ route('generatepdf.amr', ['id' => $item->id]) }}" class="btn btn-primary btn-sm">Generate PDF</a>
                                                             
                                                         @elseif ($item->status == 'Tunda' || $item->status == 'Belum')
                                                             <button class="btn btn-secondary btn-sm" disabled>Generate PDF</button>
                                                         @endif
-                                                    </td>
+                                                    </td> --}}
                                                     <td>
-                                                        @if ($item->status == 'Selesai')
-                                                            <form action="{{ route('submit.amr', ['id' => $item->id]) }}" method="POST">
-                                                                @csrf
-                                                                <button type="submit" class="btn btn-success btn-sm">Submit</button>
-                                                            </form>
-                                                        @endif
+                                                        {{-- @if ($item->status == 'Selesai' || $item->status == 'Tunda') --}}
+                                                            <a href="{{ route('amr.detail', ['id' => $item->id]) }}">View</a>
+                                                        {{-- @endif --}}
                                                     </td>
                                                 </tr>
                                             @empty

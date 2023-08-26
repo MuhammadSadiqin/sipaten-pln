@@ -78,12 +78,12 @@ class LbkbController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Lbkb $lbkb)
-    {
-        return view('lbkb.edit', [
-            'item' => $lbkb
-        ]);
-    }
+    // public function edit(Lbkb $lbkb)
+    // {
+    //     return view('lbkb.edit', [
+    //         'item' => $lbkb
+    //     ]);
+    // }
 
     public function updateStatus(Request $request, $id)
     {
@@ -95,6 +95,41 @@ class LbkbController extends Controller
         $lbkb->status = $request->input('new_status');
         $lbkb->save();
 
+        return redirect()->back()->with('success', 'Status berhasil diperbarui.');
+    }
+
+    // DETAIL
+    public function showDetail($id)
+    {
+        $lbkb = Lbkb::find($id); // Ganti dengan model dan logika Anda
+        return view('detail.lbkb_detail', compact('lbkb'));
+    }
+
+    // UPDATE
+    public function update(Request $request, $id)
+    {
+        $lbkb = Lbkb::findOrFail($id);
+
+        // Update the LBKB data with the new values from the form
+        $lbkb->status = $request->input('status');
+        $lbkb->petugas = $request->input('petugas');
+        $lbkb->alasan_tunda = $request->input('alasan_tunda');
+        $lbkb->ket_tunda = $request->input('ket_tunda');
+        $lbkb->tgl_tl = $request->input('tgl_tl');
+        $lbkb->foto_app_sebelum = $request->input('foto_app_sebelum');
+        $lbkb->foto_app_sesudah = $request->input('foto_app_sesudah');
+        $lbkb->no_hp_pelanggan = $request->input('no_hp_pelanggan');
+        $lbkb->teken_pelanggan = $request->input('teken_pelanggan');
+        $lbkb->nama_pelanggan = $request->input('nama_pelanggan');
+        $lbkb->teken_petugas = $request->input('teken_petugas');
+        $lbkb->nama_petugas = $request->input('nama_petugas');
+        $lbkb->no_berita_acara = $request->input('no_berita_acara');
+        $lbkb->ket = $request->input('ket');
+        // Add more fields to update as needed
+
+        $lbkb->save();
+
+        // return redirect()->route('detail.lbkb_detail')->with('success', 'LBKB updated successfully');
         return redirect()->back()->with('success', 'Status berhasil diperbarui.');
     }
 }

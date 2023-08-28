@@ -55,24 +55,26 @@ class TigaPhasaController extends Controller
 
     public function generatePdf($id)
     {
-        $tigaphasa = Tigaphasa::find($id);
+        $tigaphasa = TigaPhasa::find($id);
 
         if (!$tigaphasa) {
             return redirect()->back()->with('error', 'Data not found.');
         } else {
-            // Proses penghasilan PDF dengan data $tigaphasa
+            // Proses penghasilan PDF dengan data $amr
             // Buat instansi dari kelas PDF
+
             $pdf = app('dompdf.wrapper');
 
             // Muat tampilan ke dalam PDF
-            $pdf->loadView('pdf\tigaphasa_template', ['tigaphasa' => $tigaphasa]);
+            $pdf->loadView('pdf.tigaphasa_template', ['tigaphasa' => $tigaphasa]);
 
-            // Unduh PDF
-            // return $pdf->download('laporan_tigaphasa.pdf');
-            return $pdf->stream('tigaphasa_' . $tigaphasa->id . '.pdf');
+            // Atur nama file PDF yang akan dihasilkan
+            $filename = 'tigaphasa_' . $tigaphasa->id . '.pdf';
+
+            // Stream (tampilkan) PDF di browser
+            return $pdf->stream($filename);
         }
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -130,5 +132,45 @@ class TigaPhasaController extends Controller
         $tigaphasa->delete();
 
         return redirect()->route('tigaphasa.index');
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'new_status' => 'required|in:Selesai,Tunda,Belum',
+        ]);
+
+        $tigaphasa = TigaPhasa::findOrFail($id);
+        $tigaphasa->status = $request->input('new_status');
+        $tigaphasa->save();
+
+        return redirect()->back()->with('success', 'Status berhasil diperbarui.');
+    }
+
+    // show detail
+    public function showDetail($id)
+    {
+        $tigaphasa = TigaPhasa::find($id); // Ganti dengan model dan logika Anda
+        return view('detail.tigaphasa_detail', compact('tigaphasa'));
+    }
+
+    // update 
+    public function update(Request $request, $id)
+    {
+        $tigaphasa = tigaphasa::findOrFail($id);
+
+        // Update the LBKB data with the new values from the form
+        $tigaphasa->status = $request->input('status');
+        $tigaphasa->petugas = $request->input('petugas');
+        $tigaphasa->alasan_tunda = $request->input('alasan_tunda');
+        $tigaphasa->ket_tunda = $request->input('ket_tunda');
+        $tigaphasa->tgl_tl = $request->input('tgl_tl');
+
+        // Add more fields to update as needed
+
+        $tigaphasa->save();
+
+        // return redirect()->route('detail.lbkb_detail')->with('success', 'LBKB updated successfully');
+        return redirect()->back()->with('success', 'Status berhasil diperbarui.');
     }
 }

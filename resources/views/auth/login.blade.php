@@ -173,62 +173,63 @@
                 </div>
                 <div class="col-lg-6 col-md-12 bg-white px-4 pt-3">
                   <h4 class="mb-2 card-title">Login</h4>
+                  @if ($errors->has('email') || $errors->has('password'))
+                      <div class="alert alert-danger">
+                          Incorrect email or password. Please try again.
+                      </div>
+                  @endif
                   <p class="card-text mb-3">
-                    Welcome back, please login to your account.
+                      Welcome back, please login to your account.
                   </p>
                   <form method="POST" action="{{ route('login') }}">
-                    @csrf
-                  {{-- Input username and password --}}
-                  <input id="email" class="form-control mb-3" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" placeholder="">
-                  <input id="password" class="form-control mb-3" type="password" name="password" required autocomplete="current-password">
-                  {{-- end input username and password --}}
-                  <div class="d-flex justify-content-between mt-2">
-                    <div class="remember-me">
-                      <div class="custom-control custom-checkbox custom-control-inline mb-3">
-                        <input type="checkbox" id="customCheckboxInline1" name="customCheckboxInline1" class="custom-control-input" />
-                        <label class="custom-control-label" for="customCheckboxInline1">
-                          Remember Me
-                        </label>
+                      @csrf
+                      {{-- Input username and password --}}
+                      <input id="email" class="form-control mb-3" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="email" placeholder="E-mail">
+                      <input id="password" class="form-control mb-3" type="password" name="password" required autocomplete="current-password" placeholder="Password">
+                      {{-- end input username and password --}}
+                      <div class="d-flex justify-content-between mt-2">
+                        <div class="remember-me">
+                          <div class="custom-control custom-checkbox custom-control-inline mb-3">
+                            <input type="checkbox" id="remember" name="remember" class="custom-control-input">
+                            <label class="custom-control-label" for="remember">
+                                Remember Me
+                            </label>
+                          </div>
                       </div>
-                    </div>
-                  
-                    <div class="forgot-password-option">
-                      @if (Route::has('password.request'))
-                      <a href="{{ route('password.request') }}" class="text-decoration-none text-primary">Forgot Password?</a>
-                      @endif
-                    </div>
-                  </div>
-                  <div class="fg-actions d-flex justify-content-between">
-        
-                      <a href="{{ route('register') }}" class="text-decoration-none">{{ __('Register') }}</a>
-                  
-                    <div class="login-btn">
-                     
-                    </div>
-                    <div class="recover-pass">
-                      <button type="submit" class="btn btn-primary">  
-                        {{ __('Log in') }}
-                        {{-- <a href="" class="text-decoration-none text-white">Login</a> --}}
-                        {{-- <button type="submit" class="btn btn-primary">{{ __('Log in') }}</button> --}}
-                      </button>
-                    </div>
-                  </div>
+                      <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const rememberCheckbox = document.getElementById('remember');
+                            rememberCheckbox.addEventListener('change', function () {
+                                if (this.checked) {
+                                    alert('Ingat Saya diaktifkan');
+                                } else {
+                                    alert('Ingat Saya dinonaktifkan');
+                                }
+                            });
+                        });
+                        </script>
+                      
+                          <div class="forgot-password-option">
+                              @if (Route::has('password.request'))
+                              <a href="{{ route('password.request') }}" class="text-decoration-none text-primary">Forgot Password?</a>
+                              @endif
+                          </div>
+                      </div>
+                      <div class="fg-actions d-flex justify-content-between">
+                          <a href="{{ route('register') }}" class="text-decoration-none">{{ __('Register') }}</a>
+                          <div class="login-btn">
+                          </div>
+                          <div class="recover-pass">
+                              <button type="submit" class="btn btn-primary">
+                                  {{ __('Log in') }}
+                              </button>
+                          </div>
+                      </div>
+                  </form>
                   <hr class="m-0">
-                  <div class="d-flex justify-content-between mt-3">
-                    <div class="option-login">
-                      <h6 class="text-decoration-none text-primary">Or Login With</h6>
-                    </div>
-                    <div class="social-login-options">
-                      <a class="btn btn-social-icon mr-2 btn-facebook">
-                        <span class="fa fa-facebook"></span>
-                      </a>
-                      <a class="btn btn-social-icon mr-2 btn-twitter">
-                        <span class="fa fa-twitter"></span>
-                      </a>
-                      </form>
-                    </div>
-                  </div>
-                </div>
+                  
+              </div>
+              
               </div>
             </div>
           </div>

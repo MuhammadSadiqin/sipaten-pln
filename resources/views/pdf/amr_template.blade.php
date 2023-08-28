@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Berita Acara Target Operasi AMR</title>
+    <title>Berita Acara Pengoperasian Pemeliharaan App AMR PLN</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 40px;
-            font-size: 14px;
+            font-family: 'Times New Roman', serif;
+            margin: 5px;
+            font-size: 10px;
+        }
+        .logo{
+            size: 10px
         }
         
         .header {
@@ -16,7 +20,7 @@
         }
         
         .title {
-            font-size: 32px;
+            font-size: 15px;
             font-weight: bold;
             margin-bottom: 20px;
         }
@@ -26,17 +30,35 @@
         }
         
         .section-title {
-            font-size: 24px;
+            font-size: 12px;
             font-weight: bold;
             margin-bottom: 15px;
+            text-align: left;
         }
         
         .content {
-            margin-left: 40px;
+            margin-left: 1px;
+            margin-bottom: 1px;
         }
         
         .content-item {
-            margin-bottom: 8px;
+            margin-bottom: 1px;
+            display: flex; /* Menggunakan flexbox untuk rata dengan spasi */
+            font-size: 12px; /* Mengubah ukuran font konten menjadi 10px */
+        }
+
+        .content-item strong {
+        /* display: inline-block; */
+        width: 200px; /* Sesuaikan lebar sesuai kebutuhan */
+        font-size: 10px;
+    }
+        
+        .content-label {
+            flex: 1; /* Bagian label menggunakan 1 bagian dari flexbox */
+        }
+        
+        .content-value {
+            flex: 2; /* Bagian nilai menggunakan 2 bagian dari flexbox */
         }
         
         .date {
@@ -46,7 +68,7 @@
         
         .signature {
             margin-top: 60px;
-            text-align: center;
+            text-align: left;
         }
         
         .signature-item {
@@ -62,69 +84,171 @@
         page {
             page-break-after: always;
         }
+
+        /* Gaya untuk mengurangi ukuran tabel */
+        .table-responsive {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+         /* Gaya untuk mengurangi ukuran kolom */
+         th, td {
+            padding: 1px 10px;
+        }
+
+
+        /* Tambahkan gaya untuk garis di atas page container */
+        .line-above-container {
+            border-top: 3px solid #000;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
+ 
+        <div class="logo"> <img src="app-assets/img/icopln.png" alt="Company Logo" width="60" height="80"> </div>
+           <!-- Tambahkan garis di atas page container -->
+    {{-- <div class="line-above-container"></div> --}}
+
     <page class="container">
         <div class="header">
-            {{-- <img src="path_to_your_logo" alt="Company Logo"> --}}
-            <div class="title">{{ Berita Acara }}</div>
-            <div class="title">Target Operasi AMR</div>
+            <div class="title">BERITA ACARA PENGOPERASIAN AMR PLN</div>
+            <div class="title">No:......../........./........./........./.........</div>
         </div>
         
         <div class="section">
-            <div class="section-title">I. Data Pelanggan</div>
+            <div class="section-title">Pada hari ini ......... tanggal.......... bulan............. tahun........... pihak PT PLN (Persero) UP3 Lhokseumawe telah melaksanakan pengoperasian 
+                pemeliharaan
+                APP (Alat Pengukur dan Pembatas) pada pelanggan sebagai berikut : 
+            </div>
             <div class="content">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="content-item"><strong>ID:</strong> {{ $amr->id }}</div>
-                        <div class="content-item"><strong>User:</strong> {{ $amr->user->name }}</div>
-                        <div class="content-item"><strong>ULP:</strong> {{ $amr->ulp }}</div>
-                        <div class="content-item"><strong>Kode Unit:</strong> {{ $amr->kd_unit }}</div>
-                        <div class="content-item"><strong>ID Pelanggan:</strong> {{ $amr->id_pel }}</div>
-                        <div class="content-item"><strong>Nama:</strong> {{ $amr->nama }}</div>
-                        <div class="content-item"><strong>Alamat:</strong> {{ $amr->alamat }}</div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="content-item"><strong>Tarif:</strong> {{ $amr->tarif }}</div>
-                        <div class="content-item"><strong>Daya:</strong> {{ $amr->daya }}</div>
-                        <div class="content-item"><strong>Peta:</strong> {{ $amr->peta }}</div>
-                        <div class="content-item"><strong>Tipe:</strong> {{ $amr->tipe }}</div>
-                        <div class="content-item"><strong>Kelainan:</strong> {{ $amr->kelainan }}</div>
-                        <div class="content-item"><strong>Petugas:</strong> {{ $amr->petugas }}</div>
-                        <div class="content-item"><strong>status:</strong> {{ $amr->status }}</div>
-                        {{-- <div class="content-item"><strong>created_at:</strong> {{ $amr->created_at }}</div>
-                        <div class="content-item"><strong>updated_at:</strong> {{ $amr->updated_at  }}</div> --}}
+                    <div class="col-md-1">
+                        <div class="content-item"><strong>Nama      :</strong>      <strong>{{ $amr->nama }}</strong></div>
+                        <div class="content-item"><strong>ID Pel    :</strong>      <strong>{{ $amr->id_pel }}</strong></div>
+                        <div class="content-item"><strong>Tarif     :</strong>      <strong>{{ $amr->tarif }}</strong></div>
+                        <div class="content-item"><strong>Alamat    :</strong>      <strong>{{ $amr->alamat }}</strong>  </div>
                     </div>
                 </div>
-            </div>
+            </div>    
         </div>
-        
-        <div class="section">
-            <div class="section-title">II. Data Operasi Kerjaan</div>
-            <div class="content">
-                <!-- Isi data operasi kerjaan di sini -->
-            </div>
+
+             <!-- Bagian Tabel Pertama -->
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>ID</th>
+                        <td>{{ $amr->id }}</td>
+                        <th>ULP</th>
+                        <td>{{ $amr->ulp }}</td>
+                    </tr>
+                    <tr>
+                        <th>Kode Unit</th>
+                        <td>{{ $amr->kd_unit }}</td>
+                        <th>ID Pelanggan</th>
+                        <td>{{ $amr->id_pel }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nama</th>
+                        <td>{{ $amr->nama }}</td>
+                        <th>Alamat</th>
+                        <td>{{ $amr->alamat }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tarif</th>
+                        <td>{{ $amr->tarif }}</td>
+                        <th>Daya</th>
+                        <td>{{ $amr->daya }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        
+
+        <!-- Bagian Tabel Kedua -->
+        <div class="table-responsive" class="table">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Peta</th>
+                        <td>{{ $amr->peta }}</td>
+                        <th>Tipe</th>
+                        <td>{{ $amr->tipe }}</td>
+                    </tr>
+                    <tr>
+                        <th>Kelainan</th>
+                        <td>{{ $amr->kelainan }}</td>
+                        <th>Petugas</th>
+                        <td>{{ $amr->petugas }}</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>{{ $amr->status }}</td>
+                        <th>Alasan Tunda</th>
+                        <td>{{ $amr->alasan_tunda }}</td>
+                    </tr>
+                    <tr>
+                        <th>Keterangan Tunda</th>
+                        <td>{{ $amr->ket_tunda }}</td>
+                        <th>Tanggal TL</th>
+                        <td>{{ $amr->tgl_tl }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bagian Tabel Ketiga -->
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Tanggal TL</th>
+                        <td>{{ $amr->tgl_tl }}</td>
+                        <th>Merk Meter</th>
+                        <td>{{ $amr->merk_meter }}</td>
+                    </tr>
+                    <tr>
+                        <th>No Meter</th>
+                        <td>{{ $amr->no_meter }}</td>
+                        <th>Merk Modem</th>
+                        <td>{{ $amr->merk_modem }}</td>
+                    </tr>
+                    <tr>
+                        <th>No Modem</th>
+                        <td>{{ $amr->no_modem }}</td>
+                        <th>Merk Kartu</th>
+                        <td>{{ $amr->merk_kartu }}</td>
+                    </tr>
+                    <tr>
+                        <th>IP Kartu</th>
+                        <td>{{ $amr->ip_kartu }}</td>
+                        <th>Foto</th>
+                        <td>{{ $amr->foto }}</td>
+                    </tr>
+                    <tr>
+                        <th>No Berita Acara</th>
+                        <td>{{ $amr->no_berita_acara }}</td>
+                        <th>Keterangan</th>
+                        <td>{{ $amr->ket }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="signature">
             <div class="signature-item">
-                <div class="content-item">Tanda Tangan Petugas</div>
-                <div class="content-item">________________________</div>
+                <div class="content-item" style="margin-bottom: 100px;" >Konsumen</div>
+                <div class="content-item" style="border-bottom: 1px solid black; width: 150px; margin-left: auto; margin-right: auto;" ></div>
             </div>
             <div class="signature-item">
-                <div class="content-item">Tanda Tangan Manager</div>
-                <div class="content-item">________________________</div>
-            </div>
-            <div class="signature-item">
-                <div class="content-item">Tanda Tangan Direktur</div>
-                <div class="content-item">________________________</div>
+                <div class="content-item" style="margin-bottom: 100px;" >Mengetahui,Manager</div>
+                <div class="content-item" style="border-bottom: 1px solid black; width: 150px; margin-left: auto; " ></div>
             </div>
         </div>
         
         <div class="date">
             Dibuat pada: {{ now() }}
         </div>
+    </div>
     </page>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

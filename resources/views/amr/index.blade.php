@@ -96,6 +96,7 @@
 
 @extends('layouts.master')
 @section('content')
+
     <div class="main-panel">
         <!-- BEGIN : Main Content-->
         <div class="main-content">
@@ -106,6 +107,7 @@
                         <p class="content-sub-header"></p>
                     </div>
                 </div>
+                
                 <!-- Zero configuration table -->
                 <section id="configuration">
                     <div class="row">
@@ -114,11 +116,21 @@
                                 <div class="card-header">
                                 </div>
                                 <div class="card-content">
-
+                                          <div class="form-group">
+                                            
+                                            {{-- <div class="col-lg-6 col-md-12">
+                                                <div class="form-group">
+                                                    <a href="{{ route('amr.history') }}"> <!-- Tentukan rute 'amr.history' -->
+                                                        <button class="btn btn-raised btn-icon btn-outline-info">
+                                                            Lihat Histori <i class="fa fa-history"></i>
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </div> --}}
+                                            
                                     <div class="col-lg-6 col-md-12">
-                                        <div class="form-group">
                                             <form action="{{ route('Amr.import') }}" method="POST"
-                                                enctype="multipart/form-data" class="mt-4">
+                                                enctype="multipart/form-data" class="mt-4" onsubmit="showUploadSuccessAlert()">
                                                 @csrf
                                                 <label class="font-weight-bold" for="file">Upload Excel</label>
                                                 <div class="input-group">
@@ -131,19 +143,44 @@
                                                 <button type="submit"
                                                     class="btn btn-raised btn-icon btn-outline-primary">Upload Excel <i
                                                         class="fa fa-cloud"></i></button>
-                                                <script>
-                                                    function updateFileName() {
-                                                        var input = document.getElementById('file');
-                                                        var label = input.nextElementSibling;
-                                                        var fileName = input.files[0].name;
-                                                        label.innerHTML = fileName;
-                                                    }
-                                                </script>
+                                                    
                                             </form>
-                                            <a href="{{ route('amr.export') }}"> <button type="submit"
-                                                    class="btn btn-raised btn-icon btn-outline-success">Export Excel
-                                                    <i class="fa fa-cloud-download"></i></button>
+                                            
+
+                                            <script>
+                                                function updateFileName() {
+                                                    var input = document.getElementById('file');
+                                                    var label = input.nextElementSibling;
+                                                    var fileName = input.files[0].name;
+                                                    label.innerHTML = fileName;
+                                                }
+                                        
+                                                function showUploadSuccessAlert() {
+                                                    var successAlert = document.getElementById('successAlert');
+                                                    successAlert.style.display = 'block';
+                                                    
+                                                    setTimeout(function() {
+                                                        successAlert.style.display = 'none';
+                                                    }, 3000); // Hide the alert after 3 seconds
+                                                }
+                                            </script>
+
+                                            
+                                            <a href="{{ route('amr.export') }}" id="exportLink">
+                                                <button type="button" class="btn btn-raised btn-icon btn-outline-success">Export Excel
+                                                    <i class="fa fa-cloud-download"></i>
+                                                </button>
                                             </a>
+                                            
+                                            <script>
+                                                document.getElementById('exportLink').addEventListener('click', function(event) {
+                                                    event.preventDefault(); // Mencegah tindakan default link
+                                            
+                                                    if (confirm('Apakah Anda yakin ingin mengekspor data?')) {
+                                                        window.location.href = this.getAttribute('href');
+                                                    }
+                                                });
+                                            </script>
                                         </div>
                                     </div>
                                 </div>
@@ -167,7 +204,8 @@
                                                 <th>Status</th>
                                                 {{-- <th>Waktu Di Upload</th>
                                                 <th>Waktu Di Ubah</th> --}}
-                                                <th>PDF</th>
+                                                {{-- <th>PDF</th> --}}
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -186,12 +224,36 @@
                                                     <td>{{ $item->tipe }}</td>
                                                     <td>{{ $item->kelainan }}</td>
                                                     {{-- <td>{{ $item->petugas }}</td> --}}
-                                                    <td>{{ $item->status }}</td>
+                                                    {{-- <td>{{ $item->status }}</td> --}}
+                                                    <td>
+                                                        {{-- <form action="{{ route('update-status.amr', ['id' => $item->id]) }}" method="POST">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                            <select name="new_status" class="form-control" onchange="this.form.submit()">
+                                                                <option value="Belum" @if ($item->status == 'Belum') selected @endif>Belum</option>
+                                                                <option value="Selesai" @if ($item->status == 'Selesai') selected @endif>Selesai</option>
+                                                                <option value="Tunda" @if ($item->status == 'Tunda') selected @endif>Tunda</option>
+                                                            </select>
+                                                        </form> --}}
+                                                        <font color="@if ($item->status === 'Selesai') green @elseif ($item->status === 'belum') red @elseif ($item->status === 'Tunda') blue @endif">
+                                                            {{ $item->status }}
+                                                        </font>
+                                                    </td>
+                                                    
                                                     {{-- <td>{{ $item->created_at }}</td>
                                                     <td>{{ $item->updated_at }}</td> --}}
+                                                    {{-- <td>
+                                                        @if ($item->status == 'Selesai')
+                                                            <a href="{{ route('generatepdf.amr', ['id' => $item->id]) }}" class="btn btn-primary btn-sm">Generate PDF</a>
+                                                            
+                                                        @elseif ($item->status == 'Tunda' || $item->status == 'Belum')
+                                                            <button class="btn btn-secondary btn-sm" disabled>Generate PDF</button>
+                                                        @endif
+                                                    </td> --}}
                                                     <td>
-                                                        <a href="{{ route('generate-pdf', ['id' => $item->id]) }}"
-                                                            class="btn btn-primary btn-sm">Generate PDF</a>
+                                                        {{-- @if ($item->status == 'Selesai' || $item->status == 'Tunda') --}}
+                                                            <a href="{{ route('amr.detail', ['id' => $item->id]) }}">View</a>
+                                                        {{-- @endif --}}
                                                     </td>
                                                 </tr>
                                             @empty
@@ -205,6 +267,7 @@
                         </div>
                     </div>
             </div>
+            
             </section>
             <!--/ Zero configuration table -->
         </div>

@@ -2,15 +2,55 @@
 <html lang="en">
 
 <head>
+    
+    <style>
+         .upload-success-alert {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .countdown-wrapper {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    
+        .countdown-card {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            flex-basis: 23%;
+        }
+    
+        .countdown-number {
+            font-size: 30px;
+            margin: 0;
+            color: #000000;
+        }
+        .chart-container {
+      position: relative;
+      margin: auto;
+      height: 300px;
+    }
+    </style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
-    <meta name="description"
-        content="Apex admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities." />
-    <meta name="keywords"
-        content="admin template, Apex admin template, dashboard template, flat admin template, responsive admin template, web app" />
-    <meta name="author" content="PIXINVENT" />
+    <meta name="description" content="Apex admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Apex admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+     
     <title>SIPATEN</title>
+    {{-- script chart --}}
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    {{-- end script chart --}}
+    <link rel="stylesheet" type="text/css" href="app-assets/css/app.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon1.ico') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="app-assets/img/ico/apple-icon-60.png" />
@@ -46,6 +86,11 @@
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/perfect-scrollbar.min.css" />
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/prism.min.css" />
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/chartist.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="app-assets/vendors/css/chartist.min.css"
+    />
     <!-- END VENDOR CSS-->
     <!-- BEGIN APEX CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/app.css" />
@@ -160,12 +205,12 @@
                         class="d-lg-none navbar-right navbar-collapse-toggle"><a
                             aria-controls="navbarSupportedContent" href="javascript:;"
                             class="open-navbar-container black"><i class="ft-more-vertical"></i></a></span>
-                    <form role="search" class="navbar-form navbar-right mt-1">
+                    {{-- <form role="search" class="navbar-form navbar-right mt-1">
                         <div class="position-relative has-icon-right">
                             <input type="text" placeholder="Search" class="form-control round" />
                             <div class="form-control-position"><i class="ft-search"></i></div>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
                 <div class="navbar-container">
                     <div id="navbarSupportedContent" class="collapse navbar-collapse">
@@ -176,7 +221,7 @@
                                     <p class="d-none">fullscreen</p>
                                 </a></li>
                            
-                            <li class="dropdown nav-item"><a id="dropdownBasic2" href="#"
+                            {{-- <li class="dropdown nav-item"><a id="dropdownBasic2" href="#"
                                     data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i
                                         class="ft-bell font-medium-3 blue-grey darken-4"></i><span
                                         class="notification badge badge-pill badge-danger">4</span>
@@ -210,25 +255,20 @@
                                                     ametnatus aut.</span></span></a></div><a
                                         class="noti-footer primary text-center d-block border-top border-top-blue-grey border-top-lighten-4 text-bold-400 py-1">Read
                                         All Notifications</a>
-                                </div>
+                                </div> --}}
                             </li>
-                            <li class="dropdown nav-item"><a id="dropdownBasic3" href="#"
-                                    data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i
-                                        class="ft-user font-medium-3 blue-grey darken-4"></i>
-                                    <p class="d-none">User Settings</p>
+                            
+                            <li class="dropdown nav-item"><a id="dropdownBasic3" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i class="ft-user font-medium-3 blue-grey darken-4"> </i>
+                                    <p class="d-none">User Setting </p>
+                                    
+                        {{ Auth::user()->name }}
                                 </a>
-                                <div ngbdropdownmenu="" aria-labelledby="dropdownBasic3"
-                                    class="dropdown-menu text-left dropdown-menu-right"><a href="" class="dropdown-item py-1">
-                                        <i class="ft-message-square mr-2"></i><span>Chat</span></a>
-                                        <a href="show" :active="request() - > routeIs('show')" class="dropdown-item py-1"><i class="ft-edit mr-2"></i><span>Edit Profile</span></a>
-                                        <a href="" class="dropdown-item py-1"><i class="ft-mail mr-2"></i><span>My Inbox</span></a>
-                                          
+                                <div ngbdropdownmenu="" aria-labelledby="dropdownBasic3" class="dropdown-menu text-left dropdown-menu-right">
+                                    
+                                    <a href="show" :active="request() - > routeIs('show')" class="dropdown-item py-1"><i class="ft-edit mr-2"></i><span>Edit Profile</span></a>
                                     <div class="dropdown-divider"></div>
                                     <form class="form-inline" method="POST" action="{{ route('logout') }}" x-data>
                                         @csrf
-                                        {{-- <a href="" type="submit" class="btn btn-link dropdown-item" @click.prevent="$root.submit();"></a>
-                                        <i class="ft-power mr-2"></i>
-                                        {{ __('Log Out') }} --}}
                                         <!-- Use Bootstrap button styles -->
                                         <button type="submit" class="btn btn-link dropdown-item" @click.prevent="$root.submit();">
                                             <!-- Use Bootstrap icons and alignment classes -->
@@ -236,7 +276,6 @@
                                             {{ __('Log Out') }}
                                         </button>
                                     </form>
-                                   
                                 </div>
                             </li>
                             {{-- <li class="nav-item d-none d-lg-block"><a href="javascript:;"
@@ -439,7 +478,7 @@
 <script src="app-assets/vendors/js/pace/pace.min.js" type="text/javascript"></script>
 <!-- BEGIN VENDOR JS-->
 <!-- BEGIN PAGE VENDOR JS-->
-<script src="app-assets/vendors/js/chartist.min.js" type="text/javascript"></script>
+{{-- <script src="app-assets/vendors/js/chartist.min.js" type="text/javascript"></script> --}}
 <!-- END PAGE VENDOR JS-->
 <!-- BEGIN APEX JS-->
 <script src="app-assets/js/app-sidebar.js" type="text/javascript"></script>
@@ -448,6 +487,7 @@
 <!-- END APEX JS-->
 <!-- BEGIN PAGE LEVEL JS-->
 <script src="app-assets/js/dashboard1.js" type="text/javascript"></script>
+<script src="app-assets/js/chartjs.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS-->
 <!-- BEGIN PAGE VENDOR JS-->
 <script src="app-assets/vendors/js/datatable/datatables.min.js" type="text/javascript"></script>
@@ -456,10 +496,15 @@
 <script src="app-assets/js/data-tables/datatable-basic.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS-->
 <script
-src="app-assets/vendors/js/chart.min.js"
-type="text/javascript"
-></script>
-<script src="app-assets/js/chartjs.js" type="text/javascript"></script>
+      src="app-assets/vendors/js/chart.min.js"
+      type="text/javascript"
+    ></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    {{-- <script src="app-assets/js/chartjs.js" type="text/javascript"></script> --}}
+    <script src="app-assets/js/sweet-alerts.js" type="text/javascript"></script>
+    <script src="app-assets/vendors/js/sweetalert2.min.js" type="text/javascript"></script> 
+
 </body>
 
 </html>

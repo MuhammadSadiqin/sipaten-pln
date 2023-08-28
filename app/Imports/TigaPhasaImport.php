@@ -45,14 +45,14 @@ class TigaPhasaImport implements ToCollection, WithStartRow
                 'peta' => $row[7],
                 'tipe' => $row[8],
                 'kelainan' => $row[9],
-                'petugas' => $row[10],
-                'status' => $row[11],
+                // 'petugas' => $row[10],
+                // 'status' => $row[11],
             ]);
         }
     }
 
     public function startRow(): int
     {
-        return 2; // Skip the first row (header) when importing
+        return 1; // Skip the first row (header) when importing
     }
 }

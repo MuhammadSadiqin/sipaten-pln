@@ -30,3 +30,6 @@ Route::get('gantimeter', [GantiMeterController::class, 'all']);
 Route::get('tigaphasa', [TigaPhasaController::class, 'all']);
 Route::get('amr', [AmrController::class, 'all']);
 Route::get('lbkb', [LbkbController::class, 'all']);
+
+Route::put('gantimeter/{id}', [GantiMeterController::class, 'update']);
+Route::put('amr/{id}', [AmrController::class, 'update']);
